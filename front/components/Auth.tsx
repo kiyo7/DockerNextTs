@@ -21,7 +21,9 @@ export const Auth: React.FC = () => {
         <div className=" flex items-center justify-center">
           <form className=" w-8/12">
             <div className=" mb-10 text-center">
-              <p className="font-sans text-4xl">{isLogin ? 'ログイン' : '新規登録'}</p>
+              <p className="font-sans text-4xl text-gray-500">
+                {isLogin ? 'ログイン' : '新規登録'}
+              </p>
             </div>
             <div>
               <SInput
@@ -41,7 +43,7 @@ export const Auth: React.FC = () => {
             </div>
             <div className="my-6 flex justify-end text-sm">
               <span
-                onClick={() => console.log('')}
+                onClick={() => console.log('test')}
                 className="cursor-pointer font-sans  font-medium text-indigo-400 hover:text-indigo-700"
               >
                 {isLogin && 'パスワードを忘れた'}
