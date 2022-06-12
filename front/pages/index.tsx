@@ -1,11 +1,10 @@
-import { Layout } from "../components/Layout";
-import { Auth } from "../components/Auth";
+import { Layout } from '../components/Layout'
+import { Auth } from '../components/Auth'
 
 export default function Home() {
   return (
     <Layout title="Home">
-      <div>Shifty</div>
       <Auth />
     </Layout>
-  );
+  )
 }

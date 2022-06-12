@@ -13,11 +13,8 @@ export const Auth: React.FC = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-2 bg-gray-200">
-        <div>
-          <Image src={authPageBG} alt="img" />
-        </div>
-
+      <div className="grid h-full w-full grid-cols-2 gap-2 bg-gray-200">
+        <Image src={authPageBG} alt="img" />
         <div className=" flex items-center justify-center">
           <form className=" w-8/12">
             <div className=" mb-10 text-center">
