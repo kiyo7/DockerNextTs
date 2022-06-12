@@ -3,7 +3,7 @@ import { Auth } from '../components/Auth'
 
 export default function Home() {
   return (
-    <Layout title="Home">
+    <Layout>
       <Auth />
     </Layout>
   )
