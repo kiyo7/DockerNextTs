@@ -6,11 +6,13 @@ import { IconMail, IconKey } from '@supabase/ui'
 //images
 import authPageBG from '../images/authPageBG.jpg'
 import googleAuth from '../images/googleAuth.png'
-//components
-import { SInput } from './atom/Input'
 
 //utils
 import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
+
+//components
+import { SInput } from './atom/Input'
+import { Spinner } from './atom/Spinner'
 
 export const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -43,7 +45,7 @@ export const Auth: React.FC = () => {
     registerMutation.isLoading ||
     registerGoogleAuthMutation.isLoading
   ) {
-    return <div>Spinner(仮)</div>
+    return <Spinner />
   }
 
   return (
