@@ -36,7 +36,7 @@ const Home: NextPage = () => {
         <div>
           ログイン成功(仮)
           <Button data-testid="logout" onClick={signOut}>
-            logout
+            logout{session.user?.email}
           </Button>
         </div>
       )}

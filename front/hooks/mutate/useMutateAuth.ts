@@ -8,7 +8,6 @@ import { supabase } from '../../utils/supabase'
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  console.log(email, password)
   const reset = () => {
     setEmail('')
     setPassword('')
