@@ -1,6 +1,8 @@
 //lib
 import Head from 'next/head'
 import { ReactNode } from 'react'
+
+//components
 import { Footer } from './atom/Footer'
 
 interface Props {
