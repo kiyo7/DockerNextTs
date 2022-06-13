@@ -1,5 +1,8 @@
-import logo from '../../images/logo.png'
+//lib
 import Image from 'next/image'
+
+//images
+import logo from '../../images/logo.png'
 
 const copyright = () => {
   const YearOfCreation = 2022
