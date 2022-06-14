@@ -10,6 +10,7 @@ import useStore from '../store/store'
 //components
 import { Auth } from '../components/Auth'
 import { Layout } from '../components/Layout'
+import { Profile } from '../components/InitSetting'
 
 const Home: NextPage = () => {
   const session = useStore((state) => state.session)
@@ -22,22 +23,13 @@ const Home: NextPage = () => {
     })
   }, [setSession])
 
-  const signOut = () => {
-    supabase.auth.signOut().catch((err: any) => {
-      throw new Error(err.message)
-    })
-  }
-
   return (
     <Layout title="DashBoard">
       {!session ? (
         <Auth />
       ) : (
         <div>
-          ログイン成功(仮)
-          <Button data-testid="logout" onClick={signOut}>
-            logout{session.user?.email}
-          </Button>
+          <Profile />
         </div>
       )}
     </Layout>

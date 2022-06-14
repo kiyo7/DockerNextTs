@@ -3,16 +3,16 @@ import { FormEvent, useState } from 'react'
 import Image from 'next/image'
 import { IconMail, IconKey } from '@supabase/ui'
 
-//images
-import authPageBG from '../images/authPageBG.jpg'
-import googleAuth from '../images/googleAuth.png'
-
 //utils
 import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
 
 //components
 import { SInput } from './atom/Input'
 import { Spinner } from './atom/Spinner'
+
+//images
+import authPageBG from '../images/authPageBG.jpg'
+import googleAuth from '../images/googleAuth.png'
 
 export const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true)
