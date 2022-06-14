@@ -13,6 +13,7 @@ import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
 //components
 import { SInput } from './atom/Input'
 import { Spinner } from './atom/Spinner'
+import { Notice } from './atom/Notice'
 
 export const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -47,10 +48,9 @@ export const Auth: React.FC = () => {
   ) {
     return <Spinner />
   }
-
   return (
     <>
-      <div className="grid h-full w-full grid-cols-2 gap-2 bg-gray-200">
+      <div className="relative grid h-full w-full grid-cols-2 gap-2 bg-gray-200">
         <Image src={authPageBG} alt="img" />
         <div className=" flex items-center justify-center">
           <form onSubmit={handleSubmit} className=" w-8/12">
