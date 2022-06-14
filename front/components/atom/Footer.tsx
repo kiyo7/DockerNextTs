@@ -12,7 +12,7 @@ const copyright = () => {
 
 export const Footer = () => {
   return (
-    <footer className="w-full bg-gray-100 p-2 text-center">
+    <footer className="w-full bg-gray-100 p-5 text-center">
       <Image src={logo} width={40} height={40} />
       <div>
         <small className="text-xs text-gray-500">&copy;2022-{copyright()} kiyo</small>
