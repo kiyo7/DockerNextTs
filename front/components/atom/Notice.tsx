@@ -14,7 +14,7 @@ export const Notice: React.FC<Props> = ({ situation, message }) => {
   const theme = situation === 'success' ? 'teal' : 'red'
   return (
     <div
-      className={`absolute top-5 z-10 w-3/12 rounded-lg border-t-4 border-${theme}-100 bg-${theme}-100 px-4 py-3 text-${theme}-500 shadow-md`}
+      className={`absolute top-20 z-10 w-3/12 animate-bounce rounded-lg border-t-4 border-${theme}-100 bg-${theme}-100 px-4 py-3 text-${theme}-500 shadow-md`}
       role="alert"
     >
       <div className="flex">
