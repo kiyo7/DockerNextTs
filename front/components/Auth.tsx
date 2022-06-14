@@ -13,7 +13,6 @@ import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
 //components
 import { SInput } from './atom/Input'
 import { Spinner } from './atom/Spinner'
-import { Notice } from './atom/Notice'
 
 export const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true)
