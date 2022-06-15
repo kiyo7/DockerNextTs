@@ -47,9 +47,7 @@ export const InitSetting: React.FC = () => {
         icon={<IconSmile />}
       />
       <p className="mt-8 text-gray-500">仕事の種類</p>
-      {createProfile.isAdmin !== null && (
-        <p className=" text-sm text-red-400">※ 仕事の種類はあとで変更ができません! ※</p>
-      )}
+      <p className=" text-sm text-red-400">※ 仕事の種類はあとで変更ができません! ※</p>
       <div className="mt-4 flex">
         <RoleImage src={manager} onClick={() => selectRole(true)} role={'管理者'} active={active} />
         <span className="mx-5" />

@@ -22,7 +22,7 @@ const useStore = create<State>((set) => ({
   setSession: (payload) => set({ session: payload }),
   notice: false,
   setNotice: (payload) => set({ notice: payload }),
-  createProfile: { id: '', username: '', isAdmin: null, avatar: '' },
+  createProfile: { id: '', username: '', isAdmin: false, avatar: '' },
   registerProfile: (payload) =>
     set({
       createProfile: {
