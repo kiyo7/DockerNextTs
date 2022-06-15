@@ -62,7 +62,7 @@ export const Auth: React.FC = () => {
               <SInput
                 type="text"
                 value={email}
-                onChange={setEmail}
+                onChange={(e) => setEmail(e.target.value)}
                 label="メールアドレス"
                 placeholder="example@email.com"
                 icon={<IconMail />}
@@ -72,7 +72,7 @@ export const Auth: React.FC = () => {
               <SInput
                 type="password"
                 value={password}
-                onChange={setPassword}
+                onChange={(e) => setPassword(e.target.value)}
                 label="パスワード (6文字以上)"
                 placeholder="******"
                 icon={<IconKey />}
