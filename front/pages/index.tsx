@@ -10,7 +10,7 @@ import useStore from '../store/store'
 //components
 import { Auth } from '../components/Auth'
 import { Layout } from '../components/Layout'
-import { Profile } from '../components/InitSetting'
+import { InitSetting } from '../components/InitSetting'
 
 const Home: NextPage = () => {
   const session = useStore((state) => state.session)
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         <Auth />
       ) : (
         <div>
-          <Profile />
+          <InitSetting />
         </div>
       )}
     </Layout>
