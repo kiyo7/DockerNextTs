@@ -46,10 +46,8 @@ export const InitSetting: React.FC = () => {
         placeholder="田中 太郎"
         icon={<IconSmile />}
       />
-      <p className="mt-8 text-gray-500">仕事の種類</p>
-      {createProfile.isAdmin !== null && (
-        <p className=" text-sm text-red-400">※ 仕事の種類はあとで変更ができません! ※</p>
-      )}
+      <p className="my-4 text-gray-500">仕事の種類</p>
+      <p className=" text-sm text-red-400">※ 仕事の種類はあとで変更ができません! ※</p>
       <div className="mt-4 flex">
         <RoleImage src={manager} onClick={() => selectRole(true)} role={'管理者'} active={active} />
         <span className="mx-5" />
