@@ -28,7 +28,6 @@ export const useMutateAuth = () => {
   const registerMutation = useMutation(
     async () => {
       const { error } = await supabase.auth.signUp({ email, password })
-
       if (error) throw new Error(error.message)
     },
     {
