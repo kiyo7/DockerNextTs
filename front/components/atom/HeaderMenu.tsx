@@ -1,5 +1,5 @@
 interface Props {
-  onClick?: () => void
+  onClick?: () => void //?は仮
   contentsName: string
 }
 
