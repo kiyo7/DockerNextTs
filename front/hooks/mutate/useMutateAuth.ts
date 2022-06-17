@@ -2,9 +2,11 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 
+//hooks
+import useStore from '../../store'
+
 //utils
 import { supabase } from '../../utils/supabase'
-import useStore from '../../store'
 
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
@@ -32,7 +34,6 @@ export const useMutateAuth = () => {
   const registerMutation = useMutation(
     async () => {
       const { error } = await supabase.auth.signUp({ email, password })
-
       if (error) throw new Error(error.message)
     },
     {
@@ -70,6 +71,7 @@ export const useMutateAuth = () => {
         throw new Error(err.message)
       })
   })
+
   return {
     email,
     setEmail,

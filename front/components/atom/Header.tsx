@@ -11,6 +11,7 @@ import useStore from '../../store'
 //image
 import logo from '../../images/headerLogo.png'
 
+//components
 import { HeaderMenu } from './HeaderMenu'
 
 export const Header: React.FC = () => {
@@ -30,7 +31,7 @@ export const Header: React.FC = () => {
         <span className="text-xl font-semibold tracking-tight">Shifty</span>
       </div>
       {session && (
-        //プロフのアイコンを表示　サブメニューとして以下のものを適用
+        //プロフのアイコンを表示 サブメニューとして以下のものを適用
         //プロフは最初は指定しないのでデフォルト値を生成
         //
         <div>
@@ -43,4 +44,3 @@ export const Header: React.FC = () => {
     </nav>
   )
 }
-

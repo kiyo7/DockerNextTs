@@ -1,5 +1,4 @@
 //lib
-import { Button } from '@supabase/ui'
 import { NextPage } from 'next'
 import { supabase } from '../utils/supabase'
 import { useEffect } from 'react'
@@ -10,7 +9,7 @@ import useStore from '../store'
 //components
 import { Auth } from '../components/Auth'
 import { Layout } from '../components/Layout'
-import { InitSetting } from '../components/InitSetting'
+import { DashBoard } from '../components/DashBoard'
 
 const Home: NextPage = () => {
   const session = useStore((state) => state.session)
@@ -23,17 +22,7 @@ const Home: NextPage = () => {
     })
   }, [setSession])
 
-  return (
-    <Layout title="DashBoard">
-      {!session ? (
-        <Auth />
-      ) : (
-        <div>
-          <InitSetting />
-        </div>
-      )}
-    </Layout>
-  )
+  return <Layout title="DashBoard">{!session ? <Auth /> : <DashBoard />}</Layout>
 }
 
 export default Home
