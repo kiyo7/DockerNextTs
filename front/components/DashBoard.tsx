@@ -1,40 +1,25 @@
+//li
 import { Suspense } from 'react'
-import { useQueryClient } from 'react-query'
 import { ErrorBoundary } from 'react-error-boundary'
-import { supabase } from '../utils/supabase'
+import { ExclamationCircleIcon } from '@heroicons/react/solid'
+
+//utils
 import useStore from '../store'
-import { Spinner } from './atom/Spinner'
-import { InitSetting } from './InitSetting'
-import { LogoutIcon, ExclamationCircleIcon } from '@heroicons/react/solid'
+
+//hooks
 import { useQueryProfile } from '../hooks/query/useQueryProfile'
 
-export const DashBoard: React.FC = () => {
-  const queryClient = useQueryClient()
-  const resetProfile = useStore((state) => state.resetProfile)
+//components
+import { Spinner } from './atom/Spinner'
+import { InitSetting } from './InitSetting'
 
+export const DashBoard: React.FC = () => {
   const session = useStore((state) => state.session)
 
   const { data } = useQueryProfile()
 
-  const signOut = () => {
-    supabase.auth
-      .signOut()
-      .then(() => {
-        resetProfile()
-        queryClient.removeQueries('profile')
-      })
-      .catch((err: any) => {
-        throw new Error(err.message)
-      })
-  }
-
   return (
     <div>
-      <LogoutIcon
-        onClick={signOut}
-        className="my-6 h-6 w-6 cursor-pointer text-blue-500"
-        data-testid="logout"
-      />
       {data ? (
         <div>
           登録完了
