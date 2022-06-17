@@ -4,7 +4,7 @@ import { useQueryClient, useMutation } from 'react-query'
 //utils
 import { supabase } from '../../utils/supabase'
 
-//type
+//types
 import { Profile } from '../../types'
 
 export const useMutateProfile = () => {
@@ -18,8 +18,7 @@ export const useMutateProfile = () => {
     },
     {
       onSuccess: (res) => {
-        queryClient.setQueryData(['profile'], res[0])
-        alert('成功')
+        queryClient.setQueryData('profile', res[0])
       },
       onError: (err: any) => {
         alert(err.message)
@@ -35,13 +34,12 @@ export const useMutateProfile = () => {
     },
     {
       onSuccess: (res) => {
-        queryClient.setQueryData(['profile'], res[0])
+        queryClient.setQueryData('profile', res[0])
       },
       onError: (err: any) => {
         alert(err.messages)
       },
     },
   )
-
   return { createProfileMutation, updateProfileMutation }
 }

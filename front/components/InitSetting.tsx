@@ -2,12 +2,13 @@
 import { Button, IconSmile } from '@supabase/ui'
 import { SInput } from './atom/Input'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 //components
 import { RoleImage } from './atom/RoleImage'
 
 //utils
-import useStore from '../store/store'
+import useStore from '../store'
 
 //hooks
 import { useMutateProfile } from '../hooks/mutate/useMutateProfile'
@@ -18,9 +19,10 @@ import manager from '../images/manager.png'
 
 export const InitSetting: React.FC = () => {
   const [active, setActive] = useState(false)
+  const router = useRouter()
   const session = useStore((state) => state.session)
-  const createProfile = useStore((state) => state.createProfile)
-  const registerProfile = useStore((state) => state.registerProfile)
+  const editedProfile = useStore((state) => state.editedProfile)
+  const updateEditedProfile = useStore((state) => state.updateEditedProfile)
 
   const { createProfileMutation } = useMutateProfile()
 
@@ -30,7 +32,17 @@ export const InitSetting: React.FC = () => {
 
   const selectRole = (selected: boolean) => {
     activeRoleToggle()
-    registerProfile({ ...createProfile, isAdmin: selected })
+    updateEditedProfile({ ...editedProfile, isAdmin: selected })
+  }
+
+  const createProfile = () => {
+    createProfileMutation.mutate({
+      id: session?.user?.id,
+      username: editedProfile.username,
+      isAdmin: editedProfile.isAdmin,
+      avatar: editedProfile.avatar,
+    })
+    router.push('/')
   }
 
   return (
@@ -40,14 +52,12 @@ export const InitSetting: React.FC = () => {
       </div>
       <SInput
         type="text"
-        value={createProfile.username || ''}
-        onChange={(e) => registerProfile({ ...createProfile, username: e.target.value })}
+        value={editedProfile?.username || ''}
+        onChange={(e) => updateEditedProfile({ ...editedProfile, username: e.target.value })}
         label="あなたの名前"
         placeholder="田中 太郎"
         icon={<IconSmile />}
       />
-      <p className="mt-8 text-gray-500">仕事の種類</p>
-      <p className=" text-sm text-red-400">※ 仕事の種類はあとで変更ができません! ※</p>
       <div className="mt-4 flex">
         <RoleImage src={manager} onClick={() => selectRole(true)} role={'管理者'} active={active} />
         <span className="mx-5" />
@@ -59,11 +69,7 @@ export const InitSetting: React.FC = () => {
         />
       </div>
       <div className="m-auto my-10 w-7/12">
-        <Button
-          onClick={() => createProfileMutation.mutate({ ...createProfile, id: session?.user?.id })}
-          block
-          className="rounded-full"
-        >
+        <Button onClick={createProfile} block className="rounded-full">
           登録
         </Button>
       </div>

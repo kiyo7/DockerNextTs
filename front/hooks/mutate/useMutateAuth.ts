@@ -1,6 +1,9 @@
 //lib
 import { useState } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
+import useStore from '../../store'
+
+//hooks
 
 //utils
 import { supabase } from '../../utils/supabase'
@@ -8,6 +11,9 @@ import { supabase } from '../../utils/supabase'
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const queryClient = useQueryClient()
+  const resetProfile = useStore((state) => state.resetProfile)
 
   const reset = () => {
     setEmail('')
@@ -28,7 +34,6 @@ export const useMutateAuth = () => {
   const registerMutation = useMutation(
     async () => {
       const { error } = await supabase.auth.signUp({ email, password })
-
       if (error) throw new Error(error.message)
     },
     {
@@ -55,6 +60,18 @@ export const useMutateAuth = () => {
     },
   )
 
+  const logoutMutation = useMutation(async () => {
+    supabase.auth
+      .signOut()
+      .then(() => {
+        resetProfile()
+        queryClient.removeQueries('profile')
+      })
+      .catch((err: any) => {
+        throw new Error(err.message)
+      })
+  })
+
   return {
     email,
     setEmail,
@@ -63,5 +80,6 @@ export const useMutateAuth = () => {
     loginMutation,
     registerMutation,
     registerGoogleAuthMutation,
+    logoutMutation,
   }
 }
