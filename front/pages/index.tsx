@@ -5,7 +5,7 @@ import { supabase } from '../utils/supabase'
 import { useEffect } from 'react'
 
 //utils
-import useStore from '../store/store'
+import useStore from '../store'
 
 //components
 import { Auth } from '../components/Auth'
