@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { RoleImage } from './atom/RoleImage'
 
 //utils
-import useStore from '../store/store'
+import useStore from '../store'
 
 //hooks
 import { useMutateProfile } from '../hooks/mutate/useMutateProfile'
