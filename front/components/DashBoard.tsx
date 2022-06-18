@@ -19,25 +19,23 @@ export const DashBoard: React.FC = () => {
   const { data } = useQueryProfile()
 
   return (
-    <div>
+    <>
       {data ? (
         <div>
           登録完了
           {data.username}
         </div>
       ) : (
-        <div className="grid grid-cols-3 gap-4">
-          <div className="flex flex-col items-center">
-            <ErrorBoundary
-              fallback={<ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />}
-            >
-              <Suspense fallback={<Spinner />}>
-                <ProfSetting />
-              </Suspense>
-            </ErrorBoundary>
-          </div>
+        <div className="">
+          <ErrorBoundary
+            fallback={<ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />}
+          >
+            <Suspense fallback={<Spinner />}>
+              <ProfSetting />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       )}
-    </div>
+    </>
   )
 }
