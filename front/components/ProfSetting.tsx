@@ -17,7 +17,7 @@ import { useMutateProfile } from '../hooks/mutate/useMutateProfile'
 import employee from '../images/employee.png'
 import manager from '../images/manager.png'
 
-export const InitSetting: React.FC = () => {
+export const ProfSetting: React.FC = () => {
   const [active, setActive] = useState(false)
   const router = useRouter()
   const session = useStore((state) => state.session)
