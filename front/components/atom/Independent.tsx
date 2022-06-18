@@ -1,17 +1,26 @@
 //lib
-import Image from 'next/image'
+import { IconPlusCircle } from '@supabase/ui'
+import Image, { StaticImageData } from 'next/image'
 
-//images
-import image from '../../images/noGroup.png'
+//components
+import { PrimaryButton } from './PrimaryButton'
 
-export const Independent: React.FC = () => {
+interface Props {
+  heading: string
+  tips: string
+  img: StaticImageData
+  isAdmin?: boolean
+}
+
+export const Independent: React.FC<Props> = ({ heading, tips, img, isAdmin }) => {
   return (
     <div className="hero">
       <div className="hero-content text-center">
-        <div className="mt-10">
-          <p className="text-4xl font-bold text-gray-500">参加しているグループが見つかりません</p>
-          <p className="py-6 text-gray-700">管理者からグループに招待してもらいましょう！</p>
-          <Image src={image} width={400} height={400} />
+        <div className="mt-16 tracking-wider">
+          <p className="text-4xl font-bold  text-gray-500">{heading}</p>
+          <p className="py-6 text-xl text-gray-700">{tips}</p>
+          <Image src={img} width={400} height={390} />
+          {isAdmin && <PrimaryButton icon={<IconPlusCircle />} buttonText="グループを作成" />}
         </div>
       </div>
     </div>

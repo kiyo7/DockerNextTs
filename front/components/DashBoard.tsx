@@ -10,9 +10,13 @@ import useStore from '../store'
 import { useQueryProfile } from '../hooks/query/useQueryProfile'
 
 //components
+import { Admin } from './Admin'
 import { Independent } from './atom/Independent'
 import { Spinner } from './atom/Spinner'
 import { ProfSetting } from './ProfSetting'
+
+//images
+import img from '../images/independent.png'
 
 export const DashBoard: React.FC = () => {
   const session = useStore((state) => state.session)
@@ -22,10 +26,22 @@ export const DashBoard: React.FC = () => {
   return (
     <>
       {data ? (
-        <div>
-          {/* 仮 グループが存在した場合管理画面との分岐 */}
-          <Independent />
-        </div>
+        <>
+          {data.isAdmin ? (
+            <>
+              <Admin />
+            </>
+          ) : (
+            <div>
+              {/* <Employee とか作ってその中で所属の有無で分岐> */}
+              <Independent
+                heading="参加しているグループが見つかりません"
+                tips="管理者からグループに招待してもらいましょう！"
+                img={img}
+              />
+            </div>
+          )}
+        </>
       ) : (
         <div className="">
           <ErrorBoundary
