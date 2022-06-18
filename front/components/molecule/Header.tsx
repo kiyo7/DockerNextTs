@@ -14,8 +14,8 @@ import useStore from '../../store'
 import logo from '../../images/headerLogo.png'
 
 //components
-import { HeaderMenu } from './header/HeaderMenu'
-import { HamburgerMenu } from './header/HamburgerMenu'
+import { HeaderMenu } from '../atom/header/HeaderMenu'
+import { HamburgerMenu } from '../atom/header/HamburgerMenu'
 
 export const Header: React.FC = () => {
   const router = useRouter()

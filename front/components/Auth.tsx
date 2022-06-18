@@ -93,25 +93,26 @@ export const Auth: React.FC = () => {
             >
               {isLogin ? 'ログイン' : '新規登録'}
             </button>
+            <div className="mt-5 flex justify-center">
+              <p
+                onClick={() => setIsLogin(!isLogin)}
+                className="mb-6 cursor-pointer font-sans font-medium text-indigo-400  hover:text-indigo-700"
+              >
+                {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
+              </p>
+            </div>
             <div className="mt-6 mb-3 w-full border border-dashed border-gray-400" />
+
             <div className="mx-4 font-sans text-sm font-medium  text-gray-500">
               SNSアカウントで登録・ログイン
             </div>
             <button
               onClick={googleAuthMutation}
               data-testid="google"
-              className="mt-8 flex w-full justify-center hover:cursor-pointer hover:opacity-60"
+              className="my-8 flex w-full justify-center hover:cursor-pointer hover:opacity-60"
             >
               <Image src={googleAuth} alt="google" />
             </button>
-            <div className="mt-5 flex justify-center">
-              <p
-                onClick={() => setIsLogin(!isLogin)}
-                className="cursor-pointer font-sans font-medium text-indigo-400  hover:text-indigo-700"
-              >
-                {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
-              </p>
-            </div>
           </form>
         </div>
       </div>

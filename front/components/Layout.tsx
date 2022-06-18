@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 //components
 import { Footer } from './atom/Footer'
-import { Header } from './atom/Header'
+import { Header } from './molecule/Header'
 
 interface Props {
   title?: string
