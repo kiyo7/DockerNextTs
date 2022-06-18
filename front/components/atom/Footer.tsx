@@ -10,7 +10,7 @@ const copyright = () => {
   if (year !== YearOfCreation) return year
 }
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-gray-100 p-5 text-center">
       <Image src={logo} width={40} height={40} />
