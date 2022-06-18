@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 
 //hooks
 import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
-import { useQueryProfile } from '../../hooks/query/useQueryProfile'
 
 //utils
 import useStore from '../../store'
@@ -22,7 +21,6 @@ export const Header: React.FC = () => {
   const session = useStore((state) => state.session)
 
   const { logoutMutation } = useMutateAuth()
-  const { data } = useQueryProfile()
 
   const signOut = () => {
     logoutMutation.mutate()
@@ -38,7 +36,7 @@ export const Header: React.FC = () => {
             <span className="text-xl font-semibold tracking-tight">Shifty</span>
           </div>
         </div>
-        {data && (
+        {session && (
           <div className="navbar-center mr-6">
             <div className="dropdown">
               <HamburgerMenu />
@@ -61,7 +59,7 @@ export const Header: React.FC = () => {
                   contentsName={'設定'}
                   Icon={<IconSettings />}
                 />
-                <div className="divider" />
+                <div className="divider"></div>
 
                 <HeaderMenu
                   clickEvent={signOut}
