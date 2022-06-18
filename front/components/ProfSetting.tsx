@@ -17,7 +17,7 @@ import { useMutateProfile } from '../hooks/mutate/useMutateProfile'
 import employee from '../images/employee.png'
 import manager from '../images/manager.png'
 
-export const InitSetting: React.FC = () => {
+export const ProfSetting: React.FC = () => {
   const [active, setActive] = useState(false)
   const router = useRouter()
   const session = useStore((state) => state.session)
@@ -58,6 +58,8 @@ export const InitSetting: React.FC = () => {
         placeholder="田中 太郎"
         icon={<IconSmile />}
       />
+      <p className="my-4 text-gray-500">仕事の種類</p>
+      <p className=" text-sm text-red-400">※ 仕事の種類はあとで変更ができません! ※</p>
       <div className="mt-4 flex">
         <RoleImage src={manager} onClick={() => selectRole(true)} role={'管理者'} active={active} />
         <span className="mx-5" />

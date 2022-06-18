@@ -11,7 +11,7 @@ import { useQueryProfile } from '../hooks/query/useQueryProfile'
 
 //components
 import { Spinner } from './atom/Spinner'
-import { InitSetting } from './InitSetting'
+import { ProfSetting } from './ProfSetting'
 
 export const DashBoard: React.FC = () => {
   const session = useStore((state) => state.session)
@@ -32,7 +32,7 @@ export const DashBoard: React.FC = () => {
               fallback={<ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />}
             >
               <Suspense fallback={<Spinner />}>
-                <InitSetting />
+                <ProfSetting />
               </Suspense>
             </ErrorBoundary>
           </div>

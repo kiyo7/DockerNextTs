@@ -2,11 +2,9 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 
-//hooks
-import useStore from '../../store'
-
 //utils
 import { supabase } from '../../utils/supabase'
+import useStore from '../../store'
 
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
