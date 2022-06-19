@@ -1,5 +1,4 @@
-import React from 'react'
-
+//lib
 import { ToastContainer, ToastPosition, Bounce } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
