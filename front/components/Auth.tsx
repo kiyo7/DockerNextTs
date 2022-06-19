@@ -47,6 +47,7 @@ export const Auth: React.FC = () => {
   ) {
     return <Spinner />
   }
+
   return (
     <>
       <div className="relative grid h-full w-full grid-cols-2 gap-2 bg-gray-200">
