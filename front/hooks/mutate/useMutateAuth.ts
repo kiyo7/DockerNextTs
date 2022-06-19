@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from 'react-query'
 //utils
 import { supabase } from '../../utils/supabase'
 import useStore from '../../store'
+import { toast } from 'react-toastify'
 
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
@@ -23,8 +24,11 @@ export const useMutateAuth = () => {
       if (error) throw new Error(error.message)
     },
     {
+      onSuccess: () => {
+        toast.success('ログイン成功')
+      },
       onError: (err: any) => {
-        alert(err.message)
+        toast.error(err.message)
         reset()
       },
     },
@@ -35,8 +39,11 @@ export const useMutateAuth = () => {
       if (error) throw new Error(error.message)
     },
     {
+      onSuccess: () => {
+        toast.success('アカウントを登録しました')
+      },
       onError: (err: any) => {
-        alert(err.message)
+        toast.error(err.message)
         reset()
       },
     },
@@ -51,8 +58,11 @@ export const useMutateAuth = () => {
       if (error) throw new Error(error.message)
     },
     {
+      onSuccess: () => {
+        toast.success('ログイン成功')
+      },
       onError: (err: any) => {
-        alert(err.message)
+        toast.error(err.message)
         reset()
       },
     },

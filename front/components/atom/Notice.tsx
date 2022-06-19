@@ -1,34 +1,39 @@
-//lib
-import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/solid'
+import React from 'react'
+
+import { ToastContainer, ToastPosition, Bounce } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 interface Props {
-  situation: 'success' | 'error'
-  message: string
+  position?: ToastPosition
+  autoClose?: number
 }
 
-const base = 'mr-4 h-6 w-6 fill-current'
-const success = `${base} text-teal-500`
-const error = `${base} text-red-500`
-
-export const Notice: React.FC<Props> = ({ situation, message }) => {
-  const theme = situation === 'success' ? 'teal' : 'red'
+export const Notice: React.FC<Props> = ({ position = 'top-center', autoClose = 4000 }) => {
+  const contextClass = {
+    success: 'bg-blue-600',
+    error: 'bg-red-600',
+    info: 'bg-gray-700',
+    warning: 'bg-orange-400',
+    default: 'bg-black text-white ',
+    dark: 'bg-white text-gray-600',
+  }
   return (
-    <div
-      className={`absolute top-20 z-10 w-3/12 animate-bounce rounded-lg border-t-4 border-${theme}-100 bg-${theme}-100 px-4 py-3 text-${theme}-500 shadow-md`}
-      role="alert"
-    >
-      <div className="flex">
-        <div>
-          {situation === 'success' ? (
-            <CheckCircleIcon className={success} />
-          ) : (
-            <ExclamationCircleIcon className={error} />
-          )}
-        </div>
-        <div>
-          <p className="tracking-widest">{message}</p>
-        </div>
-      </div>
-    </div>
+    <ToastContainer
+      position={position}
+      autoClose={autoClose}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      transition={Bounce}
+      closeButton={false}
+      toastClassName={() =>
+        contextClass['info'] +
+        ' relative flex p-1 min-h-10 rounded-md justify-between m-2 cursor-pointer'
+      }
+      bodyClassName={() => ' flex  text-sm font-md block p-3'}
+    />
   )
 }
