@@ -15,6 +15,8 @@ const Home: NextPage = () => {
   const session = useStore((state) => state.session)
   const setSession = useStore((state) => state.setSession)
 
+  const title = session ? 'ホーム' : 'ログイン'
+
   useEffect(() => {
     setSession(supabase.auth.session())
     supabase.auth.onAuthStateChange((_event, session) => {
@@ -22,7 +24,7 @@ const Home: NextPage = () => {
     })
   }, [setSession])
 
-  return <Layout title="DashBoard">{!session ? <Auth /> : <DashBoard />}</Layout>
+  return <Layout title={title}>{!session ? <Auth /> : <DashBoard />}</Layout>
 }
 
 export default Home
