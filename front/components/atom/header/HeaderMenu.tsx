@@ -1,17 +1,31 @@
+//lib
+import Link from 'next/link'
+
 interface Props {
-  clickEvent: () => void
+  clickEvent?: () => void
+  path?: string
   contentsName: string
   Icon: React.ReactNode
 }
 
-export const HeaderMenu: React.FC<Props> = ({ clickEvent, contentsName, Icon }) => {
+export const HeaderMenu: React.FC<Props> = ({ clickEvent, path, contentsName, Icon }) => {
   return (
     <>
-      <li className="my-1">
-        <p onClick={clickEvent}>
-          {Icon} {contentsName}
-        </p>
-      </li>
+      {path ? (
+        <li className="my-1">
+          <Link href={path}>
+            <a>
+              {Icon} {contentsName}
+            </a>
+          </Link>
+        </li>
+      ) : (
+        <li className="my-1" onClick={clickEvent}>
+          <p>
+            {Icon} {contentsName}
+          </p>
+        </li>
+      )}
     </>
   )
 }

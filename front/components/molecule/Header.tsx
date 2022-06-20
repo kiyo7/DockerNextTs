@@ -44,18 +44,14 @@ export const Header: React.FC = () => {
                 tabIndex={0}
                 className="dropdown-content menu rounded-box right-1 top-1 w-60 bg-base-100 p-2 shadow"
               >
+                <HeaderMenu path="/" contentsName={'ホーム'} Icon={<IconHome />} />
                 <HeaderMenu
-                  clickEvent={() => router.push('/')}
-                  contentsName={'ホーム'}
-                  Icon={<IconHome />}
-                />
-                <HeaderMenu
-                  clickEvent={() => router.push(`/updateProf/${session?.user?.id}`)}
+                  path={`/updateProf/${session?.user?.id}`}
                   contentsName={'プロフィール編集'}
                   Icon={<IconUser />}
                 />
                 <HeaderMenu
-                  clickEvent={() => router.push(`/setting/${session?.user?.id}`)}
+                  path={`/setting/${session?.user?.id}`}
                   contentsName={'設定'}
                   Icon={<IconSettings />}
                 />

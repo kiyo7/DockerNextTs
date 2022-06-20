@@ -74,6 +74,7 @@ export const useMutateAuth = () => {
       .then(() => {
         resetProfile()
         queryClient.removeQueries('profile')
+        toast.success('ログアウトしました')
       })
       .catch((err: any) => {
         throw new Error(err.message)
