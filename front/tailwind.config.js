@@ -2,6 +2,9 @@ module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      backgroundImage: (theme) => ({
+        'auth-img': "url('../images/authPageBG.jpg')",
+      }),
       keyframes: {
         bound: {
           '0%': { transform: 'rotate(0.0deg)' },
