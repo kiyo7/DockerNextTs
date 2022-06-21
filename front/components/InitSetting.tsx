@@ -4,20 +4,20 @@ import { SInput } from './atom/Input'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-//components
-import { RoleImage } from './atom/RoleImage'
-
 //utils
 import useStore from '../store'
 
 //hooks
 import { useMutateProfile } from '../hooks/mutate/useMutateProfile'
 
+//components
+import { RoleImage } from './atom/RoleImage'
+
 //images
 import employee from '../images/employee.png'
 import manager from '../images/manager.png'
 
-export const ProfSetting: React.FC = () => {
+export const InitSetting: React.FC = () => {
   const [active, setActive] = useState(false)
   const router = useRouter()
   const session = useStore((state) => state.session)
@@ -46,7 +46,7 @@ export const ProfSetting: React.FC = () => {
   }
 
   return (
-    <div className="mx-3">
+    <div>
       <div className="my-10 text-center font-sans text-4xl tracking-widest text-gray-500">
         ようこそ
       </div>

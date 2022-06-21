@@ -12,8 +12,8 @@ import { useQueryProfile } from '../hooks/query/useQueryProfile'
 //components
 import { Admin } from './Admin'
 import { Independent } from './atom/Independent'
+import { InitSetting } from './InitSetting'
 import { Spinner } from './atom/Spinner'
-import { ProfSetting } from './ProfSetting'
 
 //images
 import img from '../images/independent.png'
@@ -43,12 +43,12 @@ export const DashBoard: React.FC = () => {
           )}
         </>
       ) : (
-        <div className="">
+        <div>
           <ErrorBoundary
             fallback={<ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />}
           >
             <Suspense fallback={<Spinner />}>
-              <ProfSetting />
+              <InitSetting />
             </Suspense>
           </ErrorBoundary>
         </div>
