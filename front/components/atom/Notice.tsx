@@ -7,7 +7,7 @@ interface Props {
   autoClose?: number
 }
 
-export const Notice: React.FC<Props> = ({ position = 'top-center', autoClose = 4000 }) => {
+export const Notice: React.FC<Props> = ({ position = 'top-center', autoClose = 1000 }) => {
   const contextClass = {
     success: 'bg-blue-600',
     error: 'bg-red-600',

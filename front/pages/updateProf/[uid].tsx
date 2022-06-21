@@ -5,6 +5,10 @@ import { NextPage } from 'next'
 import { Layout } from '../../components/Layout'
 
 const ProfileUpdate: NextPage = () => {
-  return <Layout title="プロフィール編集">プロフィール更新ページ</Layout>
+  return (
+    <Layout title="プロフィール編集">
+      <div>仮</div>
+    </Layout>
+  )
 }
 export default ProfileUpdate
