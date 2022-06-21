@@ -50,12 +50,14 @@ export const Auth: React.FC = () => {
 
   return (
     <>
-      <div className="relative grid h-full w-full grid-cols-2 gap-2 bg-gray-200">
-        <Image src={authPageBG} alt="img" />
-        <div className=" flex items-center justify-center">
+      <div className="relative h-full w-full bg-gray-200 lg:grid lg:grid-cols-2 lg:gap-2">
+        <p className="hidden lg:block">
+          <Image src={authPageBG} alt="img" />
+        </p>
+        <div className=" hid flex items-center justify-center">
           <form onSubmit={handleSubmit} className=" w-8/12">
             <div className=" mb-10 text-center">
-              <p className="font-sans text-4xl text-gray-500">
+              <p className="my-10 font-sans text-3xl text-gray-500 lg:text-4xl">
                 {isLogin ? 'ログイン' : '新規登録'}
               </p>
             </div>
@@ -97,7 +99,7 @@ export const Auth: React.FC = () => {
             <div className="mt-5 flex justify-center">
               <p
                 onClick={() => setIsLogin(!isLogin)}
-                className="mb-6 cursor-pointer font-sans font-medium text-indigo-400  hover:text-indigo-700"
+                className="mb-6 cursor-pointer font-sans text-lg font-medium text-indigo-400  hover:text-indigo-700"
               >
                 {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
               </p>
