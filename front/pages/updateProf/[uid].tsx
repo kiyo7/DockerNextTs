@@ -4,7 +4,9 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
 //hooks
+import { useDownloadUrl } from '../../hooks/useDownloadUrl'
 import { useMutateProfile } from '../../hooks/mutate/useMutateProfile'
+import { useUploadAvatarImg } from '../../hooks/useUploadAvatarImg'
 
 //utils
 import useStore from '../../store'
@@ -16,14 +18,17 @@ import { SInput } from '../../components/atom/Input'
 import { Avatar } from '../../components/atom/Avatar'
 import { ImgUploadButton } from '../../components/atom/ImgUploadButton'
 import { Layout } from '../../components/Layout'
-
-import img from '../../images/main.jpg' //仮
+import { Spinner } from '../../components/atom/Spinner'
 
 const ProfileUpdate: NextPage = () => {
   const session = useStore((state) => state.session)
   const editedProfile = useStore((state) => state.editedProfile)
   const updateEditedProfile = useStore((state) => state.updateEditedProfile)
   const { updateProfileMutation } = useMutateProfile()
+
+  const { useMutateUploadAvatarImg } = useUploadAvatarImg()
+
+  const { fullUrl: avatarUrl, isLoading } = useDownloadUrl(editedProfile.avatar)
 
   const { push } = useRouter()
 
@@ -49,11 +54,16 @@ const ProfileUpdate: NextPage = () => {
           label="あなたの名前"
           icon={<IconSmile />}
         />
-        <ImgUploadButton changeEvent={() => {}}>
-          <Avatar img={img} isSetting />
-        </ImgUploadButton>
+        {!isLoading ? (
+          <ImgUploadButton changeEvent={(e) => useMutateUploadAvatarImg.mutate(e)}>
+            <>{avatarUrl ? <Avatar img={avatarUrl} isSetting /> : <Avatar isSetting />}</>
+          </ImgUploadButton>
+        ) : (
+          <Spinner />
+        )}
+
         <div className="m-auto my-10 w-7/12">
-          <Button onClick={updateProfile} block className="rounded-full">
+          <Button onClick={updateProfile} disabled={isLoading} block className="rounded-full">
             {updateProfileMutation.isLoading ? '更新中...' : '更新'}
           </Button>
         </div>
