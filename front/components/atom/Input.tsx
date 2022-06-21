@@ -7,11 +7,18 @@ interface Props {
   value: string
   onChange: ChangeEventHandler<HTMLInputElement>
   label: string
-  placeholder: string
+  placeholder?: string
   icon: JSX.Element
 }
 
-export const SInput: React.FC<Props> = ({ type, value, onChange, label, placeholder, icon }) => {
+export const SInput: React.FC<Props> = ({
+  type,
+  value,
+  onChange,
+  label,
+  placeholder = '',
+  icon,
+}) => {
   return (
     <>
       <label className="text-gray-500">{label}</label>
