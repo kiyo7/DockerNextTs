@@ -29,7 +29,13 @@ export const DashBoard: React.FC = () => {
         <>
           {data.isAdmin ? (
             <>
-              <Admin />
+              <ErrorBoundary
+                fallback={<ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />}
+              >
+                <Suspense fallback={<Spinner />}>
+                  <Admin />
+                </Suspense>
+              </ErrorBoundary>
             </>
           ) : (
             <div>

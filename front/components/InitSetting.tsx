@@ -19,7 +19,7 @@ import manager from '../images/manager.png'
 
 export const InitSetting: React.FC = () => {
   const [active, setActive] = useState(false)
-  const router = useRouter()
+  const { push } = useRouter()
   const session = useStore((state) => state.session)
   const editedProfile = useStore((state) => state.editedProfile)
   const updateEditedProfile = useStore((state) => state.updateEditedProfile)
@@ -42,7 +42,7 @@ export const InitSetting: React.FC = () => {
       isAdmin: editedProfile.isAdmin,
       avatar: editedProfile.avatar,
     })
-    router.push('/')
+    push('/')
   }
 
   return (

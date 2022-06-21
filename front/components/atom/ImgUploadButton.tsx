@@ -3,7 +3,7 @@ interface Props {
   children: JSX.Element
 }
 
-export const UploadButton: React.FC<Props> = ({ changeEvent, children }) => {
+export const ImgUploadButton: React.FC<Props> = ({ changeEvent, children }) => {
   return (
     <div className="flex justify-center">
       <label htmlFor="avatar">{children}</label>
