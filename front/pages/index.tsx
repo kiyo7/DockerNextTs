@@ -13,16 +13,16 @@ import { DashBoard } from '../components/DashBoard'
 
 const Home: NextPage = () => {
   const session = useStore((state) => state.session)
-  const setSession = useStore((state) => state.setSession)
+  // const setSession = useStore((state) => state.setSession)
 
   const title = session ? 'ホーム' : 'ログイン'
 
-  useEffect(() => {
-    setSession(supabase.auth.session())
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [setSession])
+  // useEffect(() => {
+  //   setSession(supabase.auth.session())
+  //   supabase.auth.onAuthStateChange((_event, session) => {
+  //     setSession(session)
+  //   })
+  // }, [setSession])
 
   return <Layout title={title}>{!session ? <Auth /> : <DashBoard />}</Layout>
 }

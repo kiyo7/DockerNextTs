@@ -15,6 +15,7 @@ import logo from '../../images/headerLogo.png'
 //components
 import { HeaderMenu } from '../atom/header/HeaderMenu'
 import { HamburgerMenu } from '../atom/header/HamburgerMenu'
+import { useQueryProfile } from '../../hooks/query/useQueryProfile'
 
 export const Header: React.FC = () => {
   const router = useRouter()

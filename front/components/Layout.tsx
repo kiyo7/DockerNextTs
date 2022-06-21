@@ -1,10 +1,13 @@
 //lib
 import Head from 'next/head'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 //components
 import { Footer } from './atom/Footer'
 import { Header } from './molecule/Header'
+
+import { supabase } from '../utils/supabase'
+import useStore from '../store'
 
 interface Props {
   title?: string
@@ -12,6 +15,15 @@ interface Props {
 }
 
 export const Layout: React.FC<Props> = ({ title = 'Shifty', children }) => {
+  const setSession = useStore((state) => state.setSession)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [setSession])
+
   return (
     <>
       <Header />
