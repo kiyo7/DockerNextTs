@@ -7,6 +7,7 @@ import useStore from '../../store'
 
 //types
 import { Profile } from '../../types'
+import { toast } from 'react-toastify'
 
 export const useQueryProfile = () => {
   const session = useStore((state) => state.session)
@@ -42,6 +43,9 @@ export const useQueryProfile = () => {
           avatar: data.avatar,
         })
       }
+    },
+    onError: (err) => {
+      toast.error(err.message)
     },
   })
 }
