@@ -13,6 +13,7 @@ import { Spinner } from './atom/Spinner'
 //images
 import authPageBG from '../images/authPageBG.jpg'
 import googleAuth from '../images/googleAuth.png'
+import { ForgotPasswordModal } from './molecule/ForgotPasswordModal'
 
 export const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -82,12 +83,7 @@ export const Auth: React.FC = () => {
               />
             </div>
             <div className="my-6 flex justify-end text-sm">
-              <span
-                onClick={() => console.log('test')}
-                className="cursor-pointer font-sans  font-medium text-indigo-400 hover:text-indigo-700"
-              >
-                {isLogin && 'パスワードを忘れた'}
-              </span>
+              <ForgotPasswordModal />
             </div>
             <button
               type="submit"
