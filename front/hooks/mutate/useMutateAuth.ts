@@ -1,6 +1,7 @@
 //lib
 import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
+import { useRouter } from 'next/router'
 
 //utils
 import { supabase } from '../../utils/supabase'
@@ -10,6 +11,8 @@ import { toast } from 'react-toastify'
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const { push } = useRouter()
 
   const queryClient = useQueryClient()
   const resetProfile = useStore((state) => state.resetProfile)
@@ -68,18 +71,60 @@ export const useMutateAuth = () => {
     },
   )
 
-  const logoutMutation = useMutation(async () => {
-    supabase.auth
-      .signOut()
-      .then(() => {
+  const logoutMutation = useMutation(
+    async () => {
+      const { error } = await supabase.auth.signOut()
+      if (error) throw new Error(error.message)
+    },
+    {
+      onSuccess: () => {
         resetProfile()
         queryClient.removeQueries('profile')
         toast.success('ログアウトしました')
+      },
+      onError: (err: any) => {
+        toast.error(err.message)
+      },
+    },
+  )
+
+  const passwordResetSendEmail = useMutation(
+    async (email: string) => {
+      const { error } = await supabase.auth.api.resetPasswordForEmail(email, {
+        redirectTo: 'http://localhost:3000/resetPassword',
       })
-      .catch((err: any) => {
-        throw new Error(err.message)
-      })
-  })
+      if (error) throw new Error(error.message)
+    },
+
+    {
+      onSuccess: () => {
+        toast.success('アドレスに再入力フォームを送信しました。')
+        reset()
+      },
+      onError: (arr: any) => {
+        toast.error(arr.message)
+        reset()
+      },
+    },
+  )
+
+  const resetPassword = useMutation(
+    async () => {
+      const { error } = await supabase.auth.update({ password: password })
+      if (error) throw new Error(error.message)
+    },
+    {
+      onSuccess: () => {
+        toast.success('パスワードを再設定しました')
+        reset()
+        push('/')
+      },
+      onError: (arr: any) => {
+        toast.error(arr.message)
+        reset()
+      },
+    },
+  )
 
   return {
     email,
@@ -90,5 +135,7 @@ export const useMutateAuth = () => {
     registerMutation,
     registerGoogleAuthMutation,
     logoutMutation,
+    passwordResetSendEmail,
+    resetPassword,
   }
 }

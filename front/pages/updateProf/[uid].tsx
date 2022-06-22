@@ -56,7 +56,7 @@ const ProfileUpdate: NextPage = () => {
         />
         {!isLoading ? (
           <ImgUploadButton changeEvent={(e) => useMutateUploadAvatarImg.mutate(e)}>
-            <>{avatarUrl ? <Avatar img={avatarUrl} isSetting /> : <Avatar isSetting />}</>
+            <Avatar img={avatarUrl ? avatarUrl : undefined} isSetting />
           </ImgUploadButton>
         ) : (
           <Spinner />
