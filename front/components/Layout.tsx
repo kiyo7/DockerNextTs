@@ -6,6 +6,7 @@ import { ReactNode, useEffect } from 'react'
 import { Footer } from './atom/Footer'
 import { Header } from './molecule/Header'
 
+//hooks
 import { supabase } from '../utils/supabase'
 import useStore from '../store'
 

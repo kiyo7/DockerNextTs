@@ -1,7 +1,12 @@
+//lib
 import { IconMail, Button } from '@supabase/ui'
 import { NextPage } from 'next'
-import { SInput } from '../components/atom/Input'
+
+//hooks
 import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
+
+//components
+import { SInput } from '../components/atom/Input'
 import { Layout } from '../components/Layout'
 
 const ResetPassword: NextPage = () => {

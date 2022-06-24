@@ -1,7 +1,7 @@
 //lib
 import create from 'zustand'
-import { Session } from '@supabase/supabase-js'
 import { EditedProfile } from '../types'
+import { Session } from '@supabase/supabase-js'
 
 interface State {
   session: Session | null

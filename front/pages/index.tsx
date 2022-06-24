@@ -6,11 +6,11 @@ import useStore from '../store'
 
 //components
 import { Auth } from '../components/Auth'
-import { Layout } from '../components/Layout'
 import { DashBoard } from '../components/DashBoard'
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
-import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
+import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { Layout } from '../components/Layout'
+import { Suspense } from 'react'
 import { Spinner } from '../components/atom/Spinner'
 
 const Home: NextPage = () => {
