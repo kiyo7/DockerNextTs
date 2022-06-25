@@ -18,6 +18,7 @@ export const RoleImage: React.FC<Props> = ({ src, onClick, role, active }) => {
         width={250}
         height={250}
         className="hover:animate-bound hover:cursor-pointer"
+        alt="roleImage"
       />
       <span className="my-5 font-sans text-xl tracking-widest text-gray-700 ">{role}</span>
     </div>

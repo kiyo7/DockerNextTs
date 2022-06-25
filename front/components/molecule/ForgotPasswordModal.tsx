@@ -21,7 +21,7 @@ export const ForgotPasswordModal: React.FC = () => {
 
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">
-        <label className="modal-box relative" htmlFor="">
+        <label className="modal-box relative">
           <h3 className=" mx-2 font-sans text-2xl text-gray-500">パスワードの再設定</h3>
           <div className="my-10">
             <SInput

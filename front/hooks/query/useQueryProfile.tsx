@@ -15,7 +15,7 @@ export const useQueryProfile = () => {
   const updateEditedProfile = useStore((state) => state.updateEditedProfile)
 
   const getProfile = async () => {
-    const { data, error, status } = await supabase
+    const { data, error } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', session?.user?.id)
@@ -25,9 +25,8 @@ export const useQueryProfile = () => {
       ...editedProfile,
     })
 
-    if (error && status !== 406) {
-      throw new Error(error.message)
-    }
+    if (error) throw new Error(error.message)
+
     return data
   }
 
@@ -39,7 +38,7 @@ export const useQueryProfile = () => {
       if (data) {
         updateEditedProfile({
           username: data.username,
-          isAdmin: false,
+          isAdmin: data.isAdmin,
           avatar: data.avatar,
         })
       }

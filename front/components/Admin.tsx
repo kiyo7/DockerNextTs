@@ -11,7 +11,6 @@ export const Admin: React.FC = () => {
         heading="管理しているグループが見つかりません"
         tips="グループを作成し招待しましょう！"
         img={img}
-        isAdmin={true}
       />
     </div>
   )
