@@ -1,6 +1,6 @@
 //lib
-import Image from 'next/image'
 import { IconHome, IconUser, IconSettings, IconLogOut } from '@supabase/ui'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 //hooks
@@ -13,15 +13,26 @@ import useStore from '../../store'
 import logo from '../../images/headerLogo.png'
 
 //components
-import { HeaderMenu } from '../atom/header/HeaderMenu'
 import { HamburgerMenu } from '../atom/header/HamburgerMenu'
-import { useQueryProfile } from '../../hooks/query/useQueryProfile'
+import { HeaderMenu } from '../atom/header/HeaderMenu'
 
 export const Header: React.FC = () => {
-  const router = useRouter()
   const session = useStore((state) => state.session)
+  const setToggle = useStore((state) => state.setToggle)
+
+  const router = useRouter()
 
   const { logoutMutation } = useMutateAuth()
+
+  const backToHome = () => {
+    setToggle(false)
+    router.push('/')
+  }
+
+  const toggleEditProfilePage = () => {
+    setToggle(true)
+    router.push('/')
+  }
 
   const signOut = () => {
     logoutMutation.mutate()
@@ -33,7 +44,15 @@ export const Header: React.FC = () => {
       <div className="navbar flex flex-wrap items-center justify-between bg-teal-500 p-4">
         <div className="navbar-start">
           <div className="mr-6 flex flex-shrink-0 items-center text-white hover:cursor-pointer">
-            <Image src={logo} width={40} height={40} onClick={() => router.push('/')} />
+            <Image
+              src={logo}
+              width={40}
+              height={40}
+              onClick={() => {
+                setToggle(false)
+                router.push('/')
+              }}
+            />
             <span className="text-xl font-semibold tracking-tight">Shifty</span>
           </div>
         </div>
@@ -45,9 +64,9 @@ export const Header: React.FC = () => {
                 tabIndex={0}
                 className="dropdown-content menu rounded-box right-1 top-1 w-60 bg-base-100 p-2 shadow"
               >
-                <HeaderMenu path="/" contentsName={'ホーム'} Icon={<IconHome />} />
+                <HeaderMenu clickEvent={backToHome} contentsName={'ホーム'} Icon={<IconHome />} />
                 <HeaderMenu
-                  path={`/updateProf/${session?.user?.id}`}
+                  clickEvent={toggleEditProfilePage}
                   contentsName={'プロフィール編集'}
                   Icon={<IconUser />}
                 />
