@@ -29,7 +29,6 @@ export const InitSetting: React.FC = () => {
   const activeRoleToggle = () => {
     setActive(!active)
   }
-  console.log(active)
 
   const selectRole = (selected: boolean) => {
     if (active === selected) return
