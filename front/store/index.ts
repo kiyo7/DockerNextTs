@@ -2,13 +2,11 @@
 import create from 'zustand'
 import { EditedProfile } from '../types'
 import { Session } from '@supabase/supabase-js'
+import { supabase } from '../utils/supabase'
 
 interface State {
   session: Session | null
   setSession: (payload: Session | null) => void
-
-  toggle: boolean | null
-  setToggle: (payload: boolean | null) => void
 
   editedProfile: EditedProfile
   updateEditedProfile: (payload: EditedProfile) => void
@@ -16,10 +14,8 @@ interface State {
 }
 
 const useStore = create<State>((set) => ({
-  session: null,
+  session: supabase.auth.session(),
   setSession: (payload) => set({ session: payload }),
-  toggle: false,
-  setToggle: (payload) => set({ toggle: payload }),
   editedProfile: { username: '', isAdmin: false, avatar: '', updated_at: '' },
   updateEditedProfile: (payload) =>
     set({

@@ -3,6 +3,7 @@ import { ChangeEventHandler } from 'react'
 import { Input } from '@supabase/ui'
 
 interface Props {
+  id?: string
   type: string
   value: string
   onChange: ChangeEventHandler<HTMLInputElement>
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const SInput: React.FC<Props> = ({
+  id,
   type,
   value,
   onChange,
@@ -23,6 +25,7 @@ export const SInput: React.FC<Props> = ({
     <>
       <label className="text-gray-500">{label}</label>
       <Input
+        id={id}
         type={type}
         value={value}
         onChange={onChange}

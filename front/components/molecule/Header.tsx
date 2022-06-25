@@ -18,21 +18,10 @@ import { HeaderMenu } from '../atom/header/HeaderMenu'
 
 export const Header: React.FC = () => {
   const session = useStore((state) => state.session)
-  const setToggle = useStore((state) => state.setToggle)
 
   const router = useRouter()
 
   const { logoutMutation } = useMutateAuth()
-
-  const backToHome = () => {
-    setToggle(false)
-    router.push('/')
-  }
-
-  const toggleEditProfilePage = () => {
-    setToggle(true)
-    router.push('/')
-  }
 
   const signOut = () => {
     logoutMutation.mutate()
@@ -49,9 +38,9 @@ export const Header: React.FC = () => {
               width={40}
               height={40}
               onClick={() => {
-                setToggle(false)
                 router.push('/')
               }}
+              alt="headerLogo"
             />
             <span className="text-xl font-semibold tracking-tight">Shifty</span>
           </div>
@@ -64,9 +53,9 @@ export const Header: React.FC = () => {
                 tabIndex={0}
                 className="dropdown-content menu rounded-box right-1 top-1 w-60 bg-base-100 p-2 shadow"
               >
-                <HeaderMenu clickEvent={backToHome} contentsName={'ホーム'} Icon={<IconHome />} />
+                <HeaderMenu path={'/'} contentsName={'ホーム'} Icon={<IconHome />} />
                 <HeaderMenu
-                  clickEvent={toggleEditProfilePage}
+                  path={`/updateProfile/${session?.user?.id}`}
                   contentsName={'プロフィール編集'}
                   Icon={<IconUser />}
                 />
@@ -75,7 +64,7 @@ export const Header: React.FC = () => {
                   contentsName={'設定'}
                   Icon={<IconSettings />}
                 />
-                <div className="divider"></div>
+                <div className="divider" />
 
                 <HeaderMenu
                   clickEvent={signOut}
