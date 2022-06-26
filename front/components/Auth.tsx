@@ -7,7 +7,7 @@ import { IconMail, IconKey } from '@supabase/ui'
 import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
 
 //components
-import { SInput } from './atom/Input'
+import { SInput } from './atom/SInput'
 import { Spinner } from './atom/Spinner'
 
 //images
@@ -56,7 +56,7 @@ export const Auth: React.FC = () => {
           <Image src={authPageBG} alt="img" />
         </p>
         <div className=" hid flex items-center justify-center">
-          <form onSubmit={handleSubmit} className=" w-8/12">
+          <form onSubmit={handleSubmit} className="w-8/12">
             <div className=" mb-10 text-center">
               <p className="my-10 font-sans text-3xl text-gray-500 lg:text-4xl">
                 {isLogin ? 'ログイン' : '新規登録'}
@@ -108,7 +108,7 @@ export const Auth: React.FC = () => {
             <button
               onClick={googleAuthMutation}
               data-testid="google"
-              className="my-8 flex w-full justify-center hover:cursor-pointer hover:opacity-60"
+              className="my-8 flex w-full justify-center hover:cursor-pointer hover:opacity-75"
             >
               <Image src={googleAuth} alt="google" />
             </button>

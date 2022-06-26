@@ -5,7 +5,7 @@ import { Button, IconMail } from '@supabase/ui'
 import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
 
 //components
-import { SInput } from '../atom/Input'
+import { SInput } from '../atom/SInput'
 
 export const ForgotPasswordModal: React.FC = () => {
   const { email, setEmail, passwordResetSendEmail } = useMutateAuth()
