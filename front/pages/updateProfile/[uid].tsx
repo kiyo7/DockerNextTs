@@ -13,10 +13,10 @@ import { useUploadAvatarImg } from '../../hooks/useUploadAvatarImg'
 import useStore from '../../store'
 
 //components
-import { SInput } from '../../components/atom/Input'
+import { SInput } from '../../components/atom/SInput'
 
 //components
-import { Avatar } from '../../components/atom/Avatar'
+import { SImage } from '../../components/atom/SImage'
 import { ImgUploadButton } from '../../components/atom/ImgUploadButton'
 import { Spinner } from '../../components/atom/Spinner'
 import { NextPage } from 'next'
@@ -76,7 +76,7 @@ const ProfileUpdatePage: NextPage = () => {
         />
         {!isLoading ? (
           <ImgUploadButton changeEvent={(e) => useMutateUploadAvatarImg.mutate(e)}>
-            <Avatar img={avatarUrl ? avatarUrl : undefined} isSetting />
+            <SImage img={avatarUrl ? avatarUrl : undefined} alt="avatar" isSetting />
           </ImgUploadButton>
         ) : (
           <Spinner />

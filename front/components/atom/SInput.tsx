@@ -7,9 +7,9 @@ interface Props {
   type: string
   value: string
   onChange: ChangeEventHandler<HTMLInputElement>
-  label: string
+  label?: string
   placeholder?: string
-  icon: JSX.Element
+  icon?: JSX.Element
 }
 
 export const SInput: React.FC<Props> = ({
@@ -31,7 +31,7 @@ export const SInput: React.FC<Props> = ({
         onChange={onChange}
         placeholder={placeholder}
         icon={icon}
-        className="my-2 w-full rounded border py-2 px-3"
+        className="my-2 w-full rounded py-2 px-3"
       />
     </>
   )

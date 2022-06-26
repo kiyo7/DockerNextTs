@@ -25,7 +25,8 @@ export const useQueryProfile = () => {
       ...editedProfile,
     })
 
-    if (error) throw new Error(error.message)
+    // if (error) throw new Error(error.message)
+    //新規作成時にここでエラーが発生するため仮でコメントアウト
 
     return data
   }

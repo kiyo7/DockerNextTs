@@ -1,6 +1,6 @@
 //lib
 import { Button, IconSmile } from '@supabase/ui'
-import { SInput } from './atom/Input'
+import { SInput } from './atom/SInput'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
