@@ -31,7 +31,7 @@ const ProfileUpdatePage: NextPage = () => {
 
   const { useMutateUploadAvatarImg } = useUploadAvatarImg()
 
-  const { fullUrl: avatarUrl, isLoading } = useDownloadUrl(editedProfile.avatar)
+  const { fullUrl: avatarUrl, isLoading } = useDownloadUrl(editedProfile.avatar, 'avatars')
 
   const { data } = useQueryProfile()
 

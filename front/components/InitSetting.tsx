@@ -33,14 +33,14 @@ export const InitSetting: React.FC = () => {
   const selectRole = (selected: boolean) => {
     if (active === selected) return
     activeRoleToggle()
-    updateEditedProfile({ ...editedProfile, isAdmin: selected })
+    updateEditedProfile({ ...editedProfile, is_admin: selected })
   }
 
   const createProfile = () => {
     createProfileMutation.mutate({
       id: session?.user?.id,
       username: editedProfile.username,
-      isAdmin: editedProfile.isAdmin,
+      is_admin: editedProfile.is_admin,
       avatar: editedProfile.avatar,
     })
     push('/')

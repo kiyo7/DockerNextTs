@@ -18,12 +18,16 @@ import { HeaderMenu } from '../atom/header/HeaderMenu'
 
 export const Header: React.FC = () => {
   const session = useStore((state) => state.session)
+  const resetProfile = useStore((state) => state.resetProfile)
+  const resetOrganization = useStore((state) => state.resetOrganization)
 
   const router = useRouter()
 
   const { logoutMutation } = useMutateAuth()
 
   const signOut = () => {
+    resetProfile()
+    resetOrganization()
     logoutMutation.mutate()
     router.push('/')
   }

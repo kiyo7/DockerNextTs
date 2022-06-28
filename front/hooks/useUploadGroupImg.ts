@@ -1,17 +1,14 @@
-//lib
 import { ChangeEvent } from 'react'
-import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
-import useStore from '../store'
-
-//utils
 import { supabase } from '../utils/supabase'
+import useStore from '../store'
+import { toast } from 'react-toastify'
 
-export const useUploadAvatarImg = () => {
-  const editedProfile = useStore((state) => state.editedProfile)
-  const updateProfile = useStore((state) => state.updateEditedProfile)
+export const useUploadGroupImg = () => {
+  const editedOrganization = useStore((state) => state.editedOrganization)
+  const updateEditedOrganization = useStore((state) => state.updateEditedOrganization)
 
-  const useMutateUploadAvatarImg = useMutation(
+  const useMutateUploadPostImg = useMutation(
     async (e: ChangeEvent<HTMLInputElement>) => {
       if (!e.target.files || e.target.files.length === 0) {
         throw new Error('画像ファイルを選択して下さい!')
@@ -20,10 +17,10 @@ export const useUploadAvatarImg = () => {
       const fileExt = file.name.split('.').pop()
       const fileName = `${Math.random()}.${fileExt}`
       const filePath = `${fileName}`
-      const { error } = await supabase.storage.from('avatars').upload(filePath, file)
+      const { error } = await supabase.storage.from('groupLogo').upload(filePath, file)
 
       if (error) throw new Error(error.message)
-      updateProfile({ ...editedProfile, avatar: filePath })
+      updateEditedOrganization({ ...editedOrganization, logo: filePath })
     },
     {
       onError: (err: any) => {
@@ -31,5 +28,5 @@ export const useUploadAvatarImg = () => {
       },
     },
   )
-  return { useMutateUploadAvatarImg }
+  return { useMutateUploadPostImg }
 }

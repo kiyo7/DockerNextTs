@@ -29,7 +29,7 @@ export const useMutateProfile = () => {
   )
 
   const updateProfileMutation = useMutation(
-    async (profile: Omit<Profile, 'updated_at' | 'created_at' | 'isAdmin'>) => {
+    async (profile: Omit<Profile, 'updated_at' | 'created_at' | 'is_admin'>) => {
       const { data, error } = await supabase.from('profiles').update(profile).eq('id', profile.id)
       if (error) throw new Error(error.message)
       return data
