@@ -9,5 +9,5 @@ import { InitSetting } from './InitSetting'
 export const DashBoard: React.FC = () => {
   const { data } = useQueryProfile()
 
-  return <>{data ? <>{data.isAdmin ? <Admin /> : <Employee />}</> : <InitSetting />}</>
+  return <>{data ? <>{data.is_admin ? <Admin /> : <Employee />}</> : <InitSetting />}</>
 }

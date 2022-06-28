@@ -24,9 +24,8 @@ export const useQueryProfile = () => {
     updateEditedProfile({
       ...editedProfile,
     })
-
-    // if (error) throw new Error(error.message)
-    //新規作成時にここでエラーが発生するため仮でコメントアウト
+    if (!data) return
+    if (error) throw new Error(error.message)
 
     return data
   }
@@ -39,7 +38,7 @@ export const useQueryProfile = () => {
       if (data) {
         updateEditedProfile({
           username: data.username,
-          isAdmin: data.isAdmin,
+          is_admin: data.is_admin,
           avatar: data.avatar,
         })
       }

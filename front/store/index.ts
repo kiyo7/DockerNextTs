@@ -1,6 +1,6 @@
 //lib
 import create from 'zustand'
-import { EditedProfile } from '../types'
+import { EditedOrganization, EditedProfile } from '../types'
 import { Session } from '@supabase/supabase-js'
 import { supabase } from '../utils/supabase'
 
@@ -11,21 +11,37 @@ interface State {
   editedProfile: EditedProfile
   updateEditedProfile: (payload: EditedProfile) => void
   resetProfile: () => void
+
+  editedOrganization: EditedOrganization
+  updateEditedOrganization: (payload: EditedOrganization) => void
+  resetOrganization: () => void
 }
 
 const useStore = create<State>((set) => ({
   session: supabase.auth.session(),
   setSession: (payload) => set({ session: payload }),
-  editedProfile: { username: '', isAdmin: false, avatar: '', updated_at: '' },
+
+  editedProfile: { username: '', is_admin: false, avatar: '', updated_at: '' },
   updateEditedProfile: (payload) =>
     set({
       editedProfile: {
         username: payload.username,
-        isAdmin: payload.isAdmin,
+        is_admin: payload.is_admin,
         avatar: payload.avatar,
       },
     }),
-  resetProfile: () => set({ editedProfile: { username: '', isAdmin: false, avatar: '' } }),
+  resetProfile: () => set({ editedProfile: { username: '', is_admin: null, avatar: '' } }),
+
+  editedOrganization: { id: '', groupname: '', logo: '' },
+  updateEditedOrganization: (payload) =>
+    set({
+      editedOrganization: {
+        id: payload.id,
+        groupname: payload.groupname,
+        logo: payload.logo,
+      },
+    }),
+  resetOrganization: () => set({ editedOrganization: { id: '', groupname: '', logo: '' } }),
 }))
 
 export default useStore
