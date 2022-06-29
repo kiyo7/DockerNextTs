@@ -47,5 +47,25 @@ export const useMutateOrganizations = () => {
       },
     },
   )
-  return { createOrganizationsMutation, updateOrganizationsMutation }
+
+  const deleteOrganizationsMutation = useMutation(
+    async (id: string) => {
+      const { data, error } = await supabase.from('organizations').delete().eq('id', id)
+      console.log(data)
+
+      if (error) throw new Error(error.message)
+      return data
+    },
+    {
+      onSuccess: () => {
+        toast.success('グループを削除しました')
+        resetOrganizations()
+      },
+      onError: (err: any) => {
+        toast.error(err.message)
+        resetOrganizations()
+      },
+    },
+  )
+  return { createOrganizationsMutation, updateOrganizationsMutation, deleteOrganizationsMutation }
 }
