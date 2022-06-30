@@ -1,10 +1,7 @@
 //lib
-import { IconHome, IconUser, IconSettings, IconLogOut } from '@supabase/ui'
+import { IconHome, IconUser, IconSettings } from '@supabase/ui'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-
-//hooks
-import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
 
 //utils
 import useStore from '../../store'
@@ -18,19 +15,8 @@ import { HeaderMenu } from '../atom/header/HeaderMenu'
 
 export const Header: React.FC = () => {
   const session = useStore((state) => state.session)
-  const resetProfile = useStore((state) => state.resetProfile)
-  const resetOrganization = useStore((state) => state.resetOrganization)
 
   const router = useRouter()
-
-  const { logoutMutation } = useMutateAuth()
-
-  const signOut = () => {
-    resetProfile()
-    resetOrganization()
-    logoutMutation.mutate()
-    router.push('/')
-  }
 
   return (
     <>
@@ -67,13 +53,6 @@ export const Header: React.FC = () => {
                   path={`/setting/${session?.user?.id}`}
                   contentsName={'設定'}
                   Icon={<IconSettings />}
-                />
-                <div className="divider" />
-
-                <HeaderMenu
-                  clickEvent={signOut}
-                  contentsName={'ログアウト'}
-                  Icon={<IconLogOut />}
                 />
               </ul>
             </div>

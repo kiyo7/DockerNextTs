@@ -126,6 +126,18 @@ export const useMutateAuth = () => {
     },
   )
 
+  const userDeleteMutation = useMutation(async (id: string = '') => {
+    if (id === '') throw new Error()
+    await fetch(`/api/deleteUser/${id}`)
+      .then(() => {
+        supabase.auth.signOut()
+        resetProfile()
+        queryClient.removeQueries('profile')
+        toast.success('アカウント削除が完了しました。')
+      })
+      .catch((err: any) => toast.error(err.message))
+  })
+
   return {
     email,
     setEmail,
@@ -137,5 +149,6 @@ export const useMutateAuth = () => {
     logoutMutation,
     passwordResetSendEmail,
     resetPassword,
+    userDeleteMutation,
   }
 }

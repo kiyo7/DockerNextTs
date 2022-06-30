@@ -28,6 +28,6 @@ export interface EditedOrganization {
 }
 
 export interface Member {
-  member_id: string | undefined
   organization_id: string | undefined
+  member_id: string | undefined
 }

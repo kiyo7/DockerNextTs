@@ -1,5 +1,4 @@
 //lib
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
 import { NextPage } from 'next'
 
 //utils
