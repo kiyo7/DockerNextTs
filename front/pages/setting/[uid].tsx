@@ -33,7 +33,7 @@ const Setting: NextPage = () => {
 
   return (
     <Layout title="設定" header="設定">
-      <div className="menu w-full bg-base-100 px-12 text-xl">
+      <div className="menu w-full bg-base-100 px-12 text-sm lg:px-24 lg:text-4xl ">
         <div className="mb-10 flex justify-between">
           <p>ログイン方法</p>
           <p className="capitalize"> {session?.user?.identities![0].provider}</p>
