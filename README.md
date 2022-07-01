@@ -1,34 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# デプロイ先 💻
 
-## Getting Started
+- https://shifty-sandy.vercel.app/
 
-First, run the development server:
+# 開発に使用させていただいたもの 🚀
 
-```bash
-npm run dev
-# or
-yarn dev
+<div style="display: flex;">
+<img src="https://user-images.githubusercontent.com/77007204/176928299-84153862-5f05-4df9-9148-d5237af41dbe.svg" width="100px">
+<img src="https://user-images.githubusercontent.com/77007204/176928303-96f06122-5d96-47d2-8da8-cec122def833.svg" width="100px">
+<img src="https://user-images.githubusercontent.com/77007204/176928295-c38a6c32-f90c-4279-a4bc-1f27741c3693.svg" width="100px">
+
+</div>
+<div style="display: flex;">
+
+<img src="https://user-images.githubusercontent.com/77007204/176926056-9b5aee25-78f8-444b-987a-19273741436e.svg" width="100px">
+<img src="https://user-images.githubusercontent.com/77007204/176931550-6efb29db-7e67-48b0-9f84-052a0b84e7ea.svg" width="100px">
+<img src="https://user-images.githubusercontent.com/77007204/176926649-e4e9fa53-88a1-409a-b0f4-b981332f9edf.svg" width="100px">
+<img src="https://user-images.githubusercontent.com/77007204/176927947-7083fb53-7efb-4d97-8981-5987379cb50b.svg" width="100px">
+<img src="https://user-images.githubusercontent.com/77007204/176926931-fbe5d5bb-df6a-4c84-93cd-ced1815fe246.svg" width="100px">
+
+<img src="https://user-images.githubusercontent.com/77007204/176926434-a9145a83-d142-40a9-8276-fa04788b86bf.svg" width="100px">
+
+<img src="https://user-images.githubusercontent.com/77007204/176927942-f30ae721-1a24-484b-964a-d5fdea3eb4dc.svg" width="100px">
+
+</div>
+
+<div style="display: flex;">
+
+<img src="https://user-images.githubusercontent.com/77007204/176927295-368262fe-b109-4d1f-8ec7-c544e7552929.svg" width="100px">
+<img src="https://user-images.githubusercontent.com/77007204/176930066-5cf71475-0515-4790-98d9-c673b7d80513.svg" width="100px">
+<img src="https://user-images.githubusercontent.com/77007204/176930556-0bb50c95-c09a-43b3-ac27-2cca06a04dd2.svg" width="100px">
+
+</div>
+
+<img src="https://user-images.githubusercontent.com/77007204/176929641-b9bd112b-0b3c-4ed0-b9d7-d7bc65728648.svg" width="100px">
+
+# docker のインストール方法 🐳
+
+- https://docs.docker.com/get-docker/
+
+
+# yarn のインストール方法 🍀
+
+
+```
+$ npm install -g yarn
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# サーバの起動 🤖
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+git clone https://github.com/kiyo7/shifty.git
+ 
+docker-compose build
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+docker-compose up -d
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+docker-compose ps　
 
-## Learn More
+docker exec -it node sh　
 
-To learn more about Next.js, take a look at the following resources:
+yarn install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+yarn dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+yarn run build
 
-## Deploy on Vercel
+yarn start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+http://localhost:3000/
