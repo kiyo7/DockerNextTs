@@ -37,7 +37,8 @@ export const Auth: React.FC = () => {
     }
   }
 
-  const googleAuthMutation = async () => {
+  const googleAuthMutation = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     registerGoogleAuthMutation.mutate()
   }
 
