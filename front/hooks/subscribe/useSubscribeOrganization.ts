@@ -12,9 +12,12 @@ import { Organization } from '../../types'
 export const useSubscribeOrganization = () => {
   const queryClient = useQueryClient()
   useEffect(() => {
+    console.log('Effect起動')
     const subsc = supabase
       .from('organizations')
       .on('INSERT', (payload: SupabaseRealtimePayload<Organization>) => {
+        console.log('INSERT invoked')
+        console.log(payload)
         let previousOrganization = queryClient.getQueryData<Organization>('organization')
         if (!previousOrganization) {
           previousOrganization = undefined
@@ -41,6 +44,8 @@ export const useSubscribeOrganization = () => {
         })
       })
       .on('DELETE', () => {
+        console.log('DELETE invoked')
+
         let previousOrganization = queryClient.getQueryData<Organization>('organization')
         if (!previousOrganization) {
           previousOrganization = undefined

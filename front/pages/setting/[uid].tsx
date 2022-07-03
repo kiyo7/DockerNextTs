@@ -18,21 +18,23 @@ const Setting: NextPage = () => {
   const resetOrganization = useStore((state) => state.resetOrganization)
 
   const { logoutMutation, userDeleteMutation } = useMutateAuth()
-  const router = useRouter()
+  const { push } = useRouter()
 
   const signOut = () => {
     if (confirm('ログアウトしますか？')) {
       resetProfile()
       resetOrganization()
       logoutMutation.mutate()
-      router.push('/')
+      push('/')
     } else {
       return
     }
   }
 
   const deleteUser = () => {
-    if (confirm('本当に削除しますか?')) userDeleteMutation.mutateAsync(session?.user?.id)
+    if (confirm('本当に削除しますか?')) {
+      userDeleteMutation.mutateAsync(session?.user?.id).then(() => push('/'))
+    }
   }
 
   return (
