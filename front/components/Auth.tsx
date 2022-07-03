@@ -37,8 +37,7 @@ export const Auth: React.FC = () => {
     }
   }
 
-  const googleAuthMutation = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const googleAuthMutation = async () => {
     registerGoogleAuthMutation.mutate()
   }
 
@@ -56,9 +55,9 @@ export const Auth: React.FC = () => {
         <p className="hidden lg:block">
           <Image src={authPageBG} alt="img" />
         </p>
-        <div className=" hid flex items-center justify-center">
-          <form onSubmit={handleSubmit} className="w-8/12">
-            <div className=" mb-10 text-center">
+        <div className="w-full">
+          <form onSubmit={handleSubmit} className="m-auto w-8/12">
+            <div className="mb-10 pt-10 text-center">
               <p className="my-10 font-sans text-3xl text-gray-500 lg:text-4xl">
                 {isLogin ? 'ログイン' : '新規登録'}
               </p>
@@ -101,8 +100,9 @@ export const Auth: React.FC = () => {
                 {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
               </p>
             </div>
+          </form>
+          <div className="m-auto w-8/12">
             <div className="mt-6 mb-3 w-full border border-dashed border-gray-400" />
-
             <div className="mx-4 font-sans text-sm font-medium  text-gray-500">
               SNSアカウントで登録・ログイン
             </div>
@@ -113,7 +113,7 @@ export const Auth: React.FC = () => {
             >
               <Image src={googleAuth} alt="google" />
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </>
