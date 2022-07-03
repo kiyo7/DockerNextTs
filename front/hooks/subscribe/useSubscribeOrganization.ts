@@ -41,11 +41,17 @@ export const useSubscribeOrganization = () => {
         })
       })
       .on('DELETE', () => {
-        let previousOrganization = queryClient.getQueryData<Organization[]>('organization')
+        let previousOrganization = queryClient.getQueryData<Organization>('organization')
         if (!previousOrganization) {
           previousOrganization = undefined
         }
-        queryClient.setQueryData('organization', null)
+        queryClient.setQueryData('organization', {
+          id: null,
+          created_at: null,
+          administrator: null,
+          groupname: null,
+          logo: null,
+        })
       })
       .subscribe()
 

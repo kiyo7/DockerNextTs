@@ -5,24 +5,24 @@ interface Props {
   clickEvent?: () => void
   path?: string
   contentsName: string
-  Icon: React.ReactNode
+  icon: React.ReactNode
 }
 
-export const HeaderMenu: React.FC<Props> = ({ clickEvent, path, contentsName, Icon }) => {
+export const Menu: React.FC<Props> = ({ clickEvent, path, contentsName, icon }) => {
   return (
     <>
       {path ? (
-        <li className="my-1">
+        <li className={`my-1`}>
           <Link href={path}>
             <a>
-              {Icon} {contentsName}
+              {icon} {contentsName}
             </a>
           </Link>
         </li>
       ) : (
-        <li className="my-1" onClick={clickEvent}>
+        <li className={`my-1`} onClick={clickEvent}>
           <p>
-            {Icon} {contentsName}
+            {icon} {contentsName}
           </p>
         </li>
       )}

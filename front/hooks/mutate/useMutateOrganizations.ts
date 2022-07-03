@@ -1,6 +1,7 @@
 //lib
 import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
+import { useRouter } from 'next/router'
 
 //utils
 import { supabase } from '../../utils/supabase'
@@ -10,7 +11,8 @@ import useStore from '../../store'
 import { Organization } from '../../types'
 
 export const useMutateOrganizations = () => {
-  const resetOrganizations = useStore((state) => state.resetOrganization)
+  const resetOrganization = useStore((state) => state.resetOrganization)
+  const { push } = useRouter()
   const createOrganizationsMutation = useMutation(
     async (organization: Omit<Organization, 'id' | 'created_at'>) => {
       const { data, error } = await supabase.from('organizations').insert(organization)
@@ -21,7 +23,7 @@ export const useMutateOrganizations = () => {
     {
       onSuccess: () => {
         toast.success('グループを作成しました')
-        resetOrganizations()
+        resetOrganization()
       },
       onError: (err: any) => {
         toast.error(err.messages)
@@ -49,9 +51,9 @@ export const useMutateOrganizations = () => {
   )
 
   const deleteOrganizationsMutation = useMutation(
-    async (id: string) => {
+    async (id: string = '') => {
+      if (id === '') return
       const { data, error } = await supabase.from('organizations').delete().eq('id', id)
-      console.log(data)
 
       if (error) throw new Error(error.message)
       return data
@@ -59,11 +61,12 @@ export const useMutateOrganizations = () => {
     {
       onSuccess: () => {
         toast.success('グループを削除しました')
-        resetOrganizations()
+        resetOrganization()
+        push('/')
       },
       onError: (err: any) => {
         toast.error(err.message)
-        resetOrganizations()
+        resetOrganization()
       },
     },
   )

@@ -21,10 +21,14 @@ const Setting: NextPage = () => {
   const router = useRouter()
 
   const signOut = () => {
-    resetProfile()
-    resetOrganization()
-    logoutMutation.mutate()
-    router.push('/')
+    if (confirm('ログアウトしますか？')) {
+      resetProfile()
+      resetOrganization()
+      logoutMutation.mutate()
+      router.push('/')
+    } else {
+      return
+    }
   }
 
   const deleteUser = () => {

@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const SImage: React.FC<Props> = ({
-  img = initImg,
+  img,
   alt,
   width = 300,
   height = 300,
@@ -22,7 +22,13 @@ export const SImage: React.FC<Props> = ({
 }) => {
   return (
     <div className="relative my-10 text-center hover:cursor-pointer hover:opacity-60 ">
-      <Image src={img} alt={alt} width={width} height={height} className="rounded-full" />
+      <Image
+        src={img ? img : initImg}
+        alt={alt}
+        width={width}
+        height={height}
+        className="rounded-full"
+      />
       {isSetting && (
         <PencilAltIcon className="absolute top-2/4 left-2/4 z-10 m-auto  w-1/3 -translate-x-2/4 -translate-y-2/4 opacity-0 hover:opacity-75" />
       )}

@@ -10,8 +10,8 @@ import useStore from '../../store'
 import logo from '../../images/headerLogo.png'
 
 //components
-import { HamburgerMenu } from '../atom/header/HamburgerMenu'
-import { HeaderMenu } from '../atom/header/HeaderMenu'
+import { HamburgerMenu } from '../atom/HamburgerMenu'
+import { Menu } from '../atom/Menu'
 
 export const Header: React.FC = () => {
   const session = useStore((state) => state.session)
@@ -43,16 +43,16 @@ export const Header: React.FC = () => {
                 tabIndex={0}
                 className="dropdown-content menu rounded-box right-1 top-1 w-60 bg-base-100 p-2 shadow"
               >
-                <HeaderMenu path={'/'} contentsName={'ホーム'} Icon={<IconHome />} />
-                <HeaderMenu
+                <Menu path={'/'} contentsName={'ホーム'} icon={<IconHome />} />
+                <Menu
                   path={`/updateProfile/${session?.user?.id}`}
                   contentsName={'プロフィール編集'}
-                  Icon={<IconUser />}
+                  icon={<IconUser />}
                 />
-                <HeaderMenu
+                <Menu
                   path={`/setting/${session?.user?.id}`}
                   contentsName={'設定'}
-                  Icon={<IconSettings />}
+                  icon={<IconSettings />}
                 />
               </ul>
             </div>

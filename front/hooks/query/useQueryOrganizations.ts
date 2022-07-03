@@ -21,7 +21,6 @@ export const useQueryOrganizations = () => {
       .single()
     if (!data) return
     if (error) throw new Error(error.message)
-
     updateEditedOrganizations({
       ...editedOrganizations,
     })

@@ -1,27 +1,26 @@
 //lib
 import { NextPage } from 'next/types'
+import { useRouter } from 'next/router'
 
 //hooks
 import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
+import { useSubscribeOrganization } from '../../hooks/subscribe/useSubscribeOrganization'
 
 //components
-import { Layout } from '../../components/Layout'
-import { useMutateOrganizations } from '../../hooks/mutate/useMutateOrganizations'
-import useStore from '../../store'
+import { AdminLayout } from '../../components/AdminLayout'
 
 const ManagementPage: NextPage = () => {
+  useSubscribeOrganization()
+
   const { data } = useQueryOrganizations()
-  const session = useStore((state) => state.session)
+  const { push } = useRouter()
 
-  console.log(session)
-
-  const { deleteOrganizationsMutation } = useMutateOrganizations()
+  if (!data) push('/')
 
   return (
-    <Layout title="管理ページ">
-      {data?.groupname}の管理ページ
-      {/* <button onClick={() => deleteOrganizationsMutation.mutate(data?.id!)}>text</button> */}
-    </Layout>
+    <AdminLayout title="ダッシュボード" header="ダッシュボード">
+      <div>ダッシュボード</div>
+    </AdminLayout>
   )
 }
 

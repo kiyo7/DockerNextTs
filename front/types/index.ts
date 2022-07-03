@@ -31,3 +31,9 @@ export interface Member {
   organization_id: string | undefined
   member_id: string | undefined
 }
+
+export interface ManagementContents {
+  path: string
+  contentsName: string
+  icon: JSX.Element
+}
