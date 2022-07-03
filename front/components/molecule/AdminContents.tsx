@@ -52,9 +52,14 @@ export const AdminContents = () => {
   return (
     <div className="menu">
       <ul className="pl-2">
-        {contents.map((content) => {
+        {contents.map((content, key) => {
           return (
-            <Menu path={content.path} contentsName={content.contentsName} icon={content.icon} />
+            <Menu
+              key={key}
+              path={content.path}
+              contentsName={content.contentsName}
+              icon={content.icon}
+            />
           )
         })}
       </ul>
