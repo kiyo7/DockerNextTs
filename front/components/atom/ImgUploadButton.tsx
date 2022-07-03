@@ -1,5 +1,5 @@
 interface Props {
-  changeEvent: (e: any) => void // 仮
+  changeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void
   children: JSX.Element
 }
 

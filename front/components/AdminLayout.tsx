@@ -28,7 +28,7 @@ export const AdminLayout: React.FC<Props> = ({ title, header, children }) => {
         <title>Shifty | {title}</title>
       </Head>
       <Header />
-      <div className="bg relative  min-h-screen text-gray-500">
+      <div className="bg relative min-h-screen text-gray-500">
         <main className="font-sans tracking-widest ">
           <article className="w-full">
             <aside className="hidden text-gray-100 lg:absolute lg:-inset-0 lg:block lg:w-60 lg:bg-teal-500">

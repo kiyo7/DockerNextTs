@@ -14,7 +14,7 @@ export const RoleSelect: React.FC<Props> = ({ selectRole, active }) => {
   return (
     <>
       <p className="my-4 text-gray-500">仕事の種類</p>
-      <p className=" text-sm text-red-400">※ 仕事の種類はあとで変更ができません! ※</p>
+      <p className="text-sm text-red-400">※ 仕事の種類はあとで変更ができません! ※</p>
       <div className="mt-4 flex">
         <RoleImage src={manager} onClick={() => selectRole(true)} role={'管理者'} active={active} />
         <span className="mx-5" />

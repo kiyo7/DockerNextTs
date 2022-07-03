@@ -13,7 +13,7 @@ module.exports = {
         },
       },
       animation: {
-        bound: 'bound 0.5s infinite',
+        bound: 'bound 1s',
       },
     },
   },

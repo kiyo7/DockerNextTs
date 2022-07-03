@@ -39,7 +39,7 @@ export const ForgotPasswordModal: React.FC = () => {
             block
             className="rounded-full"
           >
-            送信
+            {passwordResetSendEmail.isLoading ? 'メール送信中...' : '送信'}
           </Button>
         </label>
       </label>

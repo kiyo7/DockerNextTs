@@ -99,7 +99,7 @@ export const CreateOrganizationsModal: React.FC<Props> = ({ setIsOpenModal }) =>
                   updateEditedOrganization({ ...editedOrganization, groupname: e.target.value })
                 }
                 placeholder="グループ名"
-                icon={<UserGroupIcon className="h-4 text-gray-500 " />}
+                icon={<UserGroupIcon className="h-4 text-gray-500" />}
               />
             </div>
           </div>

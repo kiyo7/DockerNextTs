@@ -45,7 +45,7 @@ export const useMutateOrganizations = () => {
         toast.success('グループを編集しました')
       },
       onError: (err: any) => {
-        toast.error(err.messages)
+        toast.error(err.message)
       },
     },
   )

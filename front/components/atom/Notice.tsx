@@ -32,7 +32,7 @@ export const Notice: React.FC<Props> = ({ position = 'top-center', autoClose = 1
         contextClass['info'] +
         ' relative flex p-1 min-h-10 rounded-md justify-between m-2 cursor-pointer'
       }
-      bodyClassName={() => ' flex  text-sm font-md block p-3'}
+      bodyClassName={() => ' flex text-sm font-md block p-3'}
     />
   )
 }
