@@ -9,7 +9,7 @@ import { supabase } from '../../utils/supabase'
 import { Member } from '../../types'
 
 export const useMutateMembers = () => {
-  const createMembersMutation = useMutation(
+  const createMembers = useMutation(
     async (member: Member) => {
       const { data, error } = await supabase.from('members').insert(member)
       if (error) throw new Error(error.message)
@@ -22,5 +22,5 @@ export const useMutateMembers = () => {
     },
   )
 
-  return { createMembersMutation }
+  return { createMembers }
 }

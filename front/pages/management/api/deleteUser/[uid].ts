@@ -2,7 +2,7 @@
 import { NextApiRequest, NextApiResponse } from 'next/types'
 
 //utils
-import { supabaseAdmin } from '../../../utils/supabaseAdmin'
+import { supabaseAdmin } from '../../../../utils/supabaseAdmin'
 
 export default async function DeleteUser(req: NextApiRequest, res: NextApiResponse) {
   const { uid } = req.query

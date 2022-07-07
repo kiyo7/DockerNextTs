@@ -32,14 +32,14 @@ export const CreateOrganizationsModal: React.FC<Props> = ({ setIsOpenModal }) =>
   const { push } = useRouter()
 
   const { fullUrl: groupLogoUrl, isLoading } = useDownloadUrl(editedOrganization.logo, 'groupLogo')
-  const { createOrganizationsMutation } = useMutateOrganizations()
-  const { createMembersMutation } = useMutateMembers()
+  const { createOrganizations } = useMutateOrganizations()
+  const { createMembers } = useMutateMembers()
   const { useMutateUploadPostImg } = useUploadGroupImg()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    await createOrganizationsMutation
+    await createOrganizations
       .mutateAsync({
         groupname: editedOrganization.groupname,
         logo: editedOrganization.logo,
@@ -52,7 +52,7 @@ export const CreateOrganizationsModal: React.FC<Props> = ({ setIsOpenModal }) =>
           .eq('administrator', session?.user?.id)
           .single()
           .then((data) => {
-            createMembersMutation.mutate({
+            createMembers.mutate({
               organization_id: data.data.id,
               member_id: session?.user?.id,
             })
@@ -61,7 +61,7 @@ export const CreateOrganizationsModal: React.FC<Props> = ({ setIsOpenModal }) =>
       .catch(() => {
         toast.error('エラーやり直してください')
       })
-    push('/')
+    push('/dashBoard')
     setIsOpenModal(false)
   }
 

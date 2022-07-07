@@ -1,8 +1,11 @@
+//lib
 import { ChangeEvent } from 'react'
+import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
+
+//utils
 import { supabase } from '../utils/supabase'
 import useStore from '../store'
-import { toast } from 'react-toastify'
 
 export const useUploadGroupImg = () => {
   const editedOrganization = useStore((state) => state.editedOrganization)

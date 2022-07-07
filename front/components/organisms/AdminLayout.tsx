@@ -2,13 +2,13 @@
 import { useRouter } from 'next/router'
 
 // hooks
-import { useQueryOrganizations } from '../hooks/query/useQueryOrganizations'
+import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
 
 // components
-import { Footer } from './atom/Footer'
+import { Footer } from '../atom/Footer'
 import Head from 'next/head'
-import { Header } from './molecule/Header'
-import { AdminContents } from './molecule/AdminContents'
+import { Header } from './Header'
+import { AdminContents } from '../molecule/AdminContents'
 
 interface Props {
   title: string
@@ -20,7 +20,7 @@ export const AdminLayout: React.FC<Props> = ({ title, header, children }) => {
   const { data } = useQueryOrganizations()
   const { push } = useRouter()
 
-  if (!data) push('/')
+  if (!data) push('/dashBoard')
 
   return (
     <>

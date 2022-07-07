@@ -2,22 +2,22 @@
 import { Suspense, useState } from 'react'
 
 //utils
-import useStore from '../store'
+import useStore from '../../store'
 
 //hooks
-import { useQueryOrganizations } from '../hooks/query/useQueryOrganizations'
-import { useSubscribeOrganization } from '../hooks/subscribe/useSubscribeOrganization'
+import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
+import { useSubscribeOrganization } from '../../hooks/subscribe/useSubscribeOrganization'
 
 //components
-import { CreateOrganizationsModal } from './molecule/CreateOrganizationsModal'
+import { CreateOrganizationsModal } from '../molecule/CreateOrganizationsModal'
 import { IconPlusCircle } from '@supabase/ui'
-import { Independent } from './atom/Independent'
-import { OrganizationCard } from './molecule/OrganizationCard'
-import { PrimaryButton } from './atom/PrimaryButton'
-import { Spinner } from './atom/Spinner'
+import { Independent } from '../atom/Independent'
+import { OrganizationCard } from '../molecule/OrganizationCard'
+import { PrimaryButton } from '../atom/PrimaryButton'
+import { Spinner } from '../atom/Spinner'
 
 //images
-import independent from '../images/admin.png'
+import independent from '../../images/admin.png'
 
 export const Admin: React.FC = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)

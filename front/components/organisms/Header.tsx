@@ -6,6 +6,9 @@ import { useRouter } from 'next/router'
 //utils
 import useStore from '../../store'
 
+//hooks
+import { useQueryProfile } from '../../hooks/query/useQueryProfile'
+
 //image
 import logo from '../../images/headerLogo.png'
 
@@ -15,6 +18,8 @@ import { Menu } from '../atom/Menu'
 
 export const Header: React.FC = () => {
   const session = useStore((state) => state.session)
+
+  const { data } = useQueryProfile()
 
   const router = useRouter()
 
@@ -28,14 +33,14 @@ export const Header: React.FC = () => {
               width={40}
               height={40}
               onClick={() => {
-                router.push('/')
+                router.push('/dashBoard')
               }}
               alt="headerLogo"
             />
             <span className="text-xl font-semibold tracking-tight">Shifty</span>
           </div>
         </div>
-        {session && (
+        {data && (
           <div className="navbar-center mr-6">
             <div className="dropdown">
               <HamburgerMenu />
@@ -43,7 +48,7 @@ export const Header: React.FC = () => {
                 tabIndex={0}
                 className="dropdown-content menu rounded-box right-1 top-1 w-60 bg-base-100 p-2 shadow"
               >
-                <Menu path={'/'} contentsName={'ホーム'} icon={<IconHome />} />
+                <Menu path={'/dashBoard'} contentsName={'ホーム'} icon={<IconHome />} />
                 <Menu
                   path={`/updateProfile/${session?.user?.id}`}
                   contentsName={'プロフィール編集'}

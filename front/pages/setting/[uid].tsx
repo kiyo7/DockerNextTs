@@ -10,30 +10,30 @@ import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
 import useStore from '../../store'
 
 //components
-import { Layout } from '../../components/Layout'
+import { Layout } from '../../components/pages/Layout'
 
 const Setting: NextPage = () => {
   const session = useStore((state) => state.session)
   const resetProfile = useStore((state) => state.resetProfile)
   const resetOrganization = useStore((state) => state.resetOrganization)
 
-  const { logoutMutation, userDeleteMutation } = useMutateAuth()
-  const { push } = useRouter()
+  const { logout, userDelete } = useMutateAuth()
+  const { replace } = useRouter()
 
   const signOut = () => {
     if (confirm('ログアウトしますか？')) {
       resetProfile()
       resetOrganization()
-      logoutMutation.mutate()
-      push('/')
+      logout.mutate()
+      replace('/')
     } else {
       return
     }
   }
 
-  const deleteUser = () => {
+  const handleUserDelete = () => {
     if (confirm('本当に削除しますか?')) {
-      userDeleteMutation.mutateAsync(session?.user?.id).then(() => push('/'))
+      userDelete.mutateAsync(session?.user?.id!).then(() => replace('/'))
     }
   }
 
@@ -62,9 +62,9 @@ const Setting: NextPage = () => {
           </button>
         </div>
         <div className="divider" />
-        <div className="m-auto mt-4">
+        <div className="m-auto mt-16">
           <button
-            onClick={deleteUser}
+            onClick={handleUserDelete}
             className="flex w-full hover:cursor-pointer hover:opacity-75"
           >
             <span className="mr-3">

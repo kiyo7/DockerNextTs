@@ -2,7 +2,7 @@
 import { NextPage } from 'next'
 
 //components
-import { AdminLayout } from '../../../components/AdminLayout'
+import { AdminLayout } from '../../../components/organisms/AdminLayout'
 
 const MembersPage: NextPage = () => {
   return (

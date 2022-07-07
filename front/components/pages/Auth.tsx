@@ -4,48 +4,36 @@ import Image from 'next/image'
 import { IconMail, IconKey } from '@supabase/ui'
 
 //utils
-import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
+import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
 
 //components
-import { SInput } from './atom/SInput'
-import { Spinner } from './atom/Spinner'
+import { ForgotPasswordModal } from '../organisms/ForgotPasswordModal'
+import { SInput } from '../atom/SInput'
+import { Spinner } from '../atom/Spinner'
 
 //images
-import authPageBG from '../images/authPageBG.jpg'
-import googleAuth from '../images/googleAuth.png'
-import { ForgotPasswordModal } from './molecule/ForgotPasswordModal'
+import authPageBG from '../../images/authPageBG.jpg'
+import google from '../../images/googleAuth.png'
 
 export const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true)
 
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    loginMutation,
-    registerMutation,
-    registerGoogleAuthMutation,
-  } = useMutateAuth()
+  const { email, setEmail, password, setPassword, login, register, googleAuth } = useMutateAuth()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (isLogin) {
-      loginMutation.mutate()
+      login.mutate()
     } else {
-      registerMutation.mutate()
+      register.mutate()
     }
   }
 
   const googleAuthMutation = async () => {
-    registerGoogleAuthMutation.mutate()
+    googleAuth.mutate()
   }
 
-  if (
-    loginMutation.isLoading ||
-    registerMutation.isLoading ||
-    registerGoogleAuthMutation.isLoading
-  ) {
+  if (login.isLoading || register.isLoading || googleAuth.isLoading) {
     return <Spinner />
   }
 
@@ -111,7 +99,7 @@ export const Auth: React.FC = () => {
               data-testid="google"
               className="my-8 flex w-full justify-center hover:cursor-pointer hover:opacity-75"
             >
-              <Image src={googleAuth} alt="google" />
+              <Image src={google} alt="google" />
             </button>
           </div>
         </div>

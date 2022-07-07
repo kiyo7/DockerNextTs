@@ -14,13 +14,16 @@ export const useQueryOrganizations = () => {
   const updateEditedOrganizations = useStore((state) => state.updateEditedOrganization)
 
   const getOrganizations = async () => {
-    const { data, error } = await supabase
+    const { data, error, status } = await supabase
       .from('organizations')
       .select('*')
       .eq('administrator', session?.user?.id)
       .single()
-    if (!data) return
+
+    if (status === 406) return
+
     if (error) throw new Error(error.message)
+
     updateEditedOrganizations({
       ...editedOrganizations,
     })

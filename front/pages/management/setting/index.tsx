@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { AdminLayout } from '../../../components/AdminLayout'
+import { AdminLayout } from '../../../components/organisms/AdminLayout'
 
 const SettingPage: NextPage = () => {
   return (
