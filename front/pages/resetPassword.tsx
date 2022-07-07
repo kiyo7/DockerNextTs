@@ -6,7 +6,7 @@ import { NextPage } from 'next'
 import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
 
 //components
-import { Layout } from '../components/Layout'
+import { Layout } from '../components/pages/Layout'
 import { SInput } from '../components/atom/SInput'
 
 const ResetPassword: NextPage = () => {

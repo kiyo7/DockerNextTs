@@ -13,7 +13,7 @@ export const ForgotPasswordModal: React.FC = () => {
   return (
     <>
       <label
-        className="cursor-pointer font-sans  font-medium text-indigo-400 hover:text-indigo-700"
+        className="cursor-pointer font-sans font-medium text-indigo-400 hover:text-indigo-700"
         htmlFor="my-modal-4"
       >
         パスワードを忘れた
@@ -22,7 +22,7 @@ export const ForgotPasswordModal: React.FC = () => {
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">
         <label className="modal-box relative">
-          <h3 className=" mx-2 font-sans text-2xl text-gray-500">パスワードの再設定</h3>
+          <h3 className="mx-2 font-sans text-2xl text-gray-500">パスワードの再設定</h3>
           <div className="my-10">
             <SInput
               type="text"

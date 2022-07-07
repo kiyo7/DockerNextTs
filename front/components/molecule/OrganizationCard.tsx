@@ -1,6 +1,6 @@
 //lib
 import Link from 'next/link'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 //hooks
 import { useDownloadUrl } from '../../hooks/useDownloadUrl'
@@ -14,7 +14,7 @@ import { Spinner } from '../atom/Spinner'
 export const OrganizationCard: React.FC = () => {
   const { data } = useQueryOrganizations()
 
-  const { fullUrl: logoUrl, isLoading } = useDownloadUrl(data?.logo, 'groupLogo')
+  const { fullUrl: logoUrl } = useDownloadUrl(data?.logo, 'groupLogo')
 
   return (
     <>
@@ -25,11 +25,9 @@ export const OrganizationCard: React.FC = () => {
 
       <div className="card z-0 my-8 w-72 bg-base-100 shadow-xl md:w-96">
         <figure>
-          {!isLoading ? (
+          <Suspense fallback={<Spinner />}>
             <SImage img={logoUrl ? logoUrl : undefined} width={200} height={200} alt="groupLogo" />
-          ) : (
-            <Spinner />
-          )}
+          </Suspense>
         </figure>
         <div className="card-body">
           <h2 className="card-title ">

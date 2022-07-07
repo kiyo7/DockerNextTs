@@ -20,14 +20,14 @@ import { SImage } from '../../components/atom/SImage'
 import { ImgUploadButton } from '../../components/atom/ImgUploadButton'
 import { Spinner } from '../../components/atom/Spinner'
 import { NextPage } from 'next'
-import { Layout } from '../../components/Layout'
+import { Layout } from '../../components/pages/Layout'
 
 const ProfileUpdatePage: NextPage = () => {
   const session = useStore((state) => state.session)
   const editedProfile = useStore((state) => state.editedProfile)
   const updateEditedProfile = useStore((state) => state.updateEditedProfile)
 
-  const { updateProfileMutation } = useMutateProfile()
+  const { updateProfile } = useMutateProfile()
 
   const { useMutateUploadAvatarImg } = useUploadAvatarImg()
 
@@ -43,21 +43,21 @@ const ProfileUpdatePage: NextPage = () => {
       return false
     }
     if (editedProfile.username === '') {
-      toast.error('最低一文字は必要です')
+      toast.error('名前は最低一文字必要です')
       return false
     }
     return true
   }
 
-  const updateProfile = () => {
+  const handleUpdateProfile = () => {
     const result = isEditingProfile()
     if (result) {
-      updateProfileMutation.mutate({
+      updateProfile.mutate({
         id: session?.user?.id,
         username: editedProfile.username,
         avatar: editedProfile.avatar,
       })
-      push('/')
+      push('/dashBoard')
     }
   }
 
@@ -80,8 +80,8 @@ const ProfileUpdatePage: NextPage = () => {
         )}
 
         <div className="m-auto my-10 w-7/12">
-          <Button onClick={updateProfile} block className="rounded-full">
-            {updateProfileMutation.isLoading ? '更新中...' : '更新'}
+          <Button onClick={handleUpdateProfile} block className="rounded-full">
+            {updateProfile.isLoading ? '更新中...' : '更新'}
           </Button>
         </div>
       </div>

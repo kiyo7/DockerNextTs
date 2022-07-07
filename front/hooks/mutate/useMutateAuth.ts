@@ -1,4 +1,5 @@
 //lib
+import { toast } from 'react-toastify'
 import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
@@ -6,37 +7,26 @@ import { useRouter } from 'next/router'
 //utils
 import { supabase } from '../../utils/supabase'
 import useStore from '../../store'
-import { toast } from 'react-toastify'
 
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { push } = useRouter()
+  const { replace } = useRouter()
 
   const queryClient = useQueryClient()
+  const setSession = useStore((state) => state.setSession)
   const resetProfile = useStore((state) => state.resetProfile)
+  const resetOrganization = useStore((state) => state.resetOrganization)
+
+  const dashBoardPath = 'http://localhost:3000/dashBoard/'
 
   const reset = () => {
     setEmail('')
     setPassword('')
   }
-  const loginMutation = useMutation(
-    async () => {
-      const { error } = await supabase.auth.signIn({ email, password })
-      if (error) throw new Error(error.message)
-    },
-    {
-      onSuccess: () => {
-        toast.success('ログイン成功')
-      },
-      onError: (err: any) => {
-        toast.error(err.message)
-        reset()
-      },
-    },
-  )
-  const registerMutation = useMutation(
+
+  const register = useMutation(
     async () => {
       const { error } = await supabase.auth.signUp({ email, password })
       if (error) throw new Error(error.message)
@@ -44,6 +34,7 @@ export const useMutateAuth = () => {
     {
       onSuccess: () => {
         toast.success('アカウントを登録しました')
+        replace('/welcome')
       },
       onError: (err: any) => {
         toast.error(err.message)
@@ -52,11 +43,33 @@ export const useMutateAuth = () => {
     },
   )
 
-  const registerGoogleAuthMutation = useMutation(
+  const login = useMutation(
     async () => {
-      const { error } = await supabase.auth.signIn({
-        provider: 'google',
-      })
+      const { error } = await supabase.auth.signIn({ email, password })
+      if (error) throw new Error(error.message)
+    },
+    {
+      onSuccess: () => {
+        toast.success('ログイン成功')
+        replace(dashBoardPath)
+      },
+      onError: (err: any) => {
+        toast.error(err.message)
+        reset()
+      },
+    },
+  )
+
+  const googleAuth = useMutation(
+    async () => {
+      const { error } = await supabase.auth.signIn(
+        {
+          provider: 'google',
+        },
+        {
+          redirectTo: 'http://localhost:3000/welcome/',
+        },
+      )
 
       if (error) throw new Error(error.message)
     },
@@ -71,7 +84,7 @@ export const useMutateAuth = () => {
     },
   )
 
-  const logoutMutation = useMutation(
+  const logout = useMutation(
     async () => {
       const { error } = await supabase.auth.signOut()
       if (error) throw new Error(error.message)
@@ -79,7 +92,9 @@ export const useMutateAuth = () => {
     {
       onSuccess: () => {
         resetProfile()
+        resetOrganization()
         queryClient.removeQueries('profile')
+        queryClient.removeQueries('organization')
         toast.success('ログアウトしました')
       },
       onError: (err: any) => {
@@ -91,7 +106,7 @@ export const useMutateAuth = () => {
   const passwordResetSendEmail = useMutation(
     async (email: string) => {
       const { error } = await supabase.auth.api.resetPasswordForEmail(email, {
-        redirectTo: 'http://localhost:3000/resetPassword',
+        redirectTo: 'http://localhost:3000/resetPassword/',
       })
       if (error) throw new Error(error.message)
     },
@@ -117,7 +132,7 @@ export const useMutateAuth = () => {
       onSuccess: () => {
         toast.success('パスワードを再設定しました')
         reset()
-        push('/')
+        replace(dashBoardPath)
       },
       onError: (arr: any) => {
         toast.error(arr.message)
@@ -126,13 +141,16 @@ export const useMutateAuth = () => {
     },
   )
 
-  const userDeleteMutation = useMutation(async (id: string = '') => {
-    if (id === '') throw new Error()
+  const userDelete = useMutation(async (id: string) => {
+    if (id === '') toast.error('予期せぬエラーが発生しました。時間を置いて再度お試しください')
     await fetch(`/api/deleteUser/${id}`)
       .then(() => {
-        supabase.auth.signOut()
         resetProfile()
+        resetOrganization()
         queryClient.removeQueries('profile')
+        queryClient.removeQueries('organization')
+        setSession(null)
+
         toast.success('アカウント削除が完了しました。')
       })
       .catch((err: any) => toast.error(err.message))
@@ -143,12 +161,12 @@ export const useMutateAuth = () => {
     setEmail,
     password,
     setPassword,
-    loginMutation,
-    registerMutation,
-    registerGoogleAuthMutation,
-    logoutMutation,
+    login,
+    register,
+    googleAuth,
+    logout,
     passwordResetSendEmail,
     resetPassword,
-    userDeleteMutation,
+    userDelete,
   }
 }

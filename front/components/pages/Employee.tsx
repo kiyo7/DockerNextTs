@@ -1,8 +1,8 @@
 //components
-import { Independent } from './atom/Independent'
+import { Independent } from '../atom/Independent'
 
 //images
-import independent from '../images/independent.png'
+import independent from '../../images/independent.png'
 
 export const Employee: React.FC = () => {
   return (

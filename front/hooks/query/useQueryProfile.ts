@@ -15,21 +15,23 @@ export const useQueryProfile = () => {
   const updateEditedProfile = useStore((state) => state.updateEditedProfile)
 
   const getProfile = async () => {
-    const { data, error, status } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', session?.user?.id)
-      .single()
+    if (session) {
+      const { data, error, status } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', session?.user?.id)
+        .single()
 
-    if (error && status === 406) return
+      if (status === 406) return
 
-    updateEditedProfile({
-      ...editedProfile,
-    })
+      if (error) throw new Error(error.message)
 
-    if (error) throw new Error(error.message)
+      updateEditedProfile({
+        ...editedProfile,
+      })
 
-    return data
+      return data
+    }
   }
 
   return useQuery<Profile, Error>({
