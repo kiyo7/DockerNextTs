@@ -92,7 +92,7 @@ export const Auth: React.FC = () => {
           <div className="m-auto w-8/12">
             <div className="mt-6 mb-3 w-full border border-dashed border-gray-400" />
             <div className="mx-4 font-sans text-sm font-medium  text-gray-500">
-              SNSアカウントで登録・ログイン
+              SNSアカウントで登録・ログイン Google認証調整中のためお使いいただけません。
             </div>
             <button
               onClick={googleAuthMutation}
