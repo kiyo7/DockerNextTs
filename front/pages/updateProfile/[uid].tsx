@@ -20,7 +20,7 @@ import { SImage } from '../../components/atom/SImage'
 import { ImgUploadButton } from '../../components/atom/ImgUploadButton'
 import { Spinner } from '../../components/atom/Spinner'
 import { NextPage } from 'next'
-import { Layout } from '../../components/pages/Layout'
+import { Layout } from '../../components/organisms/Layout'
 
 const ProfileUpdatePage: NextPage = () => {
   const session = useStore((state) => state.session)

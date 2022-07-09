@@ -10,7 +10,7 @@ import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
 import useStore from '../../store'
 
 //components
-import { Layout } from '../../components/pages/Layout'
+import { Layout } from '../../components/organisms/Layout'
 
 const Setting: NextPage = () => {
   const session = useStore((state) => state.session)

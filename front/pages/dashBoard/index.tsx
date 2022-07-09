@@ -9,7 +9,7 @@ import { useQueryProfile } from '../..//hooks/query/useQueryProfile'
 import { Admin } from '../../components/pages/Admin'
 import { Spinner } from '../../components/atom/Spinner'
 import { Employee } from '../../components/pages/Employee'
-import { Layout } from '../../components/pages/Layout'
+import { Layout } from '../../components/organisms/Layout'
 
 const DashBoard: NextPage = () => {
   const { data } = useQueryProfile()

@@ -46,7 +46,6 @@ export const AdminLayout: React.FC<Props> = ({ title, header, children }) => {
           </article>
         </main>
       </div>
-      <Footer />
     </>
   )
 }

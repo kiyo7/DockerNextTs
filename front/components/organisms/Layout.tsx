@@ -6,9 +6,12 @@ import { ReactNode, useEffect } from 'react'
 import { supabase } from '../../utils/supabase'
 import useStore from '../../store'
 
+//hooks
+import { useQueryProfile } from '../../hooks/query/useQueryProfile'
+
 //components
 import { Footer } from '../atom/Footer'
-import { Header } from '../organisms/Header'
+import { Header } from './Header'
 
 interface Props {
   title?: string
@@ -26,6 +29,8 @@ export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) 
       setSession(session)
     })
   }, [setSession])
+
+  const { data } = useQueryProfile()
 
   return (
     <>
@@ -45,7 +50,7 @@ export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) 
           {children}
         </main>
       </div>
-      <Footer />
+      {!data && <Footer />}
     </>
   )
 }

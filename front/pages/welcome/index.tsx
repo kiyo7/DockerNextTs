@@ -13,7 +13,7 @@ import { useMutateProfile } from '../../hooks/mutate/useMutateProfile'
 
 //images
 import { RoleSelect } from '../../components/molecule/RoleSelect'
-import { Layout } from '../../components/pages/Layout'
+import { Layout } from '../../components/organisms/Layout'
 import { useQueryProfile } from '../../hooks/query/useQueryProfile'
 import { Spinner } from '../../components/atom/Spinner'
 
