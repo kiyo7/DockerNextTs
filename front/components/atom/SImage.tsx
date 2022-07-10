@@ -1,12 +1,12 @@
 //lib
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { PencilAltIcon } from '@heroicons/react/outline'
 
 //images
 import initImg from '../../images/headerLogo.png'
 
 interface Props {
-  img?: string
+  img?: string | StaticImageData
   alt: string
   width?: number | string
   height?: number | string

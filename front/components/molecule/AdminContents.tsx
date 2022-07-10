@@ -16,7 +16,12 @@ import { ManagementContents } from '../../types'
 //components
 import { Menu } from '../atom/Menu'
 
-export const AdminContents = () => {
+interface Props {
+  ScreenIsSmall?: boolean
+  spStyle?: string
+}
+
+export const AdminContents: React.FC<Props> = ({ ScreenIsSmall = true, spStyle }) => {
   const { data } = useQueryOrganizations()
 
   const route = '/management'
@@ -50,19 +55,17 @@ export const AdminContents = () => {
   ]
 
   return (
-    <div className="menu">
-      <ul className="pl-2">
-        {contents.map((content, key) => {
-          return (
-            <Menu
-              key={key}
-              path={content.path}
-              contentsName={content.contentsName}
-              icon={content.icon}
-            />
-          )
-        })}
-      </ul>
-    </div>
+    <ul className={`menu p-2 ${spStyle}`}>
+      {contents.map((content, key) => {
+        return (
+          <Menu
+            key={key}
+            path={content.path}
+            contentsName={ScreenIsSmall ? '' : content.contentsName}
+            icon={content.icon}
+          />
+        )
+      })}
+    </ul>
   )
 }

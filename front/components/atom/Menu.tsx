@@ -12,7 +12,7 @@ export const Menu: React.FC<Props> = ({ clickEvent, path, contentsName, icon }) 
   return (
     <>
       {path ? (
-        <li className={'my-1'}>
+        <li className={'my-1 md:mx-2'}>
           <Link href={path}>
             <a>
               {icon} {contentsName}
