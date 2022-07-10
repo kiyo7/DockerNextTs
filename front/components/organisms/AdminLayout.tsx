@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
 
 // components
-import { Footer } from '../atom/Footer'
+import { AdminContents } from '../molecule/AdminContents'
 import Head from 'next/head'
 import { Header } from './Header'
-import { AdminContents } from '../molecule/AdminContents'
+import { SPNavbar } from '../molecule/SPNavbar'
 
 interface Props {
   title: string
@@ -27,8 +27,8 @@ export const AdminLayout: React.FC<Props> = ({ title, header, children }) => {
       <Head>
         <title>Shifty | {title}</title>
       </Head>
-      <Header />
       <div className="bg relative min-h-screen text-gray-500">
+        <Header />
         <main className="font-sans tracking-widest ">
           <article className="w-full">
             <aside className="hidden text-gray-100 lg:absolute lg:-inset-0 lg:block lg:w-60 lg:bg-teal-500">
@@ -37,14 +37,17 @@ export const AdminLayout: React.FC<Props> = ({ title, header, children }) => {
                 <p className="text-center text-lg">{data?.groupname}</p>
               </div>
               <span className="divider" />
-              <AdminContents />
+              <AdminContents ScreenIsSmall={false} />
             </aside>
-            <section className="pl-60">
+            <section className="w-full lg:pl-60">
               <p className="pt-7 text-center text-4xl">{header}</p>
               <div className="text-center">{children}</div>
             </section>
           </article>
         </main>
+        <footer className="absolute bottom-0 w-full">
+          <SPNavbar />
+        </footer>
       </div>
     </>
   )
