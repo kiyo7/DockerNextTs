@@ -12,11 +12,11 @@ import { SPNavbar } from '../molecule/SPNavbar'
 
 interface Props {
   title: string
-  header: string
+  header?: string
   children: JSX.Element
 }
 
-export const AdminLayout: React.FC<Props> = ({ title, header, children }) => {
+export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) => {
   const { data } = useQueryOrganizations()
   const { push } = useRouter()
 
