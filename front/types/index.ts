@@ -37,3 +37,12 @@ export interface ManagementContents {
   contentsName: string
   icon: JSX.Element
 }
+
+export interface MemberLists {
+  member_id: string
+  profiles: {
+    username: string
+    avatar: string
+    is_admin: boolean
+  }
+}
