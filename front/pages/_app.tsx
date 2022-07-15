@@ -5,8 +5,8 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 //components
-import { Notice } from '../components/atom/Notice'
-import { Spinner } from '../components/atom/Spinner'
+import { Notice } from '../components/atoms/Notice'
+import { Spinner } from '../components/atoms/Spinner'
 
 //style
 import '../styles/globals.css'

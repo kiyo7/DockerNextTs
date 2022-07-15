@@ -10,7 +10,7 @@ import useStore from '../../store'
 import { useQueryProfile } from '../../hooks/query/useQueryProfile'
 
 //components
-import { Footer } from '../atom/Footer'
+import { Footer } from '../atoms/Footer'
 import { Header } from './Header'
 
 interface Props {

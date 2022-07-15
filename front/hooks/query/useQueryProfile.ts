@@ -24,7 +24,7 @@ export const useQueryProfile = () => {
 
       if (status === 406) return
 
-      if (error) throw new Error(error.message)
+      // if (error) throw new Error(error.message)
 
       updateEditedProfile({
         ...editedProfile,

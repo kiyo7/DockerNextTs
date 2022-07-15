@@ -7,7 +7,7 @@ import { useMutateAuth } from '../hooks/mutate/useMutateAuth'
 
 //components
 import { Layout } from '../components/organisms/Layout'
-import { SInput } from '../components/atom/SInput'
+import { SInput } from '../components/atoms/SInput'
 
 const ResetPassword: NextPage = () => {
   const { password, setPassword, resetPassword } = useMutateAuth()

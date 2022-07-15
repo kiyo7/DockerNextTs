@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
+    "@supabase/auth-helpers-nextjs": "^0.2.4",
+    "@supabase/auth-helpers-react": "^0.2.3",
     "@supabase/supabase-js": "^1.35.3",
     "@supabase/ui": "^0.36.5",
     "daisyui": "^2.15.4",

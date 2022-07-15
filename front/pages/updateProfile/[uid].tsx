@@ -13,12 +13,12 @@ import { useUploadAvatarImg } from '../../hooks/useUploadAvatarImg'
 import useStore from '../../store'
 
 //components
-import { SInput } from '../../components/atom/SInput'
+import { SInput } from '../../components/atoms/SInput'
 
 //components
-import { SImage } from '../../components/atom/SImage'
-import { ImgUploadButton } from '../../components/atom/ImgUploadButton'
-import { Spinner } from '../../components/atom/Spinner'
+import { SImage } from '../../components/atoms/SImage'
+import { ImgUploadButton } from '../../components/atoms/ImgUploadButton'
+import { Spinner } from '../../components/atoms/Spinner'
 import { NextPage } from 'next'
 import { Layout } from '../../components/organisms/Layout'
 

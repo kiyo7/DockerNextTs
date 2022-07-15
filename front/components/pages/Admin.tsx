@@ -11,10 +11,10 @@ import { useSubscribeOrganization } from '../../hooks/subscribe/useSubscribeOrga
 //components
 import { CreateOrganizationsModal } from '../molecule/CreateOrganizationsModal'
 import { IconPlusCircle } from '@supabase/ui'
-import { Independent } from '../atom/Independent'
+import { Independent } from '../atoms/Independent'
 import { OrganizationCard } from '../molecule/OrganizationCard'
-import { PrimaryButton } from '../atom/PrimaryButton'
-import { Spinner } from '../atom/Spinner'
+import { PrimaryButton } from '../atoms/PrimaryButton'
+import { Spinner } from '../atoms/Spinner'
 
 //images
 import independent from '../../images/admin.png'

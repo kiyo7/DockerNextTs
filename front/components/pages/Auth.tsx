@@ -8,8 +8,8 @@ import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
 
 //components
 import { ForgotPasswordModal } from '../organisms/ForgotPasswordModal'
-import { SInput } from '../atom/SInput'
-import { Spinner } from '../atom/Spinner'
+import { SInput } from '../atoms/SInput'
+import { Spinner } from '../atoms/Spinner'
 
 //images
 import authPageBG from '../../images/authPageBG.jpg'

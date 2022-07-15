@@ -1,5 +1,5 @@
 //components
-import { Independent } from '../atom/Independent'
+import { Independent } from '../atoms/Independent'
 
 //images
 import independent from '../../images/independent.png'

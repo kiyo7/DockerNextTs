@@ -1,12 +1,11 @@
-// import { withAuthRequired } from '@supabase/supabase-auth-helpers/nextjs'
 // import { NextApiRequest, NextApiResponse } from 'next/types'
+
+// import { UserProvider } from '@supabase/auth-helpers-react'
+// import { supabaseClient } from '@supabase/auth-helpers-nextjs'
 
 // import { supabaseAdmin } from '../../../utils/supabaseAdmin'
 
-// export default withAuthRequired(async function InviteUser(
-//   req: NextApiRequest,
-//   res: NextApiResponse,
-// ) {
+// export default (async function InviteUser(req: NextApiRequest, res: NextApiResponse) {
 //   const { email } = req.query
 
 //   if (typeof email === 'string' && supabaseAdmin) {
@@ -21,10 +20,11 @@
 //       error: 'unknown error occurred',
 //     })
 //   }
+
+//   const { data: user, error } = await supabaseAdmin.auth.api.generateLink(
+//     'invite',
+//     'email@example.com',
+//   )
 // })
 
-//const { data: user, error } = await supabase.auth.api.generateLink(
-//   'invite',
-//   'email@example.com'
-// )
 export {}
