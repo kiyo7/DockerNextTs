@@ -1,7 +1,7 @@
 //lib
 import { Button, IconSmile } from '@supabase/ui'
 import { NextPage } from 'next'
-import { SInput } from '../../components/atom/SInput'
+import { SInput } from '../../components/atoms/SInput'
 import { Suspense, useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -15,7 +15,7 @@ import { useMutateProfile } from '../../hooks/mutate/useMutateProfile'
 import { RoleSelect } from '../../components/molecule/RoleSelect'
 import { Layout } from '../../components/organisms/Layout'
 import { useQueryProfile } from '../../hooks/query/useQueryProfile'
-import { Spinner } from '../../components/atom/Spinner'
+import { Spinner } from '../../components/atoms/Spinner'
 
 const WelcomePage: NextPage = () => {
   const [active, setActive] = useState(false)

@@ -1,5 +1,5 @@
 //components
-import { RoleImage } from '../atom/RoleImage'
+import { RoleImage } from '../atoms/RoleImage'
 
 //images
 import employee from '../../images/employee.png'

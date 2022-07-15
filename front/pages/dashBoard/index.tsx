@@ -7,7 +7,7 @@ import { useQueryProfile } from '../..//hooks/query/useQueryProfile'
 
 //components
 import { Admin } from '../../components/pages/Admin'
-import { Spinner } from '../../components/atom/Spinner'
+import { Spinner } from '../../components/atoms/Spinner'
 import { Employee } from '../../components/pages/Employee'
 import { Layout } from '../../components/organisms/Layout'
 

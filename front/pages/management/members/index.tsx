@@ -9,7 +9,7 @@ import { useQueryOrganizations } from '../../../hooks/query/useQueryOrganization
 
 //components
 import { AdminLayout } from '../../../components/organisms/AdminLayout'
-import { MemberList } from '../../../components/atom/MemberList'
+import { MemberList } from '../../../components/atoms/MemberList'
 
 //types
 import { MemberLists } from '../../../types'

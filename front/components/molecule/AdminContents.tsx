@@ -14,7 +14,7 @@ import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
 import { ManagementContents } from '../../types'
 
 //components
-import { Menu } from '../atom/Menu'
+import { Menu } from '../atoms/Menu'
 
 interface Props {
   ScreenIsSmall?: boolean

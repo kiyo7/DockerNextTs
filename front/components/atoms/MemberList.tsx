@@ -6,20 +6,19 @@ import { useDownloadUrl } from '../../hooks/useDownloadUrl'
 import logo from '../../images/headerLogo.png'
 
 interface Props {
-  key: number
   username: string
   avatar: string
   is_admin: boolean
 }
 
-export const MemberList: React.FC<Props> = ({ key, username, avatar, is_admin }) => {
+export const MemberList: React.FC<Props> = ({ username, avatar, is_admin }) => {
   const { fullUrl: avatarUrl } = useDownloadUrl(avatar, 'avatars')
 
   return (
     <>
-      <tr key={key}>
+      <tr className="text-xs md:text-lg">
         <td>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 ">
             <div className="avatar">
               <div className="mask mask-squircle h-12 w-12">
                 <Image
@@ -31,7 +30,7 @@ export const MemberList: React.FC<Props> = ({ key, username, avatar, is_admin })
               </div>
             </div>
             <div>
-              <div className="font-bold">{username}</div>
+              <div className="font-semibold">{username}</div>
             </div>
           </div>
         </td>

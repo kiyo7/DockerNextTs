@@ -13,8 +13,8 @@ import { useQueryProfile } from '../../hooks/query/useQueryProfile'
 import logo from '../../images/headerLogo.png'
 
 //components
-import { HamburgerMenu } from '../atom/HamburgerMenu'
-import { Menu } from '../atom/Menu'
+import { HamburgerMenu } from '../atoms/HamburgerMenu'
+import { Menu } from '../atoms/Menu'
 
 export const Header: React.FC = () => {
   const session = useStore((state) => state.session)

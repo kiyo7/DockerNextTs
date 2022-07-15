@@ -14,11 +14,11 @@ import { useMutateOrganizations } from '../../hooks/mutate/useMutateOrganization
 import { useUploadGroupImg } from '../../hooks/useUploadGroupImg'
 
 //components
-import { ImgUploadButton } from '../atom/ImgUploadButton'
-import { PrimaryButton } from '../atom/PrimaryButton'
-import { SImage } from '../atom/SImage'
-import { SInput } from '../atom/SInput'
-import { Spinner } from '../atom/Spinner'
+import { ImgUploadButton } from '../atoms/ImgUploadButton'
+import { PrimaryButton } from '../atoms/PrimaryButton'
+import { SImage } from '../atoms/SImage'
+import { SInput } from '../atoms/SInput'
+import { Spinner } from '../atoms/Spinner'
 import { toast } from 'react-toastify'
 
 interface Props {
@@ -61,6 +61,7 @@ export const CreateOrganizationsModal: React.FC<Props> = ({ setIsOpenModal }) =>
       .catch(() => {
         toast.error('エラーやり直してください')
       })
+
     push('/dashBoard')
     setIsOpenModal(false)
   }

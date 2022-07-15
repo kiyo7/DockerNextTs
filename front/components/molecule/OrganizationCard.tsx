@@ -7,9 +7,9 @@ import { useDownloadUrl } from '../../hooks/useDownloadUrl'
 import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
 
 //components
-import { PrimaryButton } from '../atom/PrimaryButton'
-import { SImage } from '../atom/SImage'
-import { Spinner } from '../atom/Spinner'
+import { PrimaryButton } from '../atoms/PrimaryButton'
+import { SImage } from '../atoms/SImage'
+import { Spinner } from '../atoms/Spinner'
 
 export const OrganizationCard: React.FC = () => {
   const { data } = useQueryOrganizations()
