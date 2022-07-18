@@ -40,7 +40,7 @@ export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) =
               <AdminContents ScreenIsSmall={false} />
             </aside>
             <section className="w-full lg:pl-60">
-              <p className="pt-10 text-center text-4xl">{header}</p>
+              <p className="pt-10 text-center text-2xl md:text-4xl">{header}</p>
               <div className="text-center">{children}</div>
             </section>
           </article>

@@ -35,7 +35,7 @@ const MembersPage: NextPage = () => {
             <tr>
               <th>名前</th>
               <th>役割</th>
-              <th>招待状況</th>
+              <th>参加状況</th>
             </tr>
           </thead>
           <tbody>
