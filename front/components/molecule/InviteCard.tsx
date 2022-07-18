@@ -1,9 +1,11 @@
+//lib
 import { IconMail, IconPlusCircle } from '@supabase/ui'
-import { PrimaryButton } from './PrimaryButton'
 
-import { SInput } from './SInput'
+//components
+import { PrimaryButton } from '../atoms/PrimaryButton'
+import { SInput } from '../atoms/SInput'
 
-export const ModalBase: React.FC = () => {
+export const InviteCard: React.FC = () => {
   return (
     <>
       <div className="card w-11/12 bg-base-100 shadow-xl lg:w-6/12">
