@@ -21,7 +21,7 @@ export const SImage: React.FC<Props> = ({
   isSetting = false,
 }) => {
   return (
-    <div className="relative my-10 text-center hover:cursor-pointer hover:opacity-60 ">
+    <div className="relative my-10 text-center hover:cursor-pointer hover:opacity-75 ">
       <Image
         src={img ? img : initImg}
         alt={alt}

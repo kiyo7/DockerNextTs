@@ -27,9 +27,9 @@ export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) =
       <Head>
         <title>Shifty | {title}</title>
       </Head>
+      <Header />
       <div className="bg relative min-h-screen text-gray-500">
-        <Header />
-        <main className="font-sans tracking-widest ">
+        <main className="font-sans tracking-widest">
           <article className="w-full">
             <aside className="hidden text-gray-100 lg:absolute lg:-inset-0 lg:block lg:w-60 lg:bg-teal-500">
               <div className="w-ful divider mt-0 items-stretch" />
@@ -45,10 +45,10 @@ export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) =
             </section>
           </article>
         </main>
-        <footer className="absolute bottom-0 w-full">
-          <SPNavbar />
-        </footer>
       </div>
+      <footer className="w-full">
+        <SPNavbar />
+      </footer>
     </>
   )
 }

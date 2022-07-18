@@ -5,7 +5,7 @@ import { NextPage } from 'next'
 import { AdminLayout } from '../../../components/organisms/AdminLayout'
 
 //image
-import { ModalBase } from '../../../components/atoms/ModalBase'
+import { InviteCard } from '../../../components/molecule/InviteCard'
 
 const InvitePage: NextPage = () => {
   return (
@@ -15,7 +15,7 @@ const InvitePage: NextPage = () => {
           <h2 className="w-60 overflow-auto text-lg md:w-full md:text-xl">
             メールアドレスでユーザーを招待しましょう!
           </h2>
-          <ModalBase />
+          <InviteCard />
         </div>
       </>
     </AdminLayout>
