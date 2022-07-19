@@ -24,7 +24,7 @@ const contents = [
 const SettingPage: NextPage = () => {
   return (
     <AdminLayout title="設定" header="設定">
-      <div className="m-auto my-5 grid w-full grid-cols-2 md:w-4/6 lg:w-2/4">
+      <div className="m-auto mt-5 grid w-full grid-cols-2 md:w-4/6 lg:w-2/4">
         {contents.map((item) => {
           return <SettingContents contentsName={item.name} Icon={item.Icon} />
         })}

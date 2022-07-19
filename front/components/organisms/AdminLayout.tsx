@@ -41,12 +41,12 @@ export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) =
             </aside>
             <section className="w-full lg:pl-60">
               <p className="pt-10 text-center text-2xl md:text-4xl">{header}</p>
-              <div className="text-center">{children}</div>
+              <div className="mb-28 text-center">{children}</div>
             </section>
           </article>
         </main>
       </div>
-      <footer className="w-full">
+      <footer className="fixed bottom-0 w-screen lg:hidden">
         <SPNavbar />
       </footer>
     </>
