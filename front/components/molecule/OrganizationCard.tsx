@@ -18,11 +18,6 @@ export const OrganizationCard: React.FC = () => {
 
   return (
     <>
-      <div className="my-12  flex w-full flex-col items-center">
-        <h1 className="font-sans text-3xl tracking-widest">管理グループ</h1>
-        <div className="mt-5 w-3/5 space-x-10 border border-double" />
-      </div>
-
       <div className="card z-0 my-8 w-72 bg-base-100 shadow-xl md:w-96">
         <figure>
           <Suspense fallback={<Spinner />}>
@@ -36,7 +31,7 @@ export const OrganizationCard: React.FC = () => {
           <div className="card-actions justify-end hover:cursor-pointer hover:opacity-75">
             <Link href={`/management/${data?.id}`}>
               <a>
-                <PrimaryButton buttonText={'管理画面へ'} />
+                <PrimaryButton buttonText={'管理画面へ'} buttonColor="accent" />
               </a>
             </Link>
           </div>

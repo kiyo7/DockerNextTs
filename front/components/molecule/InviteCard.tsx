@@ -19,7 +19,7 @@ export const InviteCard: React.FC = () => {
               icon={<IconMail />}
             />
           </div>
-          <PrimaryButton icon={<IconPlusCircle />} buttonText="招待する" />
+          <PrimaryButton icon={<IconPlusCircle />} buttonText="招待する" buttonColor="accent" />
         </div>
       </div>
     </>
