@@ -105,7 +105,7 @@ export const CreateOrganizationsModal: React.FC<Props> = ({ setIsOpenModal }) =>
             </div>
           </div>
           <div className="card-body items-center">
-            <PrimaryButton buttonText={'作成する'} />
+            <PrimaryButton buttonText={'作成する'} buttonColor="accent" />
           </div>
         </form>
       </div>

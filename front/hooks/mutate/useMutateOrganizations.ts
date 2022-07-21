@@ -12,13 +12,14 @@ import { Organization } from '../../types'
 
 export const useMutateOrganizations = () => {
   const resetOrganization = useStore((state) => state.resetOrganization)
-  const { push } = useRouter()
+  const { replace } = useRouter()
 
   const createOrganizations = useMutation(
     async (organization: Omit<Organization, 'id' | 'created_at'>) => {
       const { data, error } = await supabase.from('organizations').insert(organization)
 
       if (error) throw new Error(error.message)
+
       return data
     },
     {
@@ -52,18 +53,18 @@ export const useMutateOrganizations = () => {
   )
 
   const deleteOrganizations = useMutation(
-    async (id: string = '') => {
-      if (id === '') return
+    async (id: string) => {
       const { data, error } = await supabase.from('organizations').delete().eq('id', id)
 
       if (error) throw new Error(error.message)
+
       return data
     },
     {
       onSuccess: () => {
         toast.success('グループを削除しました')
         resetOrganization()
-        push('/dashBoard')
+        location.reload()
       },
       onError: (err: any) => {
         toast.error(err.message)

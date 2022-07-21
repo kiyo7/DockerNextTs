@@ -1,14 +1,19 @@
+import Link from 'next/link'
+
 interface Props {
   contentsName: string
   Icon: any
+  path?: string
 }
 
-export const SettingContents: React.FC<Props> = ({ contentsName, Icon }) => {
+export const SettingContents: React.FC<Props> = ({ contentsName, Icon, path = '' }) => {
   return (
     <>
-      <div className="w-s8/12 card m-3 mt-8 bg-base-100 shadow-xl hover:cursor-pointer hover:opacity-75 ">
+      <div className="card m-3 mt-8 bg-base-100 shadow-xl hover:cursor-pointer hover:opacity-75 ">
         <div className="card-body items-center text-center">
-          {Icon}
+          <Link href={path}>
+            <a className="contents">{Icon}</a>
+          </Link>
           <h2 className="card-title text-xs md:text-sm">{contentsName}</h2>
         </div>
       </div>

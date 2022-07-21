@@ -43,6 +43,10 @@ export const Admin: React.FC = () => {
       {data?.administrator === session?.user?.id ? (
         <>
           <Suspense fallback={<Spinner />}>
+            <div className="my-12  flex w-full flex-col items-center">
+              <h1 className="font-sans text-3xl tracking-widest">管理グループ</h1>
+              <div className="mt-5 w-3/5 space-x-10 border border-double" />
+            </div>
             <OrganizationCard />
           </Suspense>
         </>
@@ -58,6 +62,7 @@ export const Admin: React.FC = () => {
               icon={<IconPlusCircle />}
               buttonText="グループを作成"
               clickEvent={modalOpen}
+              buttonColor="accent"
             />
           </div>
         </div>
