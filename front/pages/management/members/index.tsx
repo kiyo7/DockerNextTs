@@ -46,6 +46,7 @@ const MembersPage: NextPage = () => {
                   username={member.profiles.username}
                   avatar={member.profiles.avatar}
                   is_admin={member.profiles.is_admin}
+                  invitation_status={member.invitation_status}
                 />
               )
             })}

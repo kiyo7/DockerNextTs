@@ -27,9 +27,12 @@ export interface EditedOrganization {
   logo: string
 }
 
+export type InviteStatus = 'Inviting' | 'Invited'
+
 export interface Member {
   organization_id: string | undefined
   member_id: string | undefined
+  invitation_status: InviteStatus
 }
 
 export interface ManagementContents {
@@ -40,6 +43,7 @@ export interface ManagementContents {
 
 export interface MemberLists {
   member_id: string
+  invitation_status: InviteStatus
   profiles: {
     username: string
     avatar: string

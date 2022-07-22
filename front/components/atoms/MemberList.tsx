@@ -2,6 +2,9 @@
 import Image from 'next/image'
 import { useDownloadUrl } from '../../hooks/useDownloadUrl'
 
+//types
+// import { InviteStatus } from '../../types'
+
 //images
 import logo from '../../images/headerLogo.png'
 
@@ -9,9 +12,10 @@ interface Props {
   username: string
   avatar: string
   is_admin: boolean
+  invitation_status: 'Uninvited' | 'Inviting' | 'Invited'
 }
 
-export const MemberList: React.FC<Props> = ({ username, avatar, is_admin }) => {
+export const MemberList: React.FC<Props> = ({ username, avatar, is_admin, invitation_status }) => {
   const { fullUrl: avatarUrl } = useDownloadUrl(avatar, 'avatars')
 
   return (
@@ -39,7 +43,7 @@ export const MemberList: React.FC<Props> = ({ username, avatar, is_admin }) => {
           <br />
         </td>
         <td>
-          招待済み{/* 仮 */}
+          {invitation_status === 'Invited' ? 'メンバー' : '招待中'}
           <br />
         </td>
       </tr>

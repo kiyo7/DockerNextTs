@@ -142,7 +142,10 @@ export const useMutateAuth = () => {
   )
 
   const userDelete = useMutation(async (id: string) => {
-    if (id === '') toast.error('予期せぬエラーが発生しました。時間を置いて再度お試しください')
+    if (id === '') {
+      toast.error('予期せぬエラーが発生しました。時間を置いて再度お試しください')
+      return
+    }
     await fetch(`/api/deleteUser/${id}`)
       .then(() => {
         resetProfile()
@@ -152,6 +155,18 @@ export const useMutateAuth = () => {
         setSession(null)
 
         toast.success('アカウント削除が完了しました。')
+      })
+      .catch((err: any) => toast.error(err.message))
+  })
+
+  const inviteUser = useMutation(async (email: string) => {
+    if (email === '') {
+      toast.error('アドレスを入力してください')
+      return
+    }
+    await fetch(`/api/inviteUser/${email}`)
+      .then(() => {
+        toast.success('ユーザーを招待しました')
       })
       .catch((err: any) => toast.error(err.message))
   })
@@ -168,5 +183,6 @@ export const useMutateAuth = () => {
     passwordResetSendEmail,
     resetPassword,
     userDelete,
+    inviteUser,
   }
 }

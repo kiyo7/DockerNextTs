@@ -3,6 +3,7 @@
 create table members (
   organization_id uuid not null,
   member_id uuid  not null,
+  invitation_status text not null,
 primary key (member_id));
 
 -- Set up Realtime

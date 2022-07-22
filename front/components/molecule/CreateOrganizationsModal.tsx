@@ -55,6 +55,7 @@ export const CreateOrganizationsModal: React.FC<Props> = ({ setIsOpenModal }) =>
             createMembers.mutate({
               organization_id: data.data.id,
               member_id: session?.user?.id,
+              invitation_status: 'Invited',
             })
           })
       })
