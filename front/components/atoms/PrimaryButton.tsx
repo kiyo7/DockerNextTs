@@ -2,7 +2,7 @@ interface Props {
   icon?: JSX.Element
   buttonText: string
   clickEvent?: () => void
-  buttonColor?: 'primary' | 'secondary' | 'accent' | 'ghost'
+  buttonColor?: 'primary' | 'error' | 'accent' | 'ghost'
   textColor?: string
   disabled?: boolean
 }
@@ -11,7 +11,7 @@ export const PrimaryButton: React.FC<Props> = ({
   icon,
   buttonText,
   clickEvent,
-  buttonColor = 'accent',
+  buttonColor = '',
   textColor = 'white',
   disabled,
 }) => {
@@ -19,8 +19,8 @@ export const PrimaryButton: React.FC<Props> = ({
     switch (buttonColor) {
       case 'primary':
         return 'btn-primary'
-      case 'secondary':
-        return 'btn-secondary'
+      case 'error':
+        return 'btn-error'
       case 'accent':
         return 'btn-accent'
       case 'ghost':
@@ -33,7 +33,7 @@ export const PrimaryButton: React.FC<Props> = ({
     <div>
       <button
         onClick={clickEvent}
-        className={`${buttonStyle()} btn my-10 rounded-full text-${textColor}`}
+        className={`${buttonStyle()} btn my-10 w-full rounded-full text-${textColor}`}
         disabled={disabled}
       >
         {icon}

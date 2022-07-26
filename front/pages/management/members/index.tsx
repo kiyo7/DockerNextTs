@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 
 //hooks
 import { useMutateMembers } from '../../../hooks/mutate/useMutateMembers'
-import { useQueryOrganizations } from '../../../hooks/query/useQueryOrganizations'
 
 //components
 import { AdminLayout } from '../../../components/organisms/AdminLayout'
@@ -18,11 +17,11 @@ const MembersPage: NextPage = () => {
   const [members, setMembers] = useState<MemberLists[]>([])
 
   const { selectMembers } = useMutateMembers()
-  const { data } = useQueryOrganizations()
 
   useEffect(() => {
+    const id = localStorage.getItem('currentOrganization')
     selectMembers
-      .mutateAsync(data!.id)
+      .mutateAsync(id!)
       .then((data) => setMembers(data))
       .catch(() => toast.error('予期せぬエラーが発生しました'))
   }, [])
@@ -39,13 +38,13 @@ const MembersPage: NextPage = () => {
             </tr>
           </thead>
           <tbody>
-            {members.map((member, key) => {
+            {members.map((member) => {
               return (
                 <MemberList
-                  key={key}
+                  key={member.member_id}
+                  id={member.member_id}
                   username={member.profiles.username}
                   avatar={member.profiles.avatar}
-                  is_admin={member.profiles.is_admin}
                   invitation_status={member.invitation_status}
                 />
               )

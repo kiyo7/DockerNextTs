@@ -1,7 +1,6 @@
 export interface Profile {
   id: string | undefined
   username: string | undefined
-  is_admin: boolean | null
   avatar: string | undefined
   created_at: string
   updated_at: string
@@ -9,7 +8,6 @@ export interface Profile {
 
 export interface EditedProfile {
   username: string | undefined
-  is_admin: boolean | null
   avatar: string | undefined
 }
 
@@ -35,10 +33,10 @@ export interface Member {
   invitation_status: InviteStatus
 }
 
-export interface ManagementContents {
+export interface ContentsType {
   path: string
   contentsName: string
-  icon: JSX.Element
+  Icon: JSX.Element
 }
 
 export interface MemberLists {
@@ -47,6 +45,5 @@ export interface MemberLists {
   profiles: {
     username: string
     avatar: string
-    is_admin: boolean
   }
 }

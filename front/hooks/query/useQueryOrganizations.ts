@@ -9,19 +9,12 @@ import useStore from '../../store'
 import { Organization } from '../../types'
 
 export const useQueryOrganizations = () => {
-  const session = useStore((state) => state.session)
+  const id = localStorage.getItem('currentOrganization')
   const editedOrganizations = useStore((state) => state.editedOrganization)
   const updateEditedOrganizations = useStore((state) => state.updateEditedOrganization)
 
   const getOrganizations = async () => {
-    const { data, error, status } = await supabase
-      .from('organizations')
-      .select('*')
-      .eq('administrator', session?.user?.id)
-      .single()
-
-    if (status === 406) return
-
+    const { data, error } = await supabase.from('organizations').select('*').eq('id', id).single()
     if (error) throw new Error(error.message)
 
     updateEditedOrganizations({

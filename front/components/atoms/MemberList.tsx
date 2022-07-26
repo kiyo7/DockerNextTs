@@ -1,21 +1,26 @@
 // lib
 import Image from 'next/image'
-import { useDownloadUrl } from '../../hooks/useDownloadUrl'
 
-//types
-// import { InviteStatus } from '../../types'
+//hooks
+import { useDownloadUrl } from '../../hooks/useDownloadUrl'
+import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
+
+// types
+import { InviteStatus } from '../../types'
 
 //images
-import logo from '../../images/headerLogo.png'
+import logo from '../../images/logo.png'
 
 interface Props {
+  id: string
   username: string
   avatar: string
-  is_admin: boolean
-  invitation_status: 'Uninvited' | 'Inviting' | 'Invited'
+  invitation_status: InviteStatus
 }
 
-export const MemberList: React.FC<Props> = ({ username, avatar, is_admin, invitation_status }) => {
+export const MemberList: React.FC<Props> = ({ id, username, avatar, invitation_status }) => {
+  const { data } = useQueryOrganizations()
+
   const { fullUrl: avatarUrl } = useDownloadUrl(avatar, 'avatars')
 
   return (
@@ -39,7 +44,7 @@ export const MemberList: React.FC<Props> = ({ username, avatar, is_admin, invita
           </div>
         </td>
         <td>
-          {is_admin ? '管理者' : '従業員'}
+          {id === data?.administrator ? '管理者' : '従業員'}
           <br />
         </td>
         <td>

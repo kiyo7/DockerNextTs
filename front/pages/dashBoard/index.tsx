@@ -1,21 +1,28 @@
 //hooks
 import { NextPage } from 'next'
-import { Suspense } from 'react'
-
-//hooks
-import { useQueryProfile } from '../..//hooks/query/useQueryProfile'
+import { Suspense, useEffect } from 'react'
 
 //components
-import { Admin } from '../../components/pages/Admin'
-import { Employee } from '../../components/pages/Employee'
+import { Main } from '../../components/pages/Main'
 import { Spinner } from '../../components/atoms/Spinner'
 import { Layout } from '../../components/organisms/Layout'
+import useStore from '../../store'
+import { useQueryClient } from 'react-query'
 
 const DashBoard: NextPage = () => {
-  const { data } = useQueryProfile()
+  const queryClient = useQueryClient()
+  const resetOrganization = useStore((state) => state.resetOrganization)
+
+  useEffect(() => {
+    resetOrganization()
+    localStorage.removeItem('currentOrganization')
+    queryClient.removeQueries('organization')
+  })
   return (
-    <Layout>
-      <Suspense fallback={<Spinner />}>{data?.is_admin ? <Admin /> : <Employee />}</Suspense>
+    <Layout title="ホーム" header="ホーム">
+      <Suspense fallback={<Spinner />}>
+        <Main />
+      </Suspense>
     </Layout>
   )
 }

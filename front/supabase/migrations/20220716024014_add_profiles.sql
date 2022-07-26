@@ -2,7 +2,6 @@ create table profiles (
   id uuid default uuid_generate_v4()  not null,
   username text,
   avatar text,
-  is_admin boolean,
   created_at timestamp without time zone default now() not null,
   updated_at timestamp without time zone,
 primary key (id));

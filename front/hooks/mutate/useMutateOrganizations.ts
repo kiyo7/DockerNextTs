@@ -12,6 +12,7 @@ import { Organization } from '../../types'
 
 export const useMutateOrganizations = () => {
   const resetOrganization = useStore((state) => state.resetOrganization)
+
   const { replace } = useRouter()
 
   const createOrganizations = useMutation(
@@ -62,9 +63,10 @@ export const useMutateOrganizations = () => {
     },
     {
       onSuccess: () => {
+        localStorage.removeItem('currentOrganization')
         toast.success('グループを削除しました')
         resetOrganization()
-        location.reload()
+        replace('/dashBoard')
       },
       onError: (err: any) => {
         toast.error(err.message)

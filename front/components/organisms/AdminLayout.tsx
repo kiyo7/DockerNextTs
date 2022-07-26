@@ -4,11 +4,14 @@ import { useRouter } from 'next/router'
 // hooks
 import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
 
+//utils
+import useStore from '../../store'
+
 // components
-import { AdminContents } from '../molecule/AdminContents'
 import Head from 'next/head'
 import { Header } from './Header'
-import { SPNavbar } from '../molecule/SPNavbar'
+import { ManagementContents } from '../molecule/Contents'
+import { Navbar } from '../molecule/Navbar'
 
 interface Props {
   title: string
@@ -17,7 +20,16 @@ interface Props {
 }
 
 export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) => {
+  const currentOrganization = useStore((state) => state.currentOrganization)
+
+  const id = localStorage.getItem('currentOrganization')
+
+  if (!id) {
+    localStorage.setItem('currentOrganization', currentOrganization.id)
+  }
+
   const { data } = useQueryOrganizations()
+
   const { push } = useRouter()
 
   if (!data) push('/dashBoard')
@@ -37,17 +49,17 @@ export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) =
                 <p className="text-center text-lg">{data?.groupname}</p>
               </div>
               <span className="divider" />
-              <AdminContents ScreenIsSmall={false} />
+              <ManagementContents ScreenIsSmall={false} />
             </aside>
             <section className="w-full lg:pl-60">
-              <p className="pt-10 text-center text-4xl">{header}</p>
+              <p className="pt-10 text-center text-2xl md:text-4xl">{header}</p>
               <div className="mb-28 text-center">{children}</div>
             </section>
           </article>
         </main>
       </div>
       <footer className="fixed bottom-0 w-screen lg:hidden">
-        <SPNavbar />
+        <Navbar />
       </footer>
     </>
   )

@@ -2,30 +2,21 @@
 import Link from 'next/link'
 
 interface Props {
-  clickEvent?: () => void
-  path?: string
+  path: string
   contentsName: string
   icon: React.ReactNode
 }
 
-export const Menu: React.FC<Props> = ({ clickEvent, path, contentsName, icon }) => {
+export const Menu: React.FC<Props> = ({ path, contentsName, icon }) => {
   return (
     <>
-      {path ? (
-        <li className={'my-1 md:mx-2'}>
-          <Link href={path}>
-            <a>
-              {icon} {contentsName}
-            </a>
-          </Link>
-        </li>
-      ) : (
-        <li className={'my-1'} onClick={clickEvent}>
-          <p>
-            {icon} {contentsName}
-          </p>
-        </li>
-      )}
+      <li className={'my-1 md:mx-2'}>
+        <Link href={path}>
+          <a>
+            <span className="w-10">{icon}</span> {contentsName}
+          </a>
+        </Link>
+      </li>
     </>
   )
 }
