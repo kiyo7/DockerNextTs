@@ -1,42 +1,51 @@
 //lib
-import Link from 'next/link'
-import React, { Suspense } from 'react'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 //hooks
 import { useDownloadUrl } from '../../hooks/useDownloadUrl'
-import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
+
+//utils
+import useStore from '../../store'
 
 //components
-import { PrimaryButton } from '../atoms/PrimaryButton'
-import { SImage } from '../atoms/SImage'
 import { Spinner } from '../atoms/Spinner'
+import { Suspense } from 'react'
 
-export const OrganizationCard: React.FC = () => {
-  const { data } = useQueryOrganizations()
+// images
+import initLogo from '../../images/logo.png'
 
-  const { fullUrl: logoUrl } = useDownloadUrl(data?.logo, 'groupLogo')
+interface Props {
+  id: string
+  groupname: string
+  logo: string
+}
 
+export const OrganizationCard: React.FC<Props> = ({ id, groupname, logo }) => {
+  const { fullUrl: logoUrl } = useDownloadUrl(logo, 'groupLogo')
+  const setCurrentOrganization = useStore((state) => state.setCurrentOrganization)
+
+  const { push } = useRouter()
+
+  const pushManagementConsole = async () => {
+    setCurrentOrganization({ id })
+    push(`/management/${id}`)
+  }
   return (
-    <>
-      <div className="card z-0 my-8 w-72 bg-base-100 shadow-xl md:w-96">
-        <figure>
-          <Suspense fallback={<Spinner />}>
-            <SImage img={logoUrl ? logoUrl : undefined} width={200} height={200} alt="groupLogo" />
-          </Suspense>
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title ">
-            <span className="mt-3 font-sans text-3xl font-medium">{data?.groupname}</span>
-          </h2>
-          <div className="card-actions justify-end hover:cursor-pointer hover:opacity-75">
-            <Link href={`/management/${data?.id}`}>
-              <a>
-                <PrimaryButton buttonText={'管理画面へ'} buttonColor="accent" />
-              </a>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </>
+    <li
+      onClick={pushManagementConsole}
+      className="m-auto mb-5 flex w-11/12 flex-row break-all rounded-xl bg-gray-100 shadow-xl hover:cursor-pointer hover:opacity-75 md:w-10/12"
+    >
+      <Suspense fallback={<Spinner />}>
+        <span>
+          {logoUrl ? (
+            <Image src={logoUrl} width={20} height={20} alt="groupLogo" />
+          ) : (
+            <Image src={initLogo} width={48} height={48} alt="groupLogo" />
+          )}
+        </span>
+      </Suspense>
+      <p className="font-sans text-sm">{groupname}</p>
+    </li>
   )
 }

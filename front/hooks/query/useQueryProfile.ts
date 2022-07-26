@@ -42,7 +42,6 @@ export const useQueryProfile = () => {
       if (data) {
         updateEditedProfile({
           username: data.username,
-          is_admin: data.is_admin,
           avatar: data.avatar,
         })
       }

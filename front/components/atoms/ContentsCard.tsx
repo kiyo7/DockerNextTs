@@ -1,3 +1,4 @@
+//lib
 import Link from 'next/link'
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
   path?: string
 }
 
-export const SettingContents: React.FC<Props> = ({ contentsName, Icon, path = '' }) => {
+export const ContentsCard: React.FC<Props> = ({ contentsName, Icon, path = '' }) => {
   return (
     <>
       <div className="card m-3 mt-8 bg-base-100 shadow-xl hover:cursor-pointer hover:opacity-75 ">

@@ -23,9 +23,10 @@ export const useMutateMembers = () => {
   )
 
   const selectMembers = useMutation(async (id: string) => {
+    console.log(id)
     const { data, error } = await supabase
       .from('members')
-      .select('invitation_status, member_id, profiles (username, avatar, is_admin)')
+      .select('invitation_status, member_id, profiles (username, avatar)')
       .eq('organization_id', id)
 
     if (error) throw new Error(error.message)

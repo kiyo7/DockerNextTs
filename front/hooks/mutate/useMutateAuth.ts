@@ -19,7 +19,7 @@ export const useMutateAuth = () => {
   const resetProfile = useStore((state) => state.resetProfile)
   const resetOrganization = useStore((state) => state.resetOrganization)
 
-  const dashBoardPath = 'http://localhost:3000/dashBoard/'
+  const dashBoardPath = 'dashBoard/'
 
   const reset = () => {
     setEmail('')
@@ -34,7 +34,7 @@ export const useMutateAuth = () => {
     {
       onSuccess: () => {
         toast.success('アカウントを登録しました')
-        replace('/welcome')
+        replace(dashBoardPath)
       },
       onError: (err: any) => {
         toast.error(err.message)
@@ -62,20 +62,16 @@ export const useMutateAuth = () => {
 
   const googleAuth = useMutation(
     async () => {
-      const { error } = await supabase.auth.signIn(
-        {
-          provider: 'google',
-        },
-        {
-          redirectTo: 'http://localhost:3000/welcome/',
-        },
-      )
+      const { error } = await supabase.auth.signIn({
+        provider: 'google',
+      })
 
       if (error) throw new Error(error.message)
     },
     {
       onSuccess: () => {
         toast.success('ログイン成功')
+        replace(dashBoardPath)
       },
       onError: (err: any) => {
         toast.error(err.message)
@@ -106,7 +102,7 @@ export const useMutateAuth = () => {
   const passwordResetSendEmail = useMutation(
     async (email: string) => {
       const { error } = await supabase.auth.api.resetPasswordForEmail(email, {
-        redirectTo: 'http://localhost:3000/resetPassword/',
+        redirectTo: 'resetPassword/',
       })
       if (error) throw new Error(error.message)
     },

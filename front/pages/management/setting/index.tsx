@@ -1,12 +1,17 @@
 //lib
-import { ChatAltIcon, ExclamationCircleIcon, PencilAltIcon } from '@heroicons/react/solid'
+import { ChatAltIcon, ExclamationCircleIcon, HomeIcon, PencilAltIcon } from '@heroicons/react/solid'
 import { NextPage } from 'next'
 
 //components
 import { AdminLayout } from '../../../components/organisms/AdminLayout'
-import { SettingContents } from '../../../components/atoms/SettingContents'
+import { ContentsCard } from '../../../components/atoms/ContentsCard'
 
 const contents = [
+  {
+    name: 'ホームに戻る',
+    Icon: <HomeIcon className="w-8/12" />,
+    path: '/dashBoard',
+  },
   {
     name: 'グループ名変更',
     Icon: <PencilAltIcon className="w-8/12 text-gray-400" />,
@@ -30,7 +35,7 @@ const SettingPage: NextPage = () => {
       <div className="m-auto mt-5 grid w-full grid-cols-2 md:w-4/6 lg:w-2/4">
         {contents.map((item, key) => {
           return (
-            <SettingContents key={key} contentsName={item.name} Icon={item.Icon} path={item.path} />
+            <ContentsCard key={key} contentsName={item.name} Icon={item.Icon} path={item.path} />
           )
         })}
       </div>

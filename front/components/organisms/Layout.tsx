@@ -12,6 +12,7 @@ import { useQueryProfile } from '../../hooks/query/useQueryProfile'
 //components
 import { Footer } from '../atoms/Footer'
 import { Header } from './Header'
+import { Navbar } from '../molecule/Navbar'
 
 interface Props {
   title?: string
@@ -25,7 +26,6 @@ export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) 
   useEffect(() => {
     setSession(supabase.auth.session())
     supabase.auth.onAuthStateChange((_event, session) => {
-      console.log(_event)
       setSession(session)
     })
   }, [setSession])
@@ -38,19 +38,17 @@ export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) 
         <title>{title}</title>
       </Head>
       <Header />
-      <div className="bg flex min-h-screen flex-col items-center justify-center font-mono text-gray-500">
+      <main className="flex min-h-full w-screen flex-1 flex-col items-center justify-center font-mono text-gray-500">
         {header && (
           <>
-            <p className="mt-10 font-sans text-4xl tracking-widest text-gray-500 md:text-4xl">
-              {header}
-            </p>
+            <p className="mt-10 font-sans text-2xl tracking-widest md:text-4xl">{header}</p>
           </>
         )}
-        <main className="flex w-screen flex-1 flex-col items-center justify-center">
-          {children}
-        </main>
-      </div>
-      {!data && <Footer />}
+        {children}
+      </main>
+      <footer className="fixed bottom-0 w-screen">
+        {data ? <Navbar isManagement={false} /> : <Footer />}
+      </footer>
     </>
   )
 }

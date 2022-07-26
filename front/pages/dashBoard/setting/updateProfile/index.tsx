@@ -1,26 +1,25 @@
 //lib
 import { Button, IconSmile } from '@supabase/ui'
+import { CameraIcon } from '@heroicons/react/outline'
+import { NextPage } from 'next'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 
 //hooks
-import { useDownloadUrl } from '../../hooks/useDownloadUrl'
-import { useMutateProfile } from '../../hooks/mutate/useMutateProfile'
-import { useQueryProfile } from '../../hooks/query/useQueryProfile'
-import { useUploadAvatarImg } from '../../hooks/useUploadAvatarImg'
+import { useDownloadUrl } from '../../../../hooks/useDownloadUrl'
+import { useMutateProfile } from '../../../../hooks/mutate/useMutateProfile'
+import { useQueryProfile } from '../../../../hooks/query/useQueryProfile'
+import { useUploadAvatarImg } from '../../../../hooks/useUploadAvatarImg'
 
 //utils
-import useStore from '../../store'
+import useStore from '../../../../store'
 
 //components
-import { SInput } from '../../components/atoms/SInput'
-
-//components
-import { SImage } from '../../components/atoms/SImage'
-import { ImgUploadButton } from '../../components/atoms/ImgUploadButton'
-import { Spinner } from '../../components/atoms/Spinner'
-import { NextPage } from 'next'
-import { Layout } from '../../components/organisms/Layout'
+import { ImgUploadButton } from '../../../../components/atoms/ImgUploadButton'
+import { Layout } from '../../../../components/organisms/Layout'
+import { SImage } from '../../../../components/atoms/SImage'
+import { SInput } from '../../../../components/atoms/SInput'
+import { Spinner } from '../../../../components/atoms/Spinner'
 
 const ProfileUpdatePage: NextPage = () => {
   const session = useStore((state) => state.session)
@@ -63,23 +62,28 @@ const ProfileUpdatePage: NextPage = () => {
 
   return (
     <Layout title="プロフィール編集" header="プロフィール編集">
-      <div className="w-7/12 xl:w-5/12">
+      <div className="mt-10 w-10/12 xl:w-5/12">
         <SInput
           type="text"
           value={editedProfile?.username || ''}
           onChange={(e) => updateEditedProfile({ ...editedProfile, username: e.target.value })}
-          label="あなたの名前"
+          label="ユーザーネーム"
           icon={<IconSmile />}
         />
-        {!isLoading ? (
-          <ImgUploadButton changeEvent={(e) => useMutateUploadAvatarImg.mutate(e)}>
-            <SImage img={avatarUrl ? avatarUrl : undefined} alt="avatar" isSetting />
-          </ImgUploadButton>
-        ) : (
-          <Spinner />
-        )}
+        <div className="m-auto w-6/12">
+          {!isLoading ? (
+            <ImgUploadButton changeEvent={(e) => useMutateUploadAvatarImg.mutate(e)}>
+              <div className="flex flex-col justify-center">
+                <SImage img={avatarUrl ? avatarUrl : undefined} alt="avatar" isSetting />
+                <CameraIcon className="h-5 text-gray-500" />
+              </div>
+            </ImgUploadButton>
+          ) : (
+            <Spinner />
+          )}
+        </div>
 
-        <div className="m-auto my-10 w-7/12">
+        <div className="m-auto my-10 w-10/12">
           <Button onClick={handleUpdateProfile} block className="rounded-full">
             {updateProfile.isLoading ? '更新中...' : '更新'}
           </Button>

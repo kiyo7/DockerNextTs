@@ -3,7 +3,7 @@ import Image, { StaticImageData } from 'next/image'
 import { PencilAltIcon } from '@heroicons/react/outline'
 
 //images
-import initImg from '../../images/headerLogo.png'
+import initImg from '../../images/logo.png'
 
 interface Props {
   img?: string | StaticImageData
@@ -21,7 +21,7 @@ export const SImage: React.FC<Props> = ({
   isSetting = false,
 }) => {
   return (
-    <div className="relative my-10 text-center hover:cursor-pointer hover:opacity-75 ">
+    <div className="relative my-10 text-center hover:cursor-pointer hover:opacity-75">
       <Image
         src={img ? img : initImg}
         alt={alt}
