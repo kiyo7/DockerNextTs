@@ -1,7 +1,7 @@
 --create table members
 
 create table members (
-  id uuid default uuid_generate_v4()  not null,
+  id uuid default uuid_generate_v4() not null,
   organization_id uuid not null,
   member_id uuid  not null,
   invitation_status text not null,
