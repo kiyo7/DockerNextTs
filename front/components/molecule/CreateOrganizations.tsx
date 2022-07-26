@@ -95,7 +95,7 @@ export const CreateOrganizations: React.FC = () => {
             <CameraIcon className="h-5 text-gray-500" />
           </figure>
         </div>
-        <div className="card-body m-auto  lg:w-2/12">
+        <div className="card-body m-auto w-8/12 md:w-4/12 lg:w-3/12">
           <PrimaryButton
             buttonText={'作成する'}
             buttonColor="accent"

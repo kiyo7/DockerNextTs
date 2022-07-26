@@ -38,13 +38,15 @@ export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) 
         <title>{title}</title>
       </Head>
       <Header />
-      <main className="flex min-h-full w-screen flex-1 flex-col items-center justify-center font-mono text-gray-500">
-        {header && (
-          <>
-            <p className="mt-10 font-sans text-2xl tracking-widest md:text-4xl">{header}</p>
-          </>
-        )}
-        {children}
+      <main className="bg relative min-h-screen text-gray-500">
+        <div className="font-sans tracking-widest">
+          <div className="w-full">
+            <div className="w-full">
+              {header && <p className="pt-10 text-center text-2xl md:text-4xl">{header}</p>}
+              <div className="mb-20 text-center">{children}</div>
+            </div>
+          </div>
+        </div>
       </main>
       <footer className="fixed bottom-0 w-screen">
         {data ? <Navbar isManagement={false} /> : <Footer />}

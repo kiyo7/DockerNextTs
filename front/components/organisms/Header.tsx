@@ -31,7 +31,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <div className="navbar flex flex-wrap items-center justify-between bg-teal-500 p-4 text-white">
+      <div className="navbar  flex flex-wrap items-center justify-between bg-teal-500 p-4 text-white">
         <div className="navbar-start">
           <div className="mr-6 flex flex-shrink-0 items-center hover:cursor-pointer">
             <Image

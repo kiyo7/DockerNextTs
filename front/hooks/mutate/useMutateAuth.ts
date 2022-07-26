@@ -78,6 +78,7 @@ export const useMutateAuth = () => {
     {
       onSuccess: () => {
         toast.success('ログイン成功')
+        replace(dashBoardPath)
       },
       onError: (err: any) => {
         toast.error(err.message)

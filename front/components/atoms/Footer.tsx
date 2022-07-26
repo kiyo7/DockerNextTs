@@ -14,13 +14,13 @@ export const Footer: React.FC = () => {
   }, [])
 
   return (
-    <footer className="w-full bg-gray-100 p-3 text-center">
-      <Image src={logo} width={40} height={40} alt="logo" />
+    <div className="h-20 bg-gray-100 p-3 text-center">
+      <Image src={logo} width={35} height={35} alt="logo" />
       <div>
         <small className="text-xs text-gray-500">
           &copy;2022-{year === YearOfCreation ? '' : year} kiyo
         </small>
       </div>
-    </footer>
+    </div>
   )
 }
