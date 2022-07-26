@@ -62,7 +62,7 @@ const ProfileUpdatePage: NextPage = () => {
 
   return (
     <Layout title="プロフィール編集" header="プロフィール編集">
-      <div className="mt-10 w-10/12 xl:w-5/12">
+      <div className="m-auto mt-10 w-10/12 xl:w-5/12">
         <SInput
           type="text"
           value={editedProfile?.username || ''}

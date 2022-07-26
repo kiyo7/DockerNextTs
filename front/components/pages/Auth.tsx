@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { IconSmile, IconMail, IconKey } from '@supabase/ui'
+import { useRouter } from 'next/router'
 
 //hooks
 import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
@@ -20,6 +21,7 @@ import { Spinner } from '../atoms/Spinner'
 //images
 import authPageBG from '../../images/authPageBG.jpg'
 import google from '../../images/googleAuth.png'
+import { replace } from 'cypress/types/lodash'
 
 export const Auth: React.FC = () => {
   const editedProfile = useStore((state) => state.editedProfile)
@@ -29,6 +31,8 @@ export const Auth: React.FC = () => {
 
   const { email, setEmail, password, setPassword, login, register, googleAuth } = useMutateAuth()
   const { createProfile } = useMutateProfile()
+
+  const { replace } = useRouter()
 
   const handleClick = async () => {
     if (isLogin) {
@@ -67,14 +71,14 @@ export const Auth: React.FC = () => {
 
   return (
     <>
-      <div className="relative h-screen w-screen bg-gray-200 lg:grid lg:grid-cols-2 lg:gap-2">
+      <div className="grid min-h-screen w-full bg-gray-200 lg:grid-cols-2 lg:gap-2">
         <div className="hidden lg:block">
           <Image src={authPageBG} alt="img" layout="responsive" />
         </div>
         <div className="flex w-full flex-col">
           <div className="m-auto w-8/12">
-            <div className="mb-10 pt-10 text-center">
-              <p className="font-sans text-3xl text-gray-500 lg:text-4xl">
+            <div className="mb-8 mt-10 text-center">
+              <p className="pt-10 text-center text-2xl md:text-4xl">
                 {isLogin ? 'ログイン' : '新規登録'}
               </p>
             </div>
@@ -111,7 +115,7 @@ export const Auth: React.FC = () => {
                 <ForgotPasswordModal />
               </div>
             )}
-            <div className="text-center">
+            <div className="items-center">
               <PrimaryButton
                 buttonText={isLogin ? 'ログイン' : '新規登録'}
                 clickEvent={handleClick}
@@ -119,19 +123,19 @@ export const Auth: React.FC = () => {
               />
               <p
                 onClick={() => setIsLogin(!isLogin)}
-                className="mb-6 cursor-pointer font-sans text-lg font-medium text-indigo-400  hover:text-indigo-700"
+                className="text-md mb-6 cursor-pointer font-sans font-medium text-indigo-400  hover:text-indigo-700"
               >
                 {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
               </p>
-              <div className="m-auto w-8/12">
-                <button
-                  onClick={googleAuthMutation}
-                  data-testid="google"
-                  className=" flex w-full justify-center hover:cursor-pointer hover:opacity-75"
-                >
-                  <Image src={google} alt="google" />
-                </button>
-              </div>
+            </div>
+            <div className="m-auto w-8/12">
+              <button
+                onClick={googleAuthMutation}
+                data-testid="google"
+                className="hover:cursor-pointer hover:opacity-75"
+              >
+                <Image src={google} alt="google" />
+              </button>
             </div>
           </div>
         </div>
