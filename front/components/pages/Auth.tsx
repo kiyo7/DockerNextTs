@@ -67,7 +67,7 @@ export const Auth: React.FC = () => {
 
   return (
     <>
-      <div className="relative w-screen bg-gray-200 lg:grid lg:grid-cols-2 lg:gap-2">
+      <div className="relative h-screen w-screen bg-gray-200 lg:grid lg:grid-cols-2 lg:gap-2">
         <div className="hidden lg:block">
           <Image src={authPageBG} alt="img" layout="responsive" />
         </div>
@@ -123,19 +123,15 @@ export const Auth: React.FC = () => {
               >
                 {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
               </p>
-            </div>
-            <div className="m-auto w-8/12">
-              <div className="mt-6 mb-3 w-full border border-dashed border-gray-400" />
-              <div className="mx-4 font-sans text-sm font-medium  text-gray-500">
-                SNSアカウントで登録・ログイン Google認証調整中のためお使いいただけません。
+              <div className="m-auto w-8/12">
+                <button
+                  onClick={googleAuthMutation}
+                  data-testid="google"
+                  className=" flex w-full justify-center hover:cursor-pointer hover:opacity-75"
+                >
+                  <Image src={google} alt="google" />
+                </button>
               </div>
-              <button
-                onClick={googleAuthMutation}
-                data-testid="google"
-                className=" flex w-full justify-center hover:cursor-pointer hover:opacity-75"
-              >
-                <Image src={google} alt="google" />
-              </button>
             </div>
           </div>
         </div>

@@ -46,11 +46,13 @@ export const Header: React.FC = () => {
             <span className="text-xl font-semibold tracking-tight">Shifty</span>
           </div>
         </div>
-        <div className="navbar-end text-xs md:text-lg">
-          <p>
-            {greeting()} {data?.username}さん
-          </p>
-        </div>
+        {data && (
+          <div className="navbar-end text-xs md:text-lg">
+            <p>
+              {greeting()} {data?.username}さん
+            </p>
+          </div>
+        )}
       </div>
     </>
   )
