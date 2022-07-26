@@ -34,6 +34,7 @@ export const useMutateAuth = () => {
     {
       onSuccess: () => {
         toast.success('アカウントを登録しました')
+        reset()
         replace(dashBoardPath)
       },
       onError: (err: any) => {
@@ -51,6 +52,7 @@ export const useMutateAuth = () => {
     {
       onSuccess: () => {
         toast.success('ログイン成功')
+        reset()
         replace(dashBoardPath)
       },
       onError: (err: any) => {
@@ -62,16 +64,20 @@ export const useMutateAuth = () => {
 
   const googleAuth = useMutation(
     async () => {
-      const { error } = await supabase.auth.signIn({
-        provider: 'google',
-      })
+      const { error } = await supabase.auth.signIn(
+        {
+          provider: 'google',
+        },
+        {
+          redirectTo: dashBoardPath,
+        },
+      )
 
       if (error) throw new Error(error.message)
     },
     {
       onSuccess: () => {
         toast.success('ログイン成功')
-        replace(dashBoardPath)
       },
       onError: (err: any) => {
         toast.error(err.message)
