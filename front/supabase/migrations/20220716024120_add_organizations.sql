@@ -5,7 +5,7 @@ create table organizations (
   administrator uuid not null,
   groupname text,
   logo text,
-  created_at timestamp without time zone default now() not null,
+  created_at timestamp with time zone default now() not null,
 primary key (id));
 
 --RLS organizations
@@ -25,7 +25,7 @@ CREATE POLICY "Users can update own profile." ON organizations
 CREATE POLICY "Enable delete for users based on administrator" ON organizations
   FOR DELETE USING (auth.uid() = administrator);
 
--- Set up Realtime
+  -- Set up Realtime
 BEGIN;
   DROP publication IF EXISTS supabase_realtime;
   CREATE publication supabase_realtime;
