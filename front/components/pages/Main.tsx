@@ -23,6 +23,9 @@ export const Main: React.FC = () => {
   const session = useStore((state) => state.session)
   const resetOrganization = useStore((state) => state.resetOrganization)
 
+  console.log(organizations)
+  console.log(session)
+
   const queryClient = useQueryClient()
 
   useEffect(() => {
