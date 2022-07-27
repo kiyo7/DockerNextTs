@@ -2,8 +2,8 @@
 import { NextPage } from 'next'
 
 //components
-import { CreateOrganizations } from '../../components/molecule/CreateOrganizations'
-import { Layout } from '../../components/organisms/Layout'
+import { CreateOrganizations } from '../../../components/molecule/CreateOrganizations'
+import { Layout } from '../../../components/organisms/Layout'
 
 const createGroup: NextPage = () => {
   return (

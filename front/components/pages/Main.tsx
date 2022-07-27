@@ -1,6 +1,5 @@
 //lib
 import { Suspense, useEffect, useState } from 'react'
-import { useQueryClient } from 'react-query'
 
 //hooks
 import { useSubscribeOrganization } from '../../hooks/subscribe/useSubscribeOrganization'
@@ -21,30 +20,26 @@ export const Main: React.FC = () => {
 
   const [organizations, setOrganizations] = useState<Organization[]>([])
   const session = useStore((state) => state.session)
-  const resetOrganization = useStore((state) => state.resetOrganization)
-
-  const queryClient = useQueryClient()
 
   useEffect(() => {
     const getOrganizationsData = async () => {
-      resetOrganization()
-      localStorage.removeItem('currentOrganization')
-      queryClient.removeQueries('organization')
+      console.log('useEffect invoked!!!!!')
+
       const { data } = await supabase
         .from('organizations')
         .select('*')
         .eq('administrator', session?.user?.id)
         .order('created_at', { ascending: true })
       setOrganizations(data!)
-      console.log(data)
+      console.log('data', data)
     }
+
     return () => {
       getOrganizationsData()
     }
   }, [])
 
-  console.log(organizations)
-  console.log(session)
+  console.log('organizations', organizations)
 
   return (
     <div className="w-full">
