@@ -23,9 +23,6 @@ export const Main: React.FC = () => {
   const session = useStore((state) => state.session)
   const resetOrganization = useStore((state) => state.resetOrganization)
 
-  console.log(organizations)
-  console.log(session)
-
   const queryClient = useQueryClient()
 
   useEffect(() => {
@@ -36,6 +33,7 @@ export const Main: React.FC = () => {
         .eq('administrator', session?.user?.id)
         .order('created_at', { ascending: true })
       setOrganizations(data!)
+      console.log(data)
     }
     return () => {
       getOrganizationsData()
@@ -43,10 +41,14 @@ export const Main: React.FC = () => {
   }, [])
 
   useEffect(() => {
+    console.log('Storage useEffect invoked')
     resetOrganization()
     localStorage.removeItem('currentOrganization')
     queryClient.removeQueries('organization')
   })
+
+  console.log(organizations)
+  console.log(session)
 
   return (
     <div className="w-full">

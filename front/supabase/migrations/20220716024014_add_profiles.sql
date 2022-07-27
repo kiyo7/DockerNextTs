@@ -1,9 +1,10 @@
+--create profiles table
 create table profiles (
-  id uuid default uuid_generate_v4()  not null,
+  id uuid default uuid_generate_v4() not null,
   username text,
   avatar text,
-  created_at timestamp without time zone default now() not null,
-  updated_at timestamp without time zone,
+  created_at timestamp with time zone default now() not null,
+  updated_at timestamp with time zone,
 primary key (id));
 
 -- Enable automatic update_at update
@@ -31,4 +32,3 @@ BEGIN;
 COMMIT;
 ALTER publication supabase_realtime
   ADD TABLE profiles;
-
