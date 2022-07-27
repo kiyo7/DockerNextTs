@@ -27,6 +27,9 @@ export const Main: React.FC = () => {
 
   useEffect(() => {
     const getOrganizationsData = async () => {
+      resetOrganization()
+      localStorage.removeItem('currentOrganization')
+      queryClient.removeQueries('organization')
       const { data } = await supabase
         .from('organizations')
         .select('*')
@@ -39,13 +42,6 @@ export const Main: React.FC = () => {
       getOrganizationsData()
     }
   }, [])
-
-  useEffect(() => {
-    console.log('Storage useEffect invoked')
-    resetOrganization()
-    localStorage.removeItem('currentOrganization')
-    queryClient.removeQueries('organization')
-  })
 
   console.log(organizations)
   console.log(session)
