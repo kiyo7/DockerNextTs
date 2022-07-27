@@ -1,7 +1,7 @@
 //lib
 import Image from 'next/image'
-import { PlusCircleIcon, MailIcon, UserIcon, CogIcon, HomeIcon } from '@heroicons/react/solid'
 import { useRouter } from 'next/router'
+import { useState, useEffect, memo } from 'react'
 
 //hooks
 import { useQueryProfile } from '../../hooks/query/useQueryProfile'
@@ -9,25 +9,24 @@ import { useQueryProfile } from '../../hooks/query/useQueryProfile'
 //image
 import logo from '../../images/logo.png'
 
-export const Header: React.FC = () => {
+export const Header: React.FC = memo(() => {
+  const [greeting, setGreeting] = useState('')
   const { data } = useQueryProfile()
 
   const { push } = useRouter()
 
-  const greeting = () => {
-    let res
-    const hour = new Date().getHours()
+  useEffect(() => {
+    const now = new Date()
+    const hour = now.getHours()
 
     if (hour >= 5 && hour <= 11) {
-      res = 'おはようございます'
-    }
-    if (hour >= 12 && hour <= 17) {
-      res = 'こんにちは'
+      setGreeting('おはようございます')
+    } else if (hour >= 12 && hour <= 17) {
+      setGreeting('こんにちは')
     } else {
-      res = 'こんばんは'
+      setGreeting('こんばんは')
     }
-    return res
-  }
+  }, [greeting])
 
   return (
     <>
@@ -49,11 +48,11 @@ export const Header: React.FC = () => {
         {data && (
           <div className="navbar-end text-xs md:text-lg">
             <p>
-              {greeting()} {data?.username}さん
+              {greeting} {data?.username}さん
             </p>
           </div>
         )}
       </div>
     </>
   )
-}
+})

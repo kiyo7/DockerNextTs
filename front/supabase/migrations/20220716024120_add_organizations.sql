@@ -2,10 +2,10 @@
 
 create table organizations (
   id uuid default uuid_generate_v4() not null,
-  created_at timestamp without time zone default now() not null,
   administrator uuid not null,
   groupname text,
   logo text,
+  created_at timestamp without time zone default now() not null,
 primary key (id));
 
 --RLS organizations
