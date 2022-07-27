@@ -34,7 +34,7 @@ export const MainContents: React.FC<Props> = ({ ScreenIsSmall = true, spStyle })
     },
     {
       contentsName: 'グループ作成',
-      path: `${route}/createGroup`,
+      path: `${route}/createGroup/`,
       Icon: <PlusCircleIcon className="w-10" />,
     },
     {

@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { IconSmile, IconMail, IconKey } from '@supabase/ui'
-import { useRouter } from 'next/router'
 
 //hooks
 import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
@@ -21,22 +20,21 @@ import { Spinner } from '../atoms/Spinner'
 //images
 import authPageBG from '../../images/authPageBG.jpg'
 import google from '../../images/googleAuth.png'
-import { replace } from 'cypress/types/lodash'
 
 export const Auth: React.FC = () => {
   const editedProfile = useStore((state) => state.editedProfile)
   const updateEditedProfile = useStore((state) => state.updateEditedProfile)
+  const resetProfile = useStore((state) => state.resetProfile)
 
   const [isLogin, setIsLogin] = useState(true)
 
   const { email, setEmail, password, setPassword, login, register, googleAuth } = useMutateAuth()
   const { createProfile } = useMutateProfile()
 
-  const { replace } = useRouter()
-
   const handleClick = async () => {
     if (isLogin) {
       login.mutate()
+      resetProfile()
     } else {
       register
         .mutateAsync()
@@ -46,9 +44,11 @@ export const Auth: React.FC = () => {
             username: editedProfile.username,
             avatar: editedProfile.avatar,
           })
+          resetProfile()
         })
         .catch((err: any) => {
           console.log(err.message)
+          resetProfile()
         })
     }
   }
