@@ -26,6 +26,7 @@ const renameGroup: React.FC = () => {
       logo: data!.logo,
     })
   }
+
   return (
     <AdminLayout title={'グループ名変更'} header={'グループ名変更'}>
       <div className="flex flex-col items-center">
