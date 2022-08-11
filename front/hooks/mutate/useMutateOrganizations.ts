@@ -13,7 +13,7 @@ import { Organization } from '../../types'
 export const useMutateOrganizations = () => {
   const resetOrganization = useStore((state) => state.resetOrganization)
 
-  const { replace } = useRouter()
+  const { replace, push } = useRouter()
 
   const createOrganizations = useMutation(
     async (organization: Omit<Organization, 'id' | 'created_at'>) => {
@@ -44,8 +44,9 @@ export const useMutateOrganizations = () => {
       return data
     },
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
         toast.success('グループを編集しました')
+        push(`/management/${data[0].id}`)
       },
       onError: (err: any) => {
         toast.error(err.message)

@@ -15,7 +15,7 @@ const contents = [
   {
     name: 'グループ名変更',
     Icon: <PencilAltIcon className="w-8/12 text-gray-400" />,
-    path: 'setting/',
+    path: 'setting/renameGroup',
   },
   {
     name: 'ユーザー通報',
