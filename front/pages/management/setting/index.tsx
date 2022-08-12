@@ -2,6 +2,9 @@
 import { ChatAltIcon, ExclamationCircleIcon, HomeIcon, PencilAltIcon } from '@heroicons/react/solid'
 import { NextPage } from 'next'
 
+//hooks
+import { useSubscribeOrganization } from '../../../hooks/subscribe/useSubscribeOrganization'
+
 //components
 import { AdminLayout } from '../../../components/organisms/AdminLayout'
 import { ContentsCard } from '../../../components/atoms/ContentsCard'
@@ -30,6 +33,8 @@ const contents = [
 ]
 
 const SettingPage: NextPage = () => {
+  useSubscribeOrganization()
+
   return (
     <AdminLayout title="設定" header="設定">
       <div className="m-auto mt-5 grid w-full grid-cols-2 md:w-4/6 lg:w-2/4">
