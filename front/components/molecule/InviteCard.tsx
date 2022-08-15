@@ -1,41 +1,46 @@
 //lib
 import { IconMail, IconPlusCircle } from '@supabase/ui'
-
-//hooks
-import { UseMutationResult } from 'react-query'
+import { Button } from '@mantine/core'
+import { Input } from '@mantine/core'
+import { useInputState } from '@mantine/hooks'
 
 //components
-import { PrimaryButton } from '../atoms/PrimaryButton'
-import { SInput } from '../atoms/SInput'
 import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
 
 export const InviteCard: React.FC = () => {
-  const { email, setEmail, inviteUser } = useMutateAuth()
+  const { inviteUser } = useMutateAuth()
+  const [stringValue, setStringValue] = useInputState('')
 
-  const clickEvent = () => {
-    inviteUser.mutate(email)
+  const handleInvite = () => {
+    inviteUser.mutate(stringValue)
+    setStringValue('')
   }
 
   return (
     <>
-      <div className="card w-11/12 bg-base-100 shadow-xl lg:w-6/12">
-        <div className="card-body">
-          <div className="mt-20">
-            <SInput
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="メールアドレス"
-              icon={<IconMail />}
-            />
-          </div>
-          <PrimaryButton
-            icon={<IconPlusCircle />}
-            buttonText="招待する"
-            buttonColor="accent"
-            clickEvent={clickEvent}
-          />
-        </div>
+      <div className="my-12 flex w-full flex-col items-center">
+        <Input
+          className="w-9/12 lg:w-7/12"
+          icon={<IconMail />}
+          onChange={setStringValue}
+          placeholder="メールアドレス"
+          radius="lg"
+          size="lg"
+          value={stringValue}
+          variant="filled"
+        />
+      </div>
+      <div className="my-12">
+        <Button
+          className="bg-teal-400"
+          disabled={!stringValue}
+          leftIcon={<IconPlusCircle />}
+          onClick={handleInvite}
+          radius="lg"
+          size="lg"
+        >
+          招待する
+        </Button>
       </div>
     </>
   )

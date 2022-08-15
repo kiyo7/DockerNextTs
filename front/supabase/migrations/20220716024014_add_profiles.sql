@@ -2,6 +2,7 @@
 create table profiles (
   id uuid default uuid_generate_v4() not null,
   username text,
+  email text not null,
   avatar text,
   created_at timestamp with time zone default now() not null,
   updated_at timestamp with time zone,

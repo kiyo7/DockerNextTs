@@ -1,6 +1,7 @@
 export interface Profile {
   id: string | undefined
   username: string | undefined
+  email: string | undefined
   avatar: string | undefined
   created_at: string
   updated_at: string
@@ -8,6 +9,7 @@ export interface Profile {
 
 export interface EditedProfile {
   username: string | undefined
+  email?: string | undefined
   avatar: string | undefined
 }
 
@@ -46,4 +48,11 @@ export interface MemberLists {
     username: string
     avatar: string
   }
+}
+
+export interface Mail {
+  sender_id: string
+  address_id: string
+  organization_id: string
+  created_at: string
 }

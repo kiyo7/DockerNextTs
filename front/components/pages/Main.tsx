@@ -1,7 +1,10 @@
 //lib
+import { Divider } from '@mantine/core'
 import { Suspense, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 //hooks
+import { useMutateMembers } from '../../hooks/mutate/useMutateMembers'
 import { useSubscribeOrganization } from '../../hooks/subscribe/useSubscribeOrganization'
 
 //utils
@@ -19,59 +22,110 @@ export const Main: React.FC = () => {
   useSubscribeOrganization()
 
   const [organizations, setOrganizations] = useState<Organization[]>([])
+  const [invitingMembers, setInvitingMembers] = useState<any[]>([])
+  const [invitedMembers, setInvitedMembers] = useState<any[]>([])
+
+  console.log(invitingMembers)
+
   const session = useStore((state) => state.session)
+
+  const { getMembers } = useMutateMembers()
 
   useEffect(() => {
     const getOrganizationsData = async () => {
-      console.log('useEffect invoked!!!!!')
-
       const { data } = await supabase
         .from('organizations')
         .select('*')
         .eq('administrator', session?.user?.id)
         .order('created_at', { ascending: true })
       setOrganizations(data!)
-      console.log('data', data)
     }
 
-    return () => {
-      getOrganizationsData()
-    }
+    getOrganizationsData()
+
+    getMembers
+      .mutateAsync({ id: session?.user?.id!, status: 'Inviting' })
+      .then((data) => setInvitingMembers(data))
+      .catch(() => toast.error('予期せぬエラーが発生しました'))
+
+    getMembers
+      .mutateAsync({ id: session?.user?.id!, status: 'Invited' })
+      .then((data) => setInvitedMembers(data))
+      .catch(() => toast.error('予期せぬエラーが発生しました'))
   }, [])
-
-  console.log('organizations', organizations)
 
   return (
     <div className="w-full">
-      <ul className="menu rounded-box w-full bg-base-100 px-10">
-        <li className="text-xs text-gray-400">
-          <span>招待されているグループ(0)</span>
-        </li>
-        <li className="text-xs text-gray-400">
-          <span>管理グループ({organizations.length})</span>
-        </li>
+      <div className="menu rounded-box my-20 w-full bg-base-100 px-10">
+        {invitingMembers.length >= 1 && (
+          <div>
+            <div className="text-md ">
+              <span>{invitingMembers.length}つのグループに招待されています</span>
+            </div>
+            {invitingMembers
+              ? invitingMembers?.map((member) => {
+                  return (
+                    <OrganizationCard
+                      key={member.id}
+                      id={member.id}
+                      groupname={member.organizations.groupname}
+                      logo={member.organizations.logo}
+                    />
+                  )
+                })
+              : null}
+            <div className="m-auto w-11/12 md:w-8/12">
+              <Divider my="md" variant="dashed" />
+            </div>
+          </div>
+        )}
         {organizations.length >= 1 && (
-          <>
-            <Suspense fallback={<Spinner />}>
-              {organizations
-                ? organizations?.map((organization) => {
+          <div className="mt-12">
+            <div className="text-md">
+              <span>管理しているグループ({organizations.length})</span>
+            </div>
+            {organizations
+              ? organizations?.map((organization) => {
+                  return (
+                    <OrganizationCard
+                      key={organization.id}
+                      id={organization.id}
+                      groupname={organization.groupname}
+                      logo={organization.logo}
+                    />
+                  )
+                })
+              : null}
+            <div className="m-auto w-11/12 md:w-8/12">
+              <Divider my="md" variant="dashed" />
+            </div>
+          </div>
+        )}
+
+        {invitedMembers.length >= 1 && (
+          <div className="mt-12">
+            <div className="text-md">
+              <span>所属しているグループ({invitedMembers.length})</span>
+            </div>
+            {invitedMembers
+              ? invitedMembers?.map((member) => {
+                  if (member.organizations.administrator !== supabase?.auth?.user()?.id)
                     return (
                       <OrganizationCard
-                        key={organization.id}
-                        id={organization.id}
-                        groupname={organization.groupname}
-                        logo={organization.logo}
+                        key={member.id}
+                        id={member.id}
+                        groupname={member.organizations.groupname}
+                        logo={member.organizations.logo}
                       />
                     )
-                  })
-                : null}
-            </Suspense>
-          </>
+                })
+              : null}
+            <div className="m-auto w-11/12 md:w-8/12">
+              <Divider my="md" variant="dashed" />
+            </div>
+          </div>
         )}
-        <li className="text-xs text-gray-400">
-          <span>所属グループ(0)</span>
-        </li>
-      </ul>
+      </div>
     </div>
   )
 }

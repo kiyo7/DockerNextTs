@@ -7,6 +7,9 @@ import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
 //utils
 import useStore from '../../store'
 
+//hooks
+import { useSubscribeOrganization } from '../../hooks/subscribe/useSubscribeOrganization'
+
 // components
 import Head from 'next/head'
 import { Header } from './Header'
@@ -21,6 +24,8 @@ interface Props {
 
 export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) => {
   const currentOrganization = useStore((state) => state.currentOrganization)
+
+  useSubscribeOrganization()
 
   const id = localStorage.getItem('currentOrganization')
 

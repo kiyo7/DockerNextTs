@@ -41,13 +41,13 @@ export const Auth: React.FC = () => {
         .then(() => {
           createProfile.mutate({
             id: supabase.auth.session()?.user?.id,
+            email: email,
             username: editedProfile.username,
             avatar: editedProfile.avatar,
           })
           resetProfile()
         })
         .catch((err: any) => {
-          console.log(err.message)
           resetProfile()
         })
     }
