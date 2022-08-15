@@ -163,13 +163,25 @@ export const useMutateAuth = () => {
   })
 
   const inviteUser = useMutation(async (email: string) => {
-    if (email === '') {
-      toast.error('アドレスを入力してください')
-      return
+    const pattern = /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/
+    if (!email.match(pattern)) toast.error('有効なアドレスを入力してください')
+    const user = supabase.auth.user()
+    if (user?.email === email) toast.error('自分を招待することはできません')
+
+    const organization_id = localStorage.getItem('currentOrganization')
+
+    const params = {
+      method: 'POST',
+      body: JSON.stringify({ sender_id: supabase?.auth?.user()?.id, organization_id }),
     }
-    await fetch(`/api/inviteUser/${email}`)
-      .then(() => {
-        toast.success('ユーザーを招待しました')
+    await fetch(`/api/inviteUser/${email}`, params)
+      .then(async (res) => {
+        const message = await res.json()
+        if (res.status === 200) {
+          toast.success(message)
+        } else {
+          toast.error(message)
+        }
       })
       .catch((err: any) => toast.error(err.message))
   })

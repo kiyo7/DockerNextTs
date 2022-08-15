@@ -1,5 +1,5 @@
 //lib
-import { Button, IconSmile } from '@supabase/ui'
+import { IconSmile } from '@supabase/ui'
 import { CameraIcon } from '@heroicons/react/outline'
 import { NextPage } from 'next'
 import { toast } from 'react-toastify'
@@ -20,6 +20,7 @@ import { Layout } from '../../../../components/organisms/Layout'
 import { SImage } from '../../../../components/atoms/SImage'
 import { SInput } from '../../../../components/atoms/SInput'
 import { Spinner } from '../../../../components/atoms/Spinner'
+import { Button } from '@mantine/core'
 
 const ProfileUpdatePage: NextPage = () => {
   const session = useStore((state) => state.session)
@@ -84,7 +85,13 @@ const ProfileUpdatePage: NextPage = () => {
         </div>
 
         <div className="m-auto my-10 w-10/12">
-          <Button onClick={handleUpdateProfile} block className="rounded-full">
+          <Button
+            radius="lg"
+            size="xl"
+            className="w-4/12 rounded-full bg-teal-400"
+            onClick={handleUpdateProfile}
+            disabled={!updateProfile}
+          >
             {updateProfile.isLoading ? '更新中...' : '更新'}
           </Button>
         </div>

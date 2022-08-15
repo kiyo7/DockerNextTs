@@ -34,7 +34,7 @@ export const OrganizationCard: React.FC<Props> = ({ id, groupname, logo }) => {
   return (
     <li
       onClick={pushManagementConsole}
-      className="m-auto mb-8 flex w-11/12 flex-row break-all rounded-xl bg-gray-100 shadow-xl hover:cursor-pointer hover:opacity-75 md:w-10/12"
+      className="m-auto my-8 flex w-11/12 flex-row break-all rounded-xl bg-gray-100 shadow-xl hover:cursor-pointer hover:opacity-75 md:w-8/12"
     >
       <Suspense fallback={<Spinner />}>
         <span>

@@ -1,8 +1,8 @@
 ＃只今製作中...
 
-# Shiftyとは
+# Shifty
 
-シフトを作成するWebアプリケーションです。シフトを紙で作成しているバイト先にデジタルで貢献したい思いから開発を始めました。
+シフトを作成する Web アプリケーションです。シフトを紙で作成しているバイト先にデジタルで貢献したい思いから開発を始めました。
 
 # デプロイ先 💻
 
@@ -40,9 +40,7 @@
 
 https://docs.docker.com/get-docker/
 
-
 # yarn のインストール方法 🍀
-
 
 ```
  npm install -g yarn
@@ -52,7 +50,7 @@ https://docs.docker.com/get-docker/
 
 ```
 git clone https://github.com/kiyo7/shifty.git
- 
+
 docker-compose build
 
 docker-compose up -d

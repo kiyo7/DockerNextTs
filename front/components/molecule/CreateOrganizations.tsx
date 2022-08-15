@@ -30,7 +30,7 @@ export const CreateOrganizations: React.FC = () => {
 
   const { fullUrl: groupLogoUrl, isLoading } = useDownloadUrl(editedOrganization.logo, 'groupLogo')
   const { createOrganizations } = useMutateOrganizations()
-  const { createMembers } = useMutateMembers()
+  const { addMembers } = useMutateMembers()
   const { useMutateUploadPostImg } = useUploadGroupImg()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -49,7 +49,7 @@ export const CreateOrganizations: React.FC = () => {
           .eq('administrator', session?.user?.id)
           .then((data) => {
             const res = data?.data![data?.data?.length! - 1]
-            createMembers.mutate({
+            addMembers.mutate({
               organization_id: res.id,
               member_id: session?.user?.id,
               invitation_status: 'Invited',

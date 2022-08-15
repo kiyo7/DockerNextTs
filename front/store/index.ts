@@ -35,7 +35,7 @@ const useStore = create<State>((set) => ({
       },
     }),
 
-  editedProfile: { username: '', avatar: '', updated_at: '' },
+  editedProfile: { username: '', email: '', avatar: '', updated_at: '' },
   updateEditedProfile: (payload) =>
     set({
       editedProfile: {
@@ -43,7 +43,7 @@ const useStore = create<State>((set) => ({
         avatar: payload.avatar,
       },
     }),
-  resetProfile: () => set({ editedProfile: { username: '', avatar: '' } }),
+  resetProfile: () => set({ editedProfile: { username: '', email: '', avatar: '' } }),
 
   editedOrganization: { id: '', groupname: '', logo: '' },
   updateEditedOrganization: (payload) =>
