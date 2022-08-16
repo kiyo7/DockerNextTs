@@ -19,7 +19,7 @@ const DashBoard: NextPage = () => {
     queryClient.removeQueries('organization')
   })
   return (
-    <Layout title="ホーム" header="ホーム">
+    <Layout title="ホーム">
       <Suspense fallback={<Spinner />}>
         <Main />
       </Suspense>
