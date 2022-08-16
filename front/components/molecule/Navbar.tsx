@@ -8,7 +8,7 @@ interface Props {
 export const Navbar: React.FC<Props> = ({ isManagement = true }) => {
   return (
     <>
-      <div className="h-20 bg-teal-500">
+      <div className="bg-teal-500 ">
         {isManagement ? (
           <ManagementContents spStyle="flex-row justify-center text-white" />
         ) : (

@@ -12,11 +12,14 @@ import { supabase } from '../../utils/supabase'
 import useStore from '../../store'
 
 //components
+import { Independent } from '../atoms/Independent'
 import { OrganizationCard } from '../molecule/OrganizationCard'
-import { Spinner } from '../atoms/Spinner'
 
 //types
 import { Organization } from '../../types'
+
+//image
+import independent from '../../images/independent.png'
 
 export const Main: React.FC = () => {
   useSubscribeOrganization()
@@ -24,8 +27,6 @@ export const Main: React.FC = () => {
   const [organizations, setOrganizations] = useState<Organization[]>([])
   const [invitingMembers, setInvitingMembers] = useState<any[]>([])
   const [invitedMembers, setInvitedMembers] = useState<any[]>([])
-
-  console.log(invitingMembers)
 
   const session = useStore((state) => state.session)
 
@@ -53,6 +54,15 @@ export const Main: React.FC = () => {
       .then((data) => setInvitedMembers(data))
       .catch(() => toast.error('予期せぬエラーが発生しました'))
   }, [])
+
+  if (organizations.length === 0 && invitingMembers.length === 0 && invitedMembers.length === 0)
+    return (
+      <Independent
+        heading="ようこそ"
+        tips="グループを作成するか、招待してもらいましょう！"
+        img={independent}
+      />
+    )
 
   return (
     <div className="w-full">
