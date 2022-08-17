@@ -6,9 +6,6 @@ import { ReactNode, useEffect } from 'react'
 import { supabase } from '../../utils/supabase'
 import useStore from '../../store'
 
-//hooks
-import { useQueryProfile } from '../../hooks/query/useQueryProfile'
-
 //components
 import { Footer } from '../atoms/Footer'
 import { Header } from './Header'
@@ -21,6 +18,7 @@ interface Props {
 }
 
 export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) => {
+  const session = useStore((state) => state.session)
   const setSession = useStore((state) => state.setSession)
 
   useEffect(() => {
@@ -29,8 +27,6 @@ export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) 
       setSession(session)
     })
   }, [setSession])
-
-  const { data } = useQueryProfile()
 
   return (
     <>
@@ -49,7 +45,7 @@ export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) 
         </div>
       </main>
       <footer className="fixed bottom-0 w-screen">
-        {data ? <Navbar isManagement={false} /> : <Footer />}
+        {session ? <Navbar isManagement={false} /> : <Footer />}
       </footer>
     </>
   )
