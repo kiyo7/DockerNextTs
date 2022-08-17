@@ -28,8 +28,6 @@ export const Main: React.FC = () => {
   const [invitingMembers, setInvitingMembers] = useState<InviteMember[]>([])
   const [invitedMembers, setInvitedMembers] = useState<InviteMember[]>([])
 
-  console.log(invitedMembers)
-
   const session = useStore((state) => state.session)
 
   const { getMembers } = useMutateMembers()
