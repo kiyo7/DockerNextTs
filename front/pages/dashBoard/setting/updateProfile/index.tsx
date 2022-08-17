@@ -46,6 +46,10 @@ const ProfileUpdatePage: NextPage = () => {
       toast.error('名前は最低一文字必要です')
       return false
     }
+    if (editedProfile.username!.length > 6) {
+      toast.error('名前は6文字に収めてください')
+      return false
+    }
     return true
   }
 
