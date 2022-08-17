@@ -1,6 +1,6 @@
 //lib
 import { Divider } from '@mantine/core'
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 //hooks
@@ -12,20 +12,23 @@ import { supabase } from '../../utils/supabase'
 import useStore from '../../store'
 
 //components
+import { Independent } from '../atoms/Independent'
 import { OrganizationCard } from '../molecule/OrganizationCard'
-import { Spinner } from '../atoms/Spinner'
 
 //types
-import { Organization } from '../../types'
+import { InviteMember, Organization } from '../../types'
+
+//image
+import independent from '../../images/independent.png'
 
 export const Main: React.FC = () => {
   useSubscribeOrganization()
 
   const [organizations, setOrganizations] = useState<Organization[]>([])
-  const [invitingMembers, setInvitingMembers] = useState<any[]>([])
-  const [invitedMembers, setInvitedMembers] = useState<any[]>([])
+  const [invitingMembers, setInvitingMembers] = useState<InviteMember[]>([])
+  const [invitedMembers, setInvitedMembers] = useState<InviteMember[]>([])
 
-  console.log(invitingMembers)
+  console.log(invitedMembers)
 
   const session = useStore((state) => state.session)
 
@@ -44,15 +47,24 @@ export const Main: React.FC = () => {
     getOrganizationsData()
 
     getMembers
-      .mutateAsync({ id: session?.user?.id!, status: 'Inviting' })
+      .mutateAsync({ member_id: session?.user?.id!, status: 'Inviting' })
       .then((data) => setInvitingMembers(data))
       .catch(() => toast.error('予期せぬエラーが発生しました'))
 
     getMembers
-      .mutateAsync({ id: session?.user?.id!, status: 'Invited' })
+      .mutateAsync({ member_id: session?.user?.id!, status: 'Invited' })
       .then((data) => setInvitedMembers(data))
       .catch(() => toast.error('予期せぬエラーが発生しました'))
   }, [])
+
+  if (organizations.length === 0 && invitingMembers.length === 0 && invitedMembers.length === 0)
+    return (
+      <Independent
+        heading="ようこそ"
+        tips="グループを作成するか、招待してもらいましょう！"
+        img={independent}
+      />
+    )
 
   return (
     <div className="w-full">
@@ -70,6 +82,7 @@ export const Main: React.FC = () => {
                       id={member.id}
                       groupname={member.organizations.groupname}
                       logo={member.organizations.logo}
+                      status={'Inviting'}
                     />
                   )
                 })
@@ -92,6 +105,7 @@ export const Main: React.FC = () => {
                       id={organization.id}
                       groupname={organization.groupname}
                       logo={organization.logo}
+                      status={'Admin'}
                     />
                   )
                 })
@@ -116,6 +130,7 @@ export const Main: React.FC = () => {
                         id={member.id}
                         groupname={member.organizations.groupname}
                         logo={member.organizations.logo}
+                        status={'Invited'}
                       />
                     )
                 })

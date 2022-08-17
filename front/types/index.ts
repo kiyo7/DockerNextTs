@@ -56,3 +56,9 @@ export interface Mail {
   organization_id: string
   created_at: string
 }
+
+export interface InviteMember {
+  id: string
+  invitation_status: InviteStatus
+  organizations: Pick<Organization, 'administrator' | 'groupname' | 'logo'>
+}

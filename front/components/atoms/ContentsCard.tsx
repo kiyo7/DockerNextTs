@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 interface Props {
   contentsName: string
-  Icon: any
+  Icon: JSX.Element
   path?: string
 }
 

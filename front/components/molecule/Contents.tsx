@@ -45,7 +45,7 @@ export const MainContents: React.FC<Props> = ({ ScreenIsSmall = true, spStyle })
   ]
 
   return (
-    <ul className={`menu p-2 ${spStyle}`}>
+    <ul className={`menu ${spStyle}`}>
       {mainContents.map((content, key) => {
         return (
           <Menu
@@ -94,7 +94,7 @@ export const ManagementContents: React.FC<Props> = ({ ScreenIsSmall = true, spSt
   ]
 
   return (
-    <ul className={`menu p-2 ${spStyle}`}>
+    <ul className={`menu ${spStyle}`}>
       {managementContents.map((content, key) => {
         return (
           <Menu

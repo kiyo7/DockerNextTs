@@ -6,7 +6,7 @@ import { useMutation } from 'react-query'
 import { supabase } from '../../utils/supabase'
 
 //types
-import { Member } from '../../types'
+import { InviteMember, InviteStatus, Member } from '../../types'
 
 export const useMutateMembers = () => {
   const addMembers = useMutation(
@@ -22,6 +22,24 @@ export const useMutateMembers = () => {
     },
   )
 
+  //招待ステータスを招待済みに変更
+  const toggleInviteStatus = useMutation(async (member: { id: string; member_id: string }) => {
+    const { data, error } = await supabase
+      .from('members')
+      .update({
+        invitation_status: 'Invited',
+      })
+      .match({
+        member_id: member.member_id,
+        invitation_status: 'Inviting',
+      })
+
+    if (error) throw new Error(error.message)
+
+    return data
+  })
+
+  //グループ内メンバーの取得
   const selectMembers = useMutation(async (id: string) => {
     const { data, error } = await supabase
       .from('members')
@@ -33,29 +51,27 @@ export const useMutateMembers = () => {
     return data
   })
 
-  const getMembers = useMutation(async (info: { id: string; status: string }) => {
+  //招待ステータスごとにデータの取得
+  const getMembers = useMutation(async (member: { member_id: string; status: InviteStatus }) => {
     const { data, error } = await supabase
       .from('members')
       .select('id, invitation_status, organizations (administrator, groupname, logo)')
       .match({
-        member_id: info.id,
-        invitation_status: info.status,
+        member_id: member.member_id,
+        invitation_status: member.status,
       })
 
     if (error) throw new Error(error.message)
 
-    console.log(data)
+    let members: InviteMember[] = []
 
-    let array: any = []
-
-    data.map((j) => {
-      if (j.organizations.administrator !== supabase?.auth?.user()?.id) {
-        array.push(j)
+    data.map((d) => {
+      if (d.organizations.administrator !== supabase?.auth?.user()?.id) {
+        members.push(d)
       }
     })
-
-    return array
+    return members
   })
 
-  return { addMembers, selectMembers, getMembers }
+  return { addMembers, selectMembers, toggleInviteStatus, getMembers }
 }
