@@ -2,8 +2,8 @@
 import { RoleImage } from '../atoms/RoleImage'
 
 //images
-import employee from '../../images/employee.png'
-import manager from '../../images/manager.png'
+import employee from '../../public/assets/employee.png'
+import manager from '../../public/assets/manager.png'
 
 interface Props {
   selectRole: (bool: boolean) => void

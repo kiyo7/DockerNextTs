@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 //images
-import logo from '../../images/footerLogo.png'
+import logo from '../../public/assets/logo.png'
 
 const YearOfCreation = 2022
 export const Footer: React.FC = () => {

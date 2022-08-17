@@ -3,7 +3,7 @@ import Image, { StaticImageData } from 'next/image'
 import { PencilAltIcon } from '@heroicons/react/outline'
 
 //images
-import initImg from '../../images/logo.png'
+import initImg from '../../public/assets/logo.png'
 
 interface Props {
   img?: string | StaticImageData

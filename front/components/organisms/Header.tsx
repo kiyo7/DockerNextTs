@@ -7,7 +7,7 @@ import { useState, useEffect, memo } from 'react'
 import { useQueryProfile } from '../../hooks/query/useQueryProfile'
 
 //image
-import logo from '../../images/logo.png'
+import logo from '../../public/assets/logo.png'
 
 export const Header: React.FC = memo(() => {
   const [greeting, setGreeting] = useState('')

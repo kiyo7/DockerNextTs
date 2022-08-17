@@ -9,7 +9,7 @@ import { useQueryOrganizations } from '../../hooks/query/useQueryOrganizations'
 import { InviteStatus } from '../../types'
 
 //images
-import logo from '../../images/logo.png'
+import logo from '../../public/assets/logo.png'
 
 interface Props {
   id: string

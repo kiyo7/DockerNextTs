@@ -18,8 +18,8 @@ import { SInput } from '../atoms/SInput'
 import { Spinner } from '../atoms/Spinner'
 
 //images
-import authPageBG from '../../images/authPageBG.jpg'
-import google from '../../images/googleAuth.png'
+import authPageBG from '../../public/assets/authPageBG.jpg'
+import google from '../../public/assets/googleAuth.png'
 
 export const Auth: React.FC = () => {
   const editedProfile = useStore((state) => state.editedProfile)

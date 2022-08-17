@@ -15,7 +15,7 @@ import { Spinner } from '../atoms/Spinner'
 import { Suspense } from 'react'
 
 // images
-import initLogo from '../../images/logo.png'
+import initLogo from '../../public/assets/logo.png'
 
 interface Props {
   id: string

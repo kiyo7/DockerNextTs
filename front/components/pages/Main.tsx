@@ -19,7 +19,7 @@ import { OrganizationCard } from '../molecule/OrganizationCard'
 import { InviteMember, Organization } from '../../types'
 
 //image
-import independent from '../../images/independent.png'
+import independent from '../../public/assets/independent.png'
 
 export const Main: React.FC = () => {
   useSubscribeOrganization()
