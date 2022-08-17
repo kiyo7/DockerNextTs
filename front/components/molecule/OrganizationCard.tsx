@@ -1,9 +1,11 @@
 //lib
 import Image from 'next/image'
+import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 
 //hooks
 import { useDownloadUrl } from '../../hooks/useDownloadUrl'
+import { useMutateMembers } from '../../hooks/mutate/useMutateMembers'
 
 //utils
 import useStore from '../../store'
@@ -19,33 +21,61 @@ interface Props {
   id: string
   groupname: string
   logo: string
+  status: 'Inviting' | 'Invited' | 'Admin'
 }
 
-export const OrganizationCard: React.FC<Props> = ({ id, groupname, logo }) => {
-  const { fullUrl: logoUrl } = useDownloadUrl(logo, 'groupLogo')
+export const OrganizationCard: React.FC<Props> = ({ id, groupname, logo, status }) => {
+  const session = useStore((state) => state.session)
   const setCurrentOrganization = useStore((state) => state.setCurrentOrganization)
+
+  const { fullUrl: logoUrl } = useDownloadUrl(logo, 'groupLogo')
 
   const { push } = useRouter()
 
-  const pushManagementConsole = async () => {
+  const { toggleInviteStatus } = useMutateMembers()
+
+  const acceptInvite = async () => {
+    if (confirm('招待を受け入れますか？')) {
+      const member = { id: id, member_id: session?.user?.id! }
+      await toggleInviteStatus
+        .mutateAsync(member)
+        .then(() => {
+          toast.success('招待を承諾しました')
+        })
+        .catch((err) => toast.error(err))
+    }
+  }
+
+  const pushManagementConsole = () => {
     setCurrentOrganization({ id })
     push(`/management/${id}`)
   }
+
+  const pushEmployeeConsole = () => {
+    push(`/employee/`)
+  }
+
+  const clickEvent = () => {
+    if (status === 'Inviting') {
+      acceptInvite()
+    } else if (status === 'Invited') {
+      pushEmployeeConsole()
+    } else {
+      pushManagementConsole()
+    }
+  }
+
   return (
-    <li
-      onClick={pushManagementConsole}
-      className="m-auto my-8 flex w-11/12 flex-row break-all rounded-xl bg-gray-100 shadow-xl hover:cursor-pointer hover:opacity-75 md:w-8/12"
-    >
-      <Suspense fallback={<Spinner />}>
-        <span>
-          {logoUrl ? (
-            <Image src={logoUrl} width={20} height={20} alt="groupLogo" />
-          ) : (
-            <Image src={initLogo} width={48} height={48} alt="groupLogo" />
-          )}
+    <Suspense fallback={<Spinner />}>
+      <div
+        onClick={clickEvent}
+        className="m-auto my-8 flex w-11/12 items-center  break-all rounded-xl bg-gray-100 p-2 shadow-xl hover:cursor-pointer hover:opacity-75 md:w-8/12"
+      >
+        <span className="pl-2">
+          <Image src={logoUrl ? logoUrl : initLogo} width={48} height={48} alt="groupLogo" />
         </span>
-      </Suspense>
-      <p className="font-sans text-sm">{groupname}</p>
-    </li>
+        <p className="ml-5 font-sans text-sm">{groupname}</p>
+      </div>
+    </Suspense>
   )
 }
