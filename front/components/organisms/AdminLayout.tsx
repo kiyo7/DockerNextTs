@@ -17,12 +17,12 @@ import { ManagementContents } from '../molecule/Contents'
 import { Navbar } from '../molecule/Navbar'
 
 interface Props {
-  title: string
-  header?: string
   children: JSX.Element
+  header?: string
+  title: string
 }
 
-export const AdminLayout: React.FC<Props> = ({ title, header = '', children }) => {
+export const AdminLayout: React.FC<Props> = ({ children, header = '', title }) => {
   const currentOrganization = useStore((state) => state.currentOrganization)
 
   useSubscribeOrganization()

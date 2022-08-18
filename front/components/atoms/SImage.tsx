@@ -6,19 +6,19 @@ import { PencilAltIcon } from '@heroicons/react/outline'
 import initImg from '../../public/assets/logo.png'
 
 interface Props {
-  img?: string | StaticImageData
   alt: string
-  width?: number | string
   height?: number | string
+  img?: string | StaticImageData
   isSetting?: boolean
+  width?: number | string
 }
 
 export const SImage: React.FC<Props> = ({
-  img,
   alt,
-  width = 300,
   height = 300,
+  img,
   isSetting = false,
+  width = 300,
 }) => {
   return (
     <div className="relative my-10 text-center hover:cursor-pointer hover:opacity-75">

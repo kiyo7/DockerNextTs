@@ -1,7 +1,8 @@
 //lib
 import { useState } from 'react'
-import Image from 'next/image'
 import { IconSmile, IconMail, IconKey } from '@supabase/ui'
+import { Input, PasswordInput } from '@mantine/core'
+import Image from 'next/image'
 
 //hooks
 import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
@@ -14,7 +15,6 @@ import useStore from '../../store'
 //components
 import { ForgotPasswordModal } from '../organisms/ForgotPasswordModal'
 import { PrimaryButton } from '../atoms/PrimaryButton'
-import { SInput } from '../atoms/SInput'
 import { Spinner } from '../atoms/Spinner'
 
 //images
@@ -83,33 +83,38 @@ export const Auth: React.FC = () => {
               </p>
             </div>
             {!isLogin && (
-              <SInput
-                type="text"
-                value={editedProfile?.username || ''}
-                onChange={(e) =>
-                  updateEditedProfile({ ...editedProfile, username: e.target.value })
-                }
-                label="ユーザーネーム"
-                placeholder="田中 三太郎"
-                icon={<IconSmile />}
-              />
+              <Input.Wrapper label="ユーザーネーム" className="text-left">
+                <Input
+                  icon={<IconSmile />}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    updateEditedProfile({ ...editedProfile, username: e.target.value })
+                  }
+                  placeholder="田中 三太郎"
+                  radius="md"
+                  value={editedProfile?.username || ''}
+                />
+              </Input.Wrapper>
             )}
-            <SInput
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              label="メールアドレス"
-              placeholder="example@email.com"
-              icon={<IconMail />}
-            />
-            <SInput
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              label="パスワード (6文字以上)"
-              placeholder="******"
-              icon={<IconKey />}
-            />
+
+            <Input.Wrapper label="メールアドレス" className="my-8 text-left">
+              <Input
+                icon={<IconMail />}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                placeholder="example@email.com"
+                radius="md"
+                value={email}
+              />
+            </Input.Wrapper>
+            <Input.Wrapper label="パスワード (6文字以上)" className="text-left">
+              <PasswordInput
+                icon={<IconKey />}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                placeholder="******"
+                radius="md"
+                required
+                value={password}
+              />
+            </Input.Wrapper>
             {isLogin && (
               <div className="my-6 flex justify-end text-sm">
                 <ForgotPasswordModal />

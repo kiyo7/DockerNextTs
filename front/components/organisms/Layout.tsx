@@ -12,12 +12,12 @@ import { Header } from './Header'
 import { Navbar } from '../molecule/Navbar'
 
 interface Props {
-  title?: string
-  header?: string
   children: ReactNode
+  header?: string
+  title?: string
 }
 
-export const Layout: React.FC<Props> = ({ title = 'Shifty', header, children }) => {
+export const Layout: React.FC<Props> = ({ children, header, title = 'Shifty' }) => {
   const session = useStore((state) => state.session)
   const setSession = useStore((state) => state.setSession)
 

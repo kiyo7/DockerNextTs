@@ -2,12 +2,12 @@
 import Link from 'next/link'
 
 interface Props {
-  path: string
   contentsName: string
   icon: React.ReactNode
+  path: string
 }
 
-export const Menu: React.FC<Props> = ({ path, contentsName, icon }) => {
+export const Menu: React.FC<Props> = ({ contentsName, icon, path }) => {
   return (
     <>
       <li className={'my-1 md:mx-2'}>

@@ -3,13 +3,13 @@ import Image from 'next/image'
 import { StaticImageData } from 'next/image'
 
 interface Props {
+  active: boolean
   src: StaticImageData
   onClick: () => void
   role: string
-  active: boolean
 }
 
-export const RoleImage: React.FC<Props> = ({ src, onClick, role, active }) => {
+export const RoleImage: React.FC<Props> = ({ active, src, onClick, role }) => {
   return (
     <div
       className={`flex flex-col border-2 text-center focus:animate-bound ${

@@ -3,18 +3,18 @@ import { ToastContainer, ToastPosition, Bounce } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 interface Props {
-  position?: ToastPosition
   autoClose?: number
+  position?: ToastPosition
 }
 
-export const Notice: React.FC<Props> = ({ position = 'top-center', autoClose = 1000 }) => {
+export const Notice: React.FC<Props> = ({ autoClose = 1000, position = 'top-center' }) => {
   const contextClass = {
-    success: 'bg-blue-600',
     error: 'bg-red-600',
-    info: 'bg-gray-700',
-    warning: 'bg-orange-400',
-    default: 'bg-black text-white ',
     dark: 'bg-white text-gray-600',
+    default: 'bg-black text-white ',
+    info: 'bg-gray-700',
+    success: 'bg-blue-600',
+    warning: 'bg-orange-400',
   }
   return (
     <ToastContainer

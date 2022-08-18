@@ -3,11 +3,11 @@ import Image, { StaticImageData } from 'next/image'
 
 interface Props {
   heading: string
-  tips: string
   img: StaticImageData
+  tips: string
 }
 
-export const Independent: React.FC<Props> = ({ heading, tips, img }) => {
+export const Independent: React.FC<Props> = ({ heading, img, tips }) => {
   return (
     <div className="hero">
       <div className="hero-content text-center">

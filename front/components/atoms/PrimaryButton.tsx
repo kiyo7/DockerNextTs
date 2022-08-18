@@ -1,19 +1,19 @@
 interface Props {
-  icon?: JSX.Element
+  buttonColor?: 'primary' | 'error' | 'accent' | 'ghost'
   buttonText: string
   clickEvent?: () => void
-  buttonColor?: 'primary' | 'error' | 'accent' | 'ghost'
-  textColor?: string
   disabled?: boolean
+  icon?: JSX.Element
+  textColor?: string
 }
 
 export const PrimaryButton: React.FC<Props> = ({
-  icon,
+  buttonColor = '',
   buttonText,
   clickEvent,
-  buttonColor = '',
-  textColor = 'white',
   disabled,
+  icon,
+  textColor = 'white',
 }) => {
   const buttonStyle = () => {
     switch (buttonColor) {

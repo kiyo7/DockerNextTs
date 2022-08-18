@@ -1,4 +1,5 @@
 //lib
+import { Button, Input } from '@mantine/core'
 import { IconSmile } from '@supabase/ui'
 import { CameraIcon } from '@heroicons/react/outline'
 import { NextPage } from 'next'
@@ -18,9 +19,7 @@ import useStore from '../../../../store'
 import { ImgUploadButton } from '../../../../components/atoms/ImgUploadButton'
 import { Layout } from '../../../../components/organisms/Layout'
 import { SImage } from '../../../../components/atoms/SImage'
-import { SInput } from '../../../../components/atoms/SInput'
 import { Spinner } from '../../../../components/atoms/Spinner'
-import { Button } from '@mantine/core'
 
 const ProfileUpdatePage: NextPage = () => {
   const session = useStore((state) => state.session)
@@ -68,13 +67,17 @@ const ProfileUpdatePage: NextPage = () => {
   return (
     <Layout title="プロフィール編集" header="プロフィール編集">
       <div className="m-auto mt-10 w-10/12 xl:w-5/12">
-        <SInput
-          type="text"
-          value={editedProfile?.username || ''}
-          onChange={(e) => updateEditedProfile({ ...editedProfile, username: e.target.value })}
-          label="ユーザーネーム"
-          icon={<IconSmile />}
-        />
+        <Input.Wrapper label="ユーザーネーム" className="text-left">
+          <Input
+            icon={<IconSmile />}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              updateEditedProfile({ ...editedProfile, username: e.target.value })
+            }
+            placeholder="田中 三太郎"
+            radius="md"
+            value={editedProfile?.username || ''}
+          />
+        </Input.Wrapper>
         <div className="m-auto w-6/12">
           {!isLoading ? (
             <ImgUploadButton changeEvent={(e) => useMutateUploadAvatarImg.mutate(e)}>

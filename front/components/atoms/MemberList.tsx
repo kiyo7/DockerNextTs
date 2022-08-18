@@ -12,13 +12,13 @@ import { InviteStatus } from '../../types'
 import logo from '../../public/assets/logo.png'
 
 interface Props {
-  id: string
-  username: string
   avatar: string
+  id: string
   invitation_status: InviteStatus
+  username: string
 }
 
-export const MemberList: React.FC<Props> = ({ id, username, avatar, invitation_status }) => {
+export const MemberList: React.FC<Props> = ({ avatar, id, invitation_status, username }) => {
   const { data } = useQueryOrganizations()
 
   const { fullUrl: avatarUrl } = useDownloadUrl(avatar, 'avatars')

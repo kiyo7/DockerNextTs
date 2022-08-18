@@ -1,11 +1,9 @@
 //lib
 import { Button, IconMail } from '@supabase/ui'
+import { Input } from '@mantine/core'
 
 //hooks
 import { useMutateAuth } from '../../hooks/mutate/useMutateAuth'
-
-//components
-import { SInput } from '../atoms/SInput'
 
 export const ForgotPasswordModal: React.FC = () => {
   const { email, setEmail, passwordResetSendEmail } = useMutateAuth()
@@ -24,14 +22,17 @@ export const ForgotPasswordModal: React.FC = () => {
         <label className="modal-box relative">
           <h3 className="mx-2 font-sans text-2xl text-gray-500">パスワードの再設定</h3>
           <div className="my-10">
-            <SInput
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              label="メールアドレス"
-              placeholder="example@email.com"
-              icon={<IconMail />}
-            />
+            <Input.Wrapper label="メールアドレス" className="text-left">
+              <Input
+                icon={<IconMail />}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setEmail(e.target.value)
+                }}
+                placeholder="example@email.com"
+                radius="md"
+                value={email}
+              />
+            </Input.Wrapper>
           </div>
 
           <Button
